@@ -78,20 +78,22 @@
                                 <div class="input-container">
                                     <input type="radio" id="Customer" name="usertype" required>
                                     <div class="radio-tile">
-                                        <img src="asset/1.png" alt="Customer" style="width: 100%; height: 100%; vertical-align: middle;">
+                                        <img src="asset/c.png" alt="Customer" style="width: 100%; height: 100%; vertical-align: middle;">
                                     </div>
                                 </div>
 
                                 <div class="input-container">
                                     <input type="radio" id="Provider" name="usertype" required>
                                     <div class="radio-tile">
-                                        <img src="asset/2.png" alt="Provider" style="width: 100%; height: 100%; vertical-align: middle;">
+                                        <img src="asset/p.png" alt="Provider" style="width: 100%; height: 100%; vertical-align: middle;">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
 
+<br>
+<br>
 
                 <div class="row" id="service-name-row" style="display: none;">
                     <input type="text" placeholder="Service Name" id="service_name" name="service_name">
@@ -197,22 +199,25 @@
     border-radius: 8px;
 }
 
-.input-container img {
-    font-size: 100%;
-}
+
 
 
 
 input:checked+.radio-tile {
     background-color:#A02B68;
     color: #A02B68;
+    height: 11rem;
+    width: 11rem;
+    border: 2px solid White;
 }
 
 input:checked+.radio-tile img,
 input:checked+.radio-tile label {
     background-color: #A02B68;
     color: #A02B68;
-    
+    height: 11rem;
+    width: 11rem;
+    border: 2px solid white;
 }
 
 input:hover+.radio-tile {
