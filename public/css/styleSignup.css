@@ -3,18 +3,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 .lg {
-    width: 100%;
-	height: 100%;
+	width: 100%;
+    height: 100%;
     object-fit: cover;
-	background-position: center;
-  	background-repeat: no-repeat;
-  	background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
     overflow: hidden;
-    z-index: -1; 
+    z-index: -1;
 }
+
+
 
 .alert-container {
     position: fixed;
