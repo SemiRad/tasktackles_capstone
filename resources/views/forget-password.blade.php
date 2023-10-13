@@ -45,12 +45,13 @@
             </form>
 
            
-            <div class="register">
-            <form action="/login" method ="get">
-                <input type="submit" value="Log In" id="signup">
-            </form>
-           
+
+            <div class="forgotpassword">
+                <a href="/login" target="_self" id="forgotpw">Go Back</a><br>
             </div>
+           
+           
+           
         
     </div>
 
