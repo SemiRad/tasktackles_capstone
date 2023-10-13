@@ -101,6 +101,7 @@
                 <div class="row">
                     <input type="password" placeholder="Password"  id="password" name="password"required>
                 </div>
+                <p style ="font-size: small; color: gray; text-align:center;"> Your password must be at least 8 characters long. </p>
                 <div class="row">
                     <input type="password" placeholder="Confirm Password" name="password_confirmation" required>
                 </div>
