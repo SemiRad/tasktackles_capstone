@@ -81,7 +81,7 @@ class UserController extends Controller
                     $image = $request->file('id_img');
                     $imageName = time() . '.' . $image->getClientOriginalExtension();
                     $image->storeAs('assets/', $imageName);
-                    $save->id_img = $imageName;
+                    $user->id_img = $imageName;
                     $request->id_img->move(public_path('images'), $imageName);
                 }
 
