@@ -26,7 +26,7 @@
                 @endif
             </div>
             <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
-            <form method="post" action="{{ route('register') }}">
+            <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
     @csrf
     <div class="coldiv">
             <div class = "col1">

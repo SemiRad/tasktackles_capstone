@@ -59,7 +59,7 @@ class UserController extends Controller
             'email_address' => 'required|email|unique:user', 
             'username' => 'required|string|max:255|unique:user|regex:/^\S*$/u|alpha_dash',
             'password' => 'required|min:8|confirmed',
-            'id_img' => 'required',
+            'id_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'password_confirmation' => 'required|required_with:password|same:password',
                 ]);
             
@@ -75,13 +75,22 @@ class UserController extends Controller
                 $user->city = $request->input('city');
                 $user->contact = $request->input('contact');
                 $user->usertype = $request->input('usertype');
-            
+
+
                 if ($request->hasFile('id_img')) {
+                    $image = $request->file('id_img');
+                    $imageName = time() . '.' . $image->getClientOriginalExtension();
+                    $image->storeAs('assets/', $imageName);
+                    $save->id_img = $imageName;
+                    $request->id_img->move(public_path('images'), $imageName);
+                }
+
+               /* if ($request->hasFile('id_img')) {
                     $image = $request->file('id_img');
                     $imageName = time() . '.' . $image->getClientOriginalExtension();
                     $image->storeAs('your_disk_name', 'assets/' . $imageName); // Specify your disk name
                     $user->id_img = $imageName;
-                }
+                }*/
             
                 if ($request->input('usertype') === 'Customer') {
                     $user->service_name = null;
