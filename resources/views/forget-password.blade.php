@@ -29,7 +29,7 @@
             </div>
 
             <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
-            <form action="{{ route('forgetpassword') }}" method="post">
+            <form action="#" method="post">
             <div class="register">
             <p id="text" style= "text-align:left; font-size:small;">Enter your email address and we'll send you an email with instructions to reset your password<br></p>
         </div>
