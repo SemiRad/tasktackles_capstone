@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.alert-container {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; 
+}
+
+.alert {
+    width: 100%;
+    padding: 10px;
+	place-items: center;
+    text-align: center;
+	z-index: 9999; 
+	
+}
+
+.alert-success {
+    background-color: #4CAF50; 
+	height: fit-content;
+	border-radius: 8px;
+    color: white;
+
+}
+
+.alert-error {
+    background-color: #f44336; 
+	height: fit-content;
+	border-radius: 8px;
+    color: white;
+}
+
+.topbar {
+	width: 100%;
+	background-color: #6F0B5B;
+	margin-top: 20px;
+	padding: 10px 0 10px 0;
+	height: fit-content;
+    justify-content: center;  
+}
+
+.topbar ul {
+	display: flex;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+}
+
+.topbar ul li {
+	margin: auto;
+}
+
+.topbar .active {
+	color: #F97134;
+	text-decoration: underline;
+}
+
+.topbar ul li a {
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.topbar ul li a:hover {
+	color: #F97134;
+	font-weight: bold;
+}
+
+.topbar #stat {
+	display: flex;
+	margin-right: 30px;
+	gap: 100px;
+	margin: auto;
+}
+
+/**CARD**/
+
+.card {
+	width: 100%;
+	height: fit-content;
+	border: 1px solid;
+	margin: 0;
+	display: flex;
+	font-size: 22px;
+}
+
+.card label {
+	font-weight: bold;
+	display: inline-block;
+	text-align: right;
+    clear: both;
+    margin-right: 15px;
+    color: #F97134;
+}
+
+.card .col1,.col2,.col3 {
+	width: 100%;
+	margin: 10px 50px 10px 50px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,body{
+    /**display: grid;*/
+    height: 100%;
+    place-items: center;
+    background: white;
+}
+
+.wrapper{
+    padding-top: 130px;
+    width: 100%;
+    background: #470047;
+}
+
+.wrapper .parent{
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-top: 20px;
+}
+
+.butts{
+    margin-top: 20px; 
+    display: flex;
+    gap: 10px; 
+    justify-content: center;  
+}
+
+.wrapper .parent .ed #editbtn{
+    background-color: #FF8F2F;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 32px;
+    cursor: pointer;
+    padding: 10px;
+    
+}
+
+.wrapper .parent .ed #editbtn:hover{
+    background-color: white;
+    color: #FF8F2F;
+    transition: ease-in .3s;
+}
+
+.wrapper .parent .send #editbtn{
+    background-color: #FF8F2F;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 32px;
+    cursor: pointer;
+    padding: 10px;
+    
+}
+
+.wrapper .parent .send #editbtn:hover{
+    background-color: white;
+    color: #FF8F2F;
+    transition: ease-in .3s;
+}
+
+
+.wrapper .parent .feedback #fback{
+    background-color: #FF8F2F;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 32px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.wrapper .parent .feedback #fback:hover{
+    background-color: white;
+    color: #FF8F2F;
+    transition: ease-in .3s;
+}
+
+#editprof {
+    background-color: #FF8F2F;
+    border: 0px;
+    border-radius: 26px;
+    font-size: 20px;
+    padding: 3px 10px;
+    text-transform: uppercase;
+}
+
+#editbtn:hover{
+    scale: 1.1;
+    background-color: white;
+    cursor: pointer;
+}
+
+ .right .p1{
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    color: #FF8F2F;
+    font-size: x-large;
+}
+
+.right .r1{
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    font-size: large;
+    color: yellow;
+}
+
+
+.left{
+    margin-right: 25px;
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%; 
+    overflow: hidden; 
+    border: 2px solid black;
+}
+
+.left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.nav{
+    display: flex;
+    background-color: whitesmoke;
+    width: 100%;
+   
+}
+
+.serv{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  
+}
+
+.fb{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.wrapper .nav .serv #serv{
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px;
+    border: 0;
+    width: 100%;
+}
+
+.wrapper .nav .serv #serv:hover{
+    background-color: white;
+    color: #FF8F2F;
+    width: 100%;
+}
+
+
+.wrapper .nav .fb #fb{
+    color: Black;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px;
+    border: 0;
+    width: 100%;
+}
+
+.wrapper .nav .fb #fb:hover{
+    background-color: white;
+    color: #FF8F2F;
+    width: 100%;
+}
+
+/*CARD CSS*/
+main {
+    max-width: 1500px;
+    width: 95%;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto;
+}
+
+main .card {
+    max-width: 300px;
+    flex: 1 1 210px;
+    text-align: left;
+    height: fit-content;
+    border: 1px solid black;
+    margin: 20px;
+    display: flex; /* Add this line */
+    flex-direction: column; /* Add this line to make it stack vertically */
+}
+
+main .card .image {
+    height: 200px; /* Set a fixed height for the image container */
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center; /* Horizontally center the image */
+    align-items: center; /* Vertically center the image */
+    order: 1; /* Add this line to control the order of appearance */
+}
+
+main .card .caption {
+    order: 2; /* Add this line to control the order of appearance */
+}
+
+
+main .card .image img {
+    max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+    max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+    object-fit: contain; /* Maintain aspect ratio and fit the image inside the container */
+    margin-top: 20px;
+}
+
+
+
+main .card .taskName {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+main .caption {
+    margin: 20px;
+}
+
+main .caption .price {
+    line-height: 3em;
+}
+
+main .caption #delbtn {
+    margin-left: 200px;
+    width: 50px;
+    color: darkred;
+}
+
+main .caption #bookbtn {
+    padding-left: 20%;
+}
+
+main .caption .btnstat {
+    position: absolute;
+    margin-top: 10px;
+    background-color: #FF8F2F;
+    border: 0;
+    border-radius: 25px;
+    font-size: 18px;
+    padding: 8px;
+    text-transform: uppercase;
+}
+
+main .caption .btnstatcs {
+    background-color: #FF8F2F;
+    border: 0;
+    border-radius: 25px;
+    font-size: 18px;
+    padding: 8px;
+    text-transform: uppercase;
+}
+
+main .caption .btnstatcs:hover{
+    scale: 1.1;
+    background-color: #FFB94E;
+    cursor: pointer;
+}
+
+main .caption .taskName #editbtn {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 8px;
+    width: 28px;
+    color: #F97134;
+}
+
+main .caption .taskName #editbtn:hover{
+    scale: 1.1;
+    background-color: #FFB94E;
+    cursor: pointer;
+}
+
+main .caption #delbtn:hover {
+    scale: 1.25;
+    cursor: pointer;
+}

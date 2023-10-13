@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* COLOR SCHEMES (DARK TO LIGHT)
+	PURPLE:
+	#470047
+	#6F0B5B
+	#A02B68
+
+	ORANGE:
+	#F97134
+	#FF8F2F
+	#FFB94E
+*/
+
+*{
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+.navbar{
+	width: 100%;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1vw 6vw;
+	background-color: #470047;
+	z-index: 1000;
+}
+.logo{
+	font-size: 2vw;
+	color: #fbaa09;
+	font-weight: 800;
+	letter-spacing: 2px;
+}
+.logo img{
+	width: 35%;
+}
+.menuitems {
+	display: flex;
+	margin: auto 0;
+}
+.menuitems li{
+	list-style: none;
+	margin: 0 1.5vw;
+}
+.menuitems li a{
+	display: block;
+	color: white;
+	font-size: 25px;
+	letter-spacing: 1px;
+	padding: 0px 10px 0px 10px;
+	text-decoration: none;
+}
+.menuitems li:hover a, .menuitems li a.active{
+	color: #470047;
+	background: #F97134;
+	height: 100%;
+	width: 100%;
+	border-radius: 3px;
+}
+
+#check {
+	display: none;
+	visibility: hidden;
+	-webkit-appearance: none;
+			appearance: none; 
+}
+.navbar label{
+	display: none;
+}
+.accnt{
+	width: 100%;
+	display: flex;
+}
+
+.dropdown {
+	float: left;
+	overflow: hidden;
+	overflow-y: auto;
+  }
+
+  .dropdown .accnt { 
+	background-color: #470047;
+	border: none;
+	outline: none;	
+	display: hide;
+	color: white;
+	font-size: 25px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	width: 100%;
+  }
+
+
+  .dropdown:hover .accnt {
+	color: #470047;
+	background: #F97134;
+  }
+
+  .accountitems {
+	display: none;
+	position: absolute;
+	background-color:#6F0B5B;
+	min-width: 140px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	padding-bottom: 2%;
+  }
+
+  .accountitems a {
+	list-style: none;
+	margin: 0;
+	display: block;
+	color: white;
+	font-size: 25px;
+	letter-spacing: 1px;
+	padding: 10px 10px 10px 10px;
+	text-decoration: none;
+  }
+
+  
+  
+  .accountitems a:hover {
+	background-color: #ddd;
+	width: 30%;
+  }
+  
+  .dropdown:hover .accountitems {
+	display: block;
+	overflow-y: auto;
+	max-height: 500px;
+  }
+  #check {
+	display: none;
+	visibility: hidden;
+	-webkit-appearance: none;
+			appearance: none; 
+}
+.navbar label{
+	display: none;
+}
+
+@media screen and (max-width: 900px)	
+{
+
+	body{
+		overflow:  auto;
+	}
+	.logo{
+		font-size: 5vw;
+	}
+	.navbar label{
+		display: block;
+		color: white;
+		font-size: 4vw;
+		padding: 1vw 1.5vw;
+		background: #470047;
+		cursor: pointer;
+		z-index: 1000;
+	}
+	.menuitems {
+		position: fixed;
+		top: 0;
+		right: -40vw;
+		width:40vw;
+		height: 100%;
+		background: #470047;
+		padding-top: 15vw;
+		padding-left: 5vw;
+		display: flex;
+		flex-direction: column;
+		transition: 0.3s ease;
+		overflow-y: auto;
+	}
+	.menuitems li a{
+		color: white;
+		font-size: 3vw;
+		margin: 0.5vw 0;
+	}
+	.accountitems li a{
+		color: white;
+		padding: 1%;
+		width: max-content;
+		overflow-y: auto;
+	}
+
+	.dropdown .accnt{
+		font-size:3vw;
+		margin-left: 15px;
+	}
+
+	#check:checked ~ nav .navbar .menuitems {
+		right: 0;
+	}
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+}
