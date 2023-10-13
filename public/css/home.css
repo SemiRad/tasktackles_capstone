@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* COLOR SCHEMES (DARK TO LIGHT)
+	PURPLE:
+	#470047
+	#6F0B5B
+	#A02B68
+
+	ORANGE:
+	#F97134
+	#FF8F2F
+	#FFB94E
+*/
+
+.topbar {
+	padding: 150px 0 0 0;
+}
+
+.content {
+	background-color: #470047;
+	width: fit-content;
+	height: fit-content;
+	padding: 30px;
+	margin: auto;
+	border: 0;
+	border-radius: 36px;
+}
+
+h1 {
+	margin: 10px 2px 0 0;
+	color: white;
+}

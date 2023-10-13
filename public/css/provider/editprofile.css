@@ -1,0 +1,144 @@
+.alert-container {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    z-index: 1; 
+}
+
+.alert {
+    width: 100%;
+    padding: 10px;
+	place-items: center;
+    text-align: center;
+	z-index: 1; 
+	
+}
+
+.alert-success {
+    background-color: #4CAF50; 
+	height: fit-content;
+	border-radius: 8px;
+    color: white;
+
+}
+
+.alert-error {
+    background-color: #f44336; 
+	height: fit-content;
+	border-radius: 8px;
+    color: white;
+}
+
+
+
+.header{
+    position: relative;
+    padding: 150px 0 0 0;
+    width: fit-content;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+
+
+
+.wrapper h1 {
+    color: #F97134;
+    margin: auto;
+    text-align: center;
+    font-size: 36px;
+}
+
+.wrapper{
+    background-color: #470047;
+    margin: 1rem;
+    padding: 2rem 2rem;
+    font-size: 20px;
+    border-radius: 26px;
+    height: fit-content;
+    text-align: left;
+}
+
+.wrapper input[type="file"]{
+    margin: 0 0 25px 0;
+}
+
+.wrapper .row {
+    margin: 5px 0 0 0;
+}
+
+.wrapper #desc {
+    border: 1px solid #000000;
+    padding: 5px;
+    width: 80%;
+}
+
+.wrapper .dividers{
+    display: inline-block;
+    vertical-align: middle;
+    min-height: 400px;
+    color: white;
+    margin-left: 200px;
+}
+
+label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 20px;
+    vertical-align: text-top;
+}
+
+input, select{
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+textarea {
+    padding: 10px;
+    border: 1.5px solid;
+    border-radius: 20px;
+}
+
+.bigtxt {
+    display: flex;
+    align-items: center;
+}
+
+input[type="submit"]{
+    border-radius: 36px;
+    border: 0;
+    padding: 10px 15px 10px 15px;
+    background-color: #FF8F2F;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin: auto;
+    display: block;
+}
+
+input[type="submit"]:hover{
+    scale: 1.1;
+    background-color: #F97134;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1200px)    {
+    .wrapper{
+    padding: 10px 48px 0px 48px;
+    font-size: 20px;
+    margin: 0;
+    }
+
+    .header {
+        padding: 100px 0 0 0;
+    }
+
+    .wrapper h1 {
+        text-align: center;
+        margin-left: 0px;
+    }
+}
