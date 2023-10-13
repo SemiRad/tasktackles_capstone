@@ -13,15 +13,15 @@
             <img class="lg" src="asset/log2.png" draggable="false">
         <div class="wrapper">
                 <div class="errormsg">
-                @if(session('error'))
+                @if(session('fail'))
                 <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}
+                    There is an error. Please try again.
                 </div>
                 @endif
             </div>
             <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
-            <form method="post" action="{{ route('register') }}">
-    @csrf
+            <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
+                @csrf
     <div class="coldiv">
             <div class = "col1">
                 <div class="row">
@@ -76,14 +76,14 @@
                     <div class="container">
                             <div class="radio-tile-group">
                                 <div class="input-container">
-                                    <input type="radio" id="Customer" name="usertype" required>
+                                    <input type="radio" id="Customer" name="usertype" value="Customer" required>
                                     <div class="radio-tile">
                                         <img src="asset/c.png" alt="Customer" style="width: 100%; height: 100%; vertical-align: middle;">
                                     </div>
                                 </div>
 
                                 <div class="input-container">
-                                    <input type="radio" id="Provider" name="usertype" required>
+                                    <input type="radio" id="Provider" name="usertype" value="Provider" required>
                                     <div class="radio-tile">
                                         <img src="asset/p.png" alt="Provider" style="width: 100%; height: 100%; vertical-align: middle;">
                                     </div>
@@ -96,11 +96,11 @@
 <br>
 
                 <div class="row" id="service-name-row" style="display: none;">
-                    <input type="text" placeholder="Service Name" id="service_name" name="service_name">
+                    <span style="color:#470047; margin: 10px 10px 0 -30px;">Proof of Identity:</span><input type="text" placeholder="Service Name" id="service_name" name="service_name">
                 </div>
     
-                <div class="row" id="id-row" style="display: none;">
-                    Proof of Identity: <input type="file" placeholder="ID verification" id="id_img" name="id_img" required>
+                <div class="row" id="id-row" style="display: none; color: white;">
+                    <span style="margin: 10px 10px 0 -30px;">Proof of Identity:</span><input type="file" id="photo" name="photo" accept="image/png, image/gif, image/jpeg" required>
                 </div>
                 <br>
                 <div class="row" id="subtn">
@@ -131,11 +131,11 @@
             const idVal = document.querySelector('#id-row');
             function handleUserTypeChange() {
                 if (userTypeRadios[1].checked) {
-                    serviceNameInput.style.display = 'block';
-                    idVal.style.display = 'block';
+                    serviceNameInput.style.display = 'flex';
+                    idVal.style.display = 'flex';
                 } else {
                     serviceNameInput.style.display = 'none';
-                    idVal.style.display = 'block';
+                    idVal.style.display = 'flex';
                 }
             }
 
@@ -154,7 +154,8 @@
     @endif
     </script>
     </body>
-
+    </section>
+</html>
     <style>
     
 .container {
@@ -240,5 +241,3 @@ input[type="file"]  {
 
 
     </style>
-</section>
-</html>

@@ -3,8 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 .lg {
-    width: 100%;
-    height: 100%;
+    width: 150%;
     object-fit: cover;
     position: absolute;
     top: 0;
@@ -140,7 +139,9 @@ html,body{
 .wrapper .register #text{
 	margin-bottom: 10px;
 }
-
+.wrapper .register #file{
+	margin-bottom: 10px;
+}
 .wrapper form .row2 {
 	margin-left: 5%;
 	color: white;
@@ -159,7 +160,34 @@ html,body{
 }
 
 .wrapper form #subtn {
-	display: flex; justify-content: center; align-items: center;
+	display: flex; 
+	justify-content: center; 
+	align-items: center;
+}
+
+.wrapper form #service-name-row {
+	width: 100%;
+	margin-top: 10px;
+	display: flex; 
+	justify-content: center; 
+	align-items: center;
+}
+
+.wrapper form #id-row {
+	width: 100%;
+	display: flex; 
+	justify-content: center; 
+	align-items: center;
+}
+
+#service-name-row input {
+	width: 50%;
+	
+}
+
+#id-row input {
+	width: 50%;
+	
 }
 
 @media screen and (max-width: 900px){

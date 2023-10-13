@@ -57,7 +57,7 @@ class UserController extends Controller
             'usertype' => 'required',
             'service_name' => ($request->input('usertype') === 'Provider') ? 'required|unique:user' : '',
             'email_address' => 'required|email|unique:user', 
-            'username' => 'required|string|max:255|unique:users|regex:/^\S*$/u|alpha_dash',
+            'username' => 'required|string|max:255|unique:user|regex:/^\S*$/u|alpha_dash',
             'password' => 'required|min:8|confirmed',
             'id_img' => 'required',
             'password_confirmation' => 'required|required_with:password|same:password',
