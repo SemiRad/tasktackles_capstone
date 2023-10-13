@@ -13,6 +13,12 @@
             <img class="lg" src="asset/log2.png" draggable="false">
         <div class="wrapper">
                 <div class="errormsg">
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+                @endif
+
                 @if(session('error'))
                 <div class="alert alert-danger" role="alert">
                     {{ session('error') }}
@@ -24,12 +30,20 @@
     @csrf
     <div class="coldiv">
             <div class = "col1">
+            
                 <div class="row">
                     <input type="text" placeholder="First Name" id="firstname" name="firstname" value ="{{ old('firstname')}}"required>
                 </div>
+                @error('firstname')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    @error('lastname')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="text" placeholder="Last Name" id="lastname" name="lastname"  value ="{{ old('lastname')}}"required> 
                 </div>
+                
                 <div class="row">
                     <select name="gender" id="gender" required>
                         <option value="">Select Gender</option>
@@ -39,34 +53,62 @@
                         <option value="none">Prefer not to say</option>
                     </select>
                 </div>
+                @error('birthday')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="date" placeholder="Birthday" id="birthday" name="birthday" onblur="formatDate(this)" onfocus="(this.type='date')" 
                     max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>"value ="{{ old('birthday')}}" required>
                     </div>
+                   
+                    @error('contact')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="number" placeholder="Contact Number" id="contact" value ="{{ old('contact')}}"name="contact" maxlength="11" required>
                      </div>
+                     
+                    @error('address')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="text" placeholder="Address" id="address" name="address" value ="{{ old('address')}}"required>
                 </div>
-
+                
             </div>
             <div class = "col1">
+           
             <div class="row">
                     <input type="text" placeholder="City" id="city" name="city" value ="{{ old('city')}}"required>
                     </div>
+                    @error('city')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    @error('email_address')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="email" placeholder="Email" id="email_address" name="email_address" value ="{{ old('email_address')}}"required>
                     </div>
+                    
+                    @error('username')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="text" placeholder="Username" id="username" name="username" value ="{{ old('username')}}"required>
                 </div>
+               
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="password" placeholder="Password"  id="password" name="password"required>
                 </div>
+                
                 <div class="row">
                     <input type="password" placeholder="Confirm Password" name="password_confirmation" required>
                 </div>
+                
                 </div>
             </div>
                 <div class="row2" id="subtn">
