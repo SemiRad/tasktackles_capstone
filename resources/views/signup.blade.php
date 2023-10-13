@@ -129,6 +129,8 @@
                         </div>
 
 
+                        <br>
+                        <br>
 
                 <div class="row" id="service-name-row" style="display: none;">
                     <input type="text" placeholder="Service Name" id="service_name" name="service_name">
