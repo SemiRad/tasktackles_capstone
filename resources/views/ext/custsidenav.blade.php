@@ -15,9 +15,9 @@
 	<nav>
 
 		<div class = "navbar">
-		<a href="{{ route('Home') }}"><div class="logo"><img src="{{ asset('asset/TT-txt.png') }}"></div></a>
+		<a href="{{ route('customer-home') }}"><div class="logo"><img src="{{ asset('asset/TT-txt.png') }}"></div></a>
 			<ol class = "menuitems">
-                <li><a href="{{ route('Home') }}"> Home </a></li>
+                <li><a href="{{ route('customer-home') }}"> Home </a></li>
 				<li><a href="{{ route('services') }}"> Services </a></li>
 				<li><a href="{{ route('bookings') }}">Bookings</a></li>
 				<div class="dropdown">
@@ -31,7 +31,7 @@
 							<br>
 							<li><a href="#"> Messages </a></li>
                             <li><a href="#"> View Ratings </a></li>
-							<li><a href="{{ route('review-provider') }}"> Outgoing Feedbacks </a></li>
+							<li><a href="#"> Outgoing Feedbacks </a></li>
 							<li><a href="#"> Payment Receipt </a></li>
 							<br>
 							<br>

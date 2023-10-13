@@ -38,7 +38,7 @@ class UserController extends Controller
                 if ($user->usertype === 'Provider') {
                 return redirect()->route('provserv')->with(compact('user'));}
                 else {
-                    return redirect()->route('cutomer-home')->with(compact('user'));}}
+                    return redirect()->route('customer-home')->with(compact('user'));}}
             else {
                 return back()->with('error', 'Invalid Credentials', compact('user'));}}
         else {

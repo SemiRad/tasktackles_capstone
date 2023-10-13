@@ -113,14 +113,14 @@
                     <div class="container">
                             <div class="radio-tile-group">
                                 <div class="input-container">
-                                    <input type="radio" id="Customer" name="usertype" required>
+                                    <input type="radio" id="Customer" name="usertype" value="Customer"required>
                                     <div class="radio-tile">
                                         <img src="asset/c.png" alt="Customer" style="width: 100%; height: 100%; vertical-align: middle;">
                                     </div>
                                 </div>
 
                                 <div class="input-container">
-                                    <input type="radio" id="Provider" name="usertype" required>
+                                    <input type="radio" id="Provider" name="usertype" value="Provider"required>
                                     <div class="radio-tile">
                                         <img src="asset/p.png" alt="Provider" style="width: 100%; height: 100%; vertical-align: middle;">
                                     </div>
