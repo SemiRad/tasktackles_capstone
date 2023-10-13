@@ -90,6 +90,7 @@ class UserController extends Controller
                 }
             
                 $user->account_status = "Active";
+                $user->isValid = 1;
                 $saveuser = $user->save();
             
                 if ($saveuser) {

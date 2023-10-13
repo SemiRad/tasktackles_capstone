@@ -3,13 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 .lg {
-    width: 150%;
+	
+    width: 100%;
+	height: 100%;
     object-fit: cover;
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh; 
     overflow: hidden;
     z-index: -1; 
 }
@@ -47,6 +50,7 @@
 }
 
 *{
+	
     margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -54,12 +58,14 @@
 }
 
 html,body{
+	
 	display: grid;
 	height: 100%;
 	place-items: center;
 }
 
 .wrapper{
+	scale: .9;
 	width: fit-content;
 	background: #470047;
 	border-radius: 8px;

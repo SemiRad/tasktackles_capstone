@@ -10,7 +10,7 @@
 
 <section>
     <body>
-            <img class="lg" src="asset/log2.png" draggable="false">
+            <img class="lg" src="asset/log2.png" draggable="false" style="height: 1000px;">
         <div class="wrapper">
                 <div class="errormsg">
                 @if(session('fail'))
