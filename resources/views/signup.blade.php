@@ -60,7 +60,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="row">
-                    <input type="number" placeholder="Contact Number" id="contact" value ="{{ old('contact')}}"name="contact" maxlength="11" required>
+                    <input type="number" placeholder="Contact Number" id="contact" value ="09{{ old('contact')}}"name="contact" maxlength="11" required>
                      </div>
                      @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -90,7 +90,7 @@
                     </div>
                    
                 <div class="row">
-                    <input type="text" placeholder="Username" id="username" name="username" value ="{{ old('username')}}"required>
+                    <input type="text" placeholder="Username" id="username" name="username" value ="={{ old('username')}}"required>
                 </div>
                 @error('username')
                     <div class="alert alert-danger">{{ $message }}</div>
