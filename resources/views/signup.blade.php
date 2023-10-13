@@ -134,11 +134,13 @@
                         <br>
 
                 <div class="row" id="service-name-row" style="display: none;">
+                <span style="color:#470047; margin: 10px 10px 0 -30px;">Proof of Identity:</span>
                     <input type="text" placeholder="Service Name" id="service_name" name="service_name">
                 </div>
     
-                <div class="row" id="id-row" style="display: none;">
-                    Proof of Identity: <input type="file" placeholder="ID verification" id="id_img" name="id_img" required>
+                <div class="row" id="id-row" style="display: none;  color: white;">
+                <span style="margin: 10px 10px 0 -30px;">Proof of Identity:</span>
+                <input type="file" placeholder="ID verification" id="id_img" name="id_img" required>
                 </div>
                 <br>
                 <div class="row" id="subtn">
@@ -169,11 +171,11 @@
             const idVal = document.querySelector('#id-row');
             function handleUserTypeChange() {
                 if (userTypeRadios[1].checked) {
-                    serviceNameInput.style.display = 'block';
-                    idVal.style.display = 'block';
+                    serviceNameInput.style.display = 'flex';
+                    idVal.style.display = 'flex';
                 } else {
                     serviceNameInput.style.display = 'none';
-                    idVal.style.display = 'block';
+                    idVal.style.display = 'flex';
                 }
             }
 
