@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('message', function (Blueprint $table) {
+        Schema::create('rate', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_sender_id')->constrained('user');
-            $table->foreignId('user_receiver_id')->constrained('user');
-            $table->string('text');
-            $table->timestamp('timestamp');
+            $table->foreignId('booking_id')->constrained('book');
+            $table->foreignId('user_id_reviewer')->constrained('user');
+            $table->foreignId('user_id_recipient')->constrained('user');
+            $table->decimal('rating');
+            $table->string('comments');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rates');
+        Schema::dropIfExists('rate');
     }
 };
