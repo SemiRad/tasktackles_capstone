@@ -43,7 +43,7 @@
                 </div>
             </form>
             <div class="forgotpassword">
-                <a href="{{ route('forget-password') }}" target="_self" id="forgotpw">Forgot password?</a><br>
+                <a href="" target="_self" id="forgotpw">Forgot password?</a><br>
             </div>
             <form action="/signup" method ="get">
             <div class="register">
