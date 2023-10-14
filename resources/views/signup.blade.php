@@ -10,7 +10,8 @@
 
 <section>
     <body>
-            <img class="lg" src="asset/log2.png" draggable="false">
+                <img class="lg" src="asset/log2.png" draggable="false">
+
         <div class="wrapper">
                 <div class="errormsg">
                 @if(session('success'))
@@ -60,7 +61,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="row">
-                    <input type="number" placeholder="Contact Number" id="contact" value ="{{ old('contact')}}"name="contact" maxlength="11" required>
+                    <input type="number" placeholder="Contact Number" id="contact" value ="09{{ old('contact')}}"name="contact" maxlength="11" required>
                      </div>
                      @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -90,7 +91,7 @@
                     </div>
                    
                 <div class="row">
-                    <input type="text" placeholder="Username" id="username" name="username" value ="{{ old('username')}}"required>
+                    <input type="text" placeholder="Username" id="username" name="username" value ="={{ old('username')}}"required>
                 </div>
                 @error('username')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -101,6 +102,7 @@
                 <div class="row">
                     <input type="password" placeholder="Password"  id="password" name="password"required>
                 </div>
+                <p style ="font-size: small; color: gray; text-align:center;"> Your password must be at least 8 characters long. </p>
                 <div class="row">
                     <input type="password" placeholder="Confirm Password" name="password_confirmation" required>
                 </div>

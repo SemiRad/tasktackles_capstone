@@ -16,7 +16,7 @@ class LoginFirst
     public function handle(Request $request, Closure $next): Response
     {
         if(!Session()->has('loginID')){
-            return redirect('/')->with('fail', 'You must log in first.');
+            return redirect('/')->with('fail', 'Session Expired.');
         }
         return $next($request);
     }
