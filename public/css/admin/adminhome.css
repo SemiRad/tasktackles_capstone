@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* COLOR SCHEMES (DARK TO LIGHT)
+	PURPLE:
+	#470047
+	#6F0B5B
+	#A02B68
+
+	ORANGE:
+	#F97134
+	#FF8F2F
+	#FFB94E
+*/
+
+.bodyct {
+	width: 100%;
+	background-color: #470047;
+	height: 20px;
+	padding-top: 150px;
+}
+
+.table1 {
+	background-color: #470047;
+	width: 100%;
+	color: white;
+	font-size: 26px;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.table1 ul li {
+	display:inline;
+	margin: 0 20px;
+	padding: 20px;
+}
+
+.table1 ul li a {
+	color: white;
+}
+
+.table1 ul li a:hover {
+	color: #F97134;
+}
+
+.t1c1 {
+	text-align: center;
+	font-size: 26px;
+	margin-top: 20px;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+.t1c1 ul li {
+	display:inline;
+	margin: 0 20px;
+	padding: 20px;
+}
+
+.t1c1 ul li a {
+	color: black;
+}
+
+.t1c1 ul li a:hover {
+	color: #F97134;
+}

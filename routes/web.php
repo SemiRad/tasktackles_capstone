@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 //use App\Http\Controllers\ForgetPasswordController;
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,7 @@ Route::get('/forget-password', [ForgetPasswordController::class, 'viewForgetPass
 //Route::post('/forgetpassword', [ForgetPasswordController::class, 'forgetPassword'])->name('forgetpassword');
 Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'reset'])->name('reset-password');
 //Route::post('/resetpassword', [ForgetPasswordController::class, 'resetPassword'])->name('resetpassword');
+
+
+//admin controller
+Route::get('/admin', [AdminController::class,'home']);
