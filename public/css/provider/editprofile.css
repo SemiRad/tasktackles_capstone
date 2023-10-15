@@ -82,7 +82,6 @@
 
 .image {
     margin-right: 25px;
-
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
@@ -90,7 +89,8 @@
     display: flex;
     border: 5px solid;
     margin: auto;
-    width: 15%;
+    width: 200px; 
+    height: 200px;
 }
 
 .wrapper .dividers{

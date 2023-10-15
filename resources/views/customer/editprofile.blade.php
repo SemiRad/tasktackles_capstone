@@ -37,9 +37,17 @@
             @csrf
             <h1> PROFILE DETAILS</h1>
             <br>
-            <div class = "dividers">
+            <div class="image">
+                    <img src="{{ asset('images/' . $user->profile_picture ) }}"></div>
+                    <div class = "dividers">
+                    <div class="row">
+                  
                 <label>Change photo:</label>
-                <input type="file" id="photo" name="profile_picture" accept="image/*" value="{{$user->profile_picture}}"  >
+                <input type="file" id="photo" name="profile_picture" accept="image/*" value="{{$user->profile_picture}}"  > </div>
+
+    
+  
+               
                 <div class="row">
                         <label>First Name:</label><input type="text" placeholder="Aa" name="firstname"value="{{$user->firstname}}" required>
                     </div>
@@ -76,6 +84,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 </span>
+                <br>
                 <div class="row">
                     <label>Contact Number:</label><input type="number" placeholder="Aa" name="contact" value="{{$user->contact}}" required>
                 </div>
