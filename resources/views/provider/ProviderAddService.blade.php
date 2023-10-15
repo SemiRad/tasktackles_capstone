@@ -13,58 +13,90 @@
 
 <section>
     <body>
-        
-        <div class="header">
-        <h1> Start a New Service</h1>
-        </div>
+ 
+ 
         <div class="wrapper">
-                        <div class ="errormsg">
-      
-                        @if(session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                                @endif
+        <div class="errormsg">
+            <br><br>
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+                @endif
 
-                                @if(session('fail'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ session('fail') }}
-                                    </div>
-                                @endif
-        </div>
+                @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+                @endif
+            </div>
+
         <form action="{{ route('makeService')}}" method="post" enctype="multipart/form-data">
         @csrf
             <input type="hidden" name="user_id" value="{{$user->id}}">
-            
-            <br>
+        
             <h1> Service Details </h1>
             <br>
-            <label for="photo">Upload a photo:</label>
-             <input type="file" id="photo" name="photo" accept="image/png, image/gif, image/jpeg" required>
-             <div class="row" id="sln">
-                <label for="service_list_name">Service List Name:</label>
-                <input type="text" placeholder="Aa" name="service_list_name" id="slnin" value="{{ old('service_list_name') }}" maxlength="16" required>
+            <div class="row">
+                    Service Photo: <input type="file" id="photo" name="photo" accept="image/png, image/gif, image/jpeg" required>
+                </div>
+             
+                <div class="row">
+                    Service list name: <input type="text" placeholder="Aa" name="service_list_name" id="slnin" value="{{ old('service_list_name') }}" maxlength="16" required>
+                </div>
+                <span>
+                @error('service_list_name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+                <div class="row">
+                    Category
+                    <select name="category" id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Kitchen">Kitchen</option>
+                        <option value="LivingRoom">Living Room</option>
+                        <option value="Bedroom">Bedroom</option>
+                        <option value="Bathroom">Bathroom</option>
+                        <option value="Plumbing">Plumbing</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Yard">Yard/Lawn</option>
+                        <option value="Others">Others</option>
+                    </select>
+              
                 <span id="error-message" style="color: red;"></span>
             </div>
 
                 <br>
-                <div class="bigtxt">
-                    <label for="description">Description: </label>
-                    <textarea rows="5" cols="100" placeholder="Aa" name="description" value="{{ old('description') }}"></textarea>
+                
+                <div class="row">
+                <div class="row">
+                <label for="description">Description:</label></div>
+                <textarea id="description" rows="5" cols="100" placeholder="Aa" name="description">{{ old('description') }}</textarea>
+            </div>
 
-                    <!--<input type="text" placeholder="Aa" id="desc" name="description" value="{{ old('description') }}" size="50" required>-->
-                </div>
                 <br>
                 <div class="row">
-                    <label for="price">Price: </label><input type="number" placeholder="00.00" name="price" step="1.00" min="100" value="{{ old('price') }}" required>
+                    Price:<input type="number" placeholder="00.00" name="price" step="1.00" min="100" value="{{ old('price') }}" required>
                 </div>
+                <span>
+                @error('price')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
                 <br>
                 <div class="row">
-                    <label for="gcashnum">G-Cash Number: </label><input type="number" maxlength="11" placeholder="" name="gcashnum" value="{{ old('gcashnum') }}">
-                </div>
+                G-Cash Number: </label><input type="number" maxlength="11" placeholder="" name="gcashnum" value="{{ old('gcashnum') }}" >  
+             </div>
+             <span>
+                @error('gcashnum')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+                <br>
+                <br>
                 <br>
                 <div class="row">
-                    <input type="submit" value="List Service" id="ss">
+                    <input type="submit" value="List Service" id="newpw">
                 </div>
             </form>
 </div>

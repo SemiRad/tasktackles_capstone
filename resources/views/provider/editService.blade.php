@@ -12,61 +12,118 @@
 </head>
 
 <section>
-    <body>
-        
-        <div class="header">
-        <h1> Update Service</h1>
-        </div>
-        <div class="wrapper">
-                        <div class ="errormsg">
+<body>
+ 
+ 
+ <div class="wrapper">
+ <div class="errormsg">
+     <br><br>
+         @if(session('success'))
+         <div class="alert alert-success" role="alert">
+             {{ session('success') }}
+         </div>
+         @endif
+
+         @if(session('error'))
+         <div class="alert alert-danger" role="alert">
+             {{ session('error') }}
+         </div>
+         @endif
+     </div>
+
+ <form action="{{ route('makeService')}}" method="post" enctype="multipart/form-data">
+ @csrf
+     <input type="hidden" name="user_id" value="{{$user->id}}">
+ 
+     <h1> Service Details </h1>
+     <br>
+     <div class="image">
+     <img src="{{ asset('images/' . $services->photo ) }}"></div>
+     <div class="row">
+             Service Photo: <input type="file" id="photo" name="photo" accept="image/png, image/gif, image/jpeg" required value="{{ $services->photo }}">
+         </div>
       
-        @if(session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                                @endif
+         <div class="row">
+             Service list name: <input type="text" placeholder="Aa" name="service_list_name" id="slnin" value="{{ $services->service_list_name }}" maxlength="16" required>
+         </div>
+         <span>
+         @error('service_list_name')
+             <div class="alert alert-danger">{{ $message }}</div>
+         @enderror
+         </span>
+         <div class="row">
+             Category
+             <select name="category" id="category" required>
+                 <option value="">Select Category</option>
+                 <option value="Kitchen"{{ $services->category == 'Kitchen' ? 'selected' : '' }}>Kitchen</option>
+                 <option value="LivingRoom"{{ $services->category == 'LivingRoom' ? 'selected' : '' }}>Living Room</option>
+                 <option value="Bedroom"{{ $services->category == 'Bedroom' ? 'selected' : '' }}>Bedroom</option>
+                 <option value="Bathroom"{{ $services->category == 'Bathroom' ? 'selected' : '' }}>Bathroom</option>
+                 <option value="Plumbing"{{ $services->category == 'Plumbing' ? 'selected' : '' }}>Plumbing</option>
+                 <option value="Electricity"{{ $services->category == 'Electricity' ? 'selected' : '' }}>Electricity</option>
+                 <option value="Yard"{{ $services->category == 'Yard' ? 'selected' : '' }}>Yard/Lawn</option>
+                 <option value="Others"{{ $services->category == 'Others' ? 'selected' : '' }}>Others</option>
+             </select>
+       
+         <span id="error-message" style="color: red;"></span>
+     </div>
 
-                                @if(session('error'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
-        </div>
-        <form action="{{ route('service-updated', ['id' => $services->id])}}" method="post" enctype="multipart/form-data">
-        @csrf
-            <input type="hidden" name="user_id" value="{{$user->id}}">
-            
-            <br>
-            <h1> Service Details </h1>
-            <br>
-            <label for="photo">Upload a photo:</label>
-             <input type="file" id="photo" name="photo" accept="image/png, image/gif, image/jpeg" value="{{$services->photo}}">
-             <div class="row">
-                    <label for="service_list_name">Service List Name: </label>
-                    <input type="text" placeholder="Aa" name="service_list_name" value="{{ $services->service_list_name }}" required>
-                </div>
-                <br>
-                <div class="bigtxt">
-                    <label for="description">Description: </label>
-                    <textarea rows="5" cols="100" placeholder="Aa" name="description" value="{{ $services->description }}">{{ $services->description }}</textarea>
+         <br>
+         
+         <div class="row">
+         <div class="row">
+         <label for="description">Description:</label></div>
+         <textarea id="description" rows="5" cols="100" placeholder="Aa" name="description">{{ $services->description }}</textarea>
+     </div>
 
-                    <!--<input type="text" placeholder="Aa" id="desc" name="description" value="{{ old('description') }}" size="50" required>-->
-                </div>
-                <br>
-                <div class="row">
-                    <label for="price">Price: </label><input type="number" placeholder="00.00" name="price" step="1.00" min="100" value="{{$services->price }}" required>
-                </div>
-                <br>
-                <div class="row">
-                <label for="price">G-Cash Number: </label> <input type="number" maxlength="11" placeholder="" name="gcashnum" value="{{ $services->gcashnum == 'n/a' ? 'n/a' : '' }}">
-                </div>
-                <br>
-                <div class="row">
-                    <input type="submit" value="Update Service" id="ss">
-                </div>
-            </form>
+         <br>
+         <div class="row">
+             Price:<input type="number" placeholder="00.00" name="price" step="1.00" min="100" value="{{ $services->price }}" required>
+         </div>
+         <span>
+         @error('price')
+             <div class="alert alert-danger">{{ $message }}</div>
+         @enderror
+         </span>
+         <br>
+         <div class="row">
+         G-Cash Number: </label><input type="number" maxlength="11" placeholder="" name="gcashnum" value="{{ $services->gcashnum }}" >  
+      </div>
+      <span>
+         @error('gcashnum')
+             <div class="alert alert-danger">{{ $message }}</div>
+         @enderror
+         </span>
+         <br>
+         <br>
+         <br>
+         <div class="row">
+             <input type="submit" value="List Service" id="newpw">
+         </div>
+     </form>
 </div>
 
-    </body>
+</body>
+
+
+<script>
+const sln = document.getElementById("sln");
+const slnInput = document.getElementById("slnin");
+const errorMessage = document.getElementById("error-message");
+
+slnInput.addEventListener("input", function () {
+ const servInput = slnInput.value;
+
+ if (/\d/.test(servInput)) {
+     slnInput.value = "";
+     errorMessage.textContent = "Numeric values are not accepted";
+ } else {
+     errorMessage.textContent = "";
+ }
+});
+</script>
+
+
+
 </section>
 </html>
