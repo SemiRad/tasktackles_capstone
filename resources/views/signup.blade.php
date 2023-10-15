@@ -5,6 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel = "stylesheet" href="{{ asset('css/styleSignup.css') }}">
     <link rel = "icon" href = "/asset/icon.png" type = "image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<title>TaskTackles</title>
 </head>
 
@@ -143,17 +147,56 @@
                 <span style="margin: 10px 10px 0 -30px;">Proof of Identity:</span>
                 <input type="file" placeholder="ID verification" id="id_img" name="id_img" required>
                 </div>
+                <div class="row2" id="tnc">
+                <input type="checkbox" id="acceptTerms" name="acceptTerms" style="width: 20px; height: 20px;" required>
+                <label for="acceptTerms" style="margin-top: -10px; font-size: 18px;">I accept the <a href="#" style="color: #FFB94E;" data-toggle="modal" data-target="#termsAndConditionsModal">Terms & Conditions</a>
+            </label>
+            </div>
+
                 <br>
                 <div class="row" id="subtn">
                     <input type="submit" value="SIGN UP" id="login">
                 </div>
 
-                <div class="row" style="color:white; text-align: center;">Already have an account? 
-                    <a href="login" style="color: #FF8F2F;"> Click here! </a></div>
+                <div class="row2" style="color:white; text-align: center; font-size:18px;">Already have an account? 
+                    <a href="login" style="color: #FF8F2F;">&nbsp;Click here! </a></div>
                     
                 </div>
             </form>
     </div>
+            <!-- Modal for Terms and Conditions -->
+        <div class="modal fade" id="termsAndConditionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Terms and Conditions</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add your terms and conditions content here -->
+                        <b>Conditions of use</b><br><br>
+                        By using this website, you certify that you have read and reviewed this Agreement and that you agree to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are advised to stop using the website accordingly. TaskTackles only grants use and access of this website, its products, and its services to those who have accepted its terms.
+                        <br><br><b>Confidentiality</b><br><br>
+                        Full confidentiality will be assured. No information that discloses your identity will be released or published without your specific consent to the disclosure and only necessary. The materials that contained the raw information from you will be destroyed after data processing within a given period of time.
+                        <br><br><b>Age restriction</b><br><br>
+                        You must be at least 18 (eighteen) years of age before you can use this website. By using this website, you warrant that you are at least 18 years of age and you may legally adhere to this agreement. TaskTackles  assumes no responsibility for liabilities related to age representation.
+                        <br><br><b>User accounts</b><br><br>
+                        As a user of this website, you may be asked to register with us and provide private information. You are responsible for ensuring the accuracy of this information, and you are responsible for maintaining the safety and security of your identifying information. You are also responsible for all activities that occur under your account or password.
+                        If you think there are any possible issues regarding the security of your account, inform us immediately so we may address them accordingly.
+                        We reserve all rights to terminate accounts, edit, remove or cancel content at our sole discretion.
+                        <br><br><b>Limitation on liability</b><br><br>
+                        TaskTackles is not liable for any loss or damages that may occur to you while your booked service is ongoing.
+                        TaskTackles reserves the right to edit, modify, and change this Agreement at any time. We shall let out users know of these changes through electronic mail. This Agreement is an understanding between TaskTackles and the user. And this supersedes and replaces all prior agreements regarding the use of this website.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End div for Modal -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
     const contactInput = document.getElementById("contact");

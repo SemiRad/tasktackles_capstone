@@ -48,8 +48,8 @@
 		$user = \App\Models\user::find($puserID);
 @endphp
 
-<div class="card booking-card @if($bs->status == 'Accepted') accepted @elseif($bs->status == 'Declined') declined @elseif($bs->status == 'Cancelled') 
-cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
+    <div class="card booking-card @if($bs->status == 'Accepted') accepted @elseif($bs->status == 'Declined') declined @elseif($bs->status == 'Cancelled') cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif"
+     data-date="{{ $bs->date }}" data-time="{{ $bs->time }}">
 
     <div class="card">
         <div class="col1">
@@ -63,14 +63,24 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
         </div>
 
         <div class="col3">
-			<label>Date and Time:</label>
-			<p>{{ date('l, F j, Y', strtotime($bs->date)) }}, {{ date('h:i A', strtotime($bs->time)) }}</p>
+            <label>Date and Time:</label>
+            <p>{{ date('l, F j, Y', strtotime($bs->date)) }}, {{ date('h:i A', strtotime($bs->time)) }}
+            <span style="color: #F97134"><?php
+                date_default_timezone_set('Asia/Manila');
+                $eventDateTime = strtotime($bs->date . ' ' . $bs->time);
+                $currentTime = time();
+                $timeDifference = $eventDateTime - $currentTime;
+
+                $hours = floor($timeDifference / 3600);
+                $minutes = floor(($timeDifference % 3600) / 60);
+
+                echo '(' . $hours . ' hours ' . $minutes . ' minutes' . ')';
+                ?></span></p> 
+            
             <label>Status:</label>
-            <p id="accepted" style="color: @if($bs->status =="Pending") grey @elseif ($bs->status =="Accepted") green @elseif ($bs->status =="Declined" || $bs->status =="Cancelled")red @endif;">
+            <p id="accepted" style="color: @if($bs->status =="Pending") grey @elseif ($bs->status =="Accepted") green @elseif ($bs->status =="Declined" || $bs->status =="Cancelled") red @endif;">
                 {{ $bs->status }}
             </p>
-
-
             <div class="btnstat">
             <form action="{{ route('add-refno', ['id' => $bs->id]) }}" method="post">
                     @csrf
@@ -83,7 +93,7 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
             <form action="{{ route('cancel', ['id' => $bs->id]) }}" method="get">
                     @csrf
                
-                <button id="neg" @if($bs->status == "Fulfilled" || $bs->status == "Declined" || $bs->status =="Cancelled"|| $bs->status =="Cancelled") class="hide" @endif>CANCEL</button>
+               <button id="neg" @if($bs->status == "Fulfilled" || $bs->status == "Declined" || $bs->status =="Cancelled" || $bs->status =="Cancelled" || $hours < 12) class="hide" @endif>CANCEL</button>
             </form>
             </div>
            
