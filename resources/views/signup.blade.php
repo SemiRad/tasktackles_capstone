@@ -9,7 +9,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/ph-city.js') }}"></script>
 	<title>TaskTackles</title>
+    <script>    
+    window.onload = function() {    
+        var $ = new City();
+        $.showProvinces("#province");
+        $.showCities("#city");
+        console.log($.getProvinces());
+        console.log($.getAllCities());
+        console.log($.getCities("Batangas"));        
+}
+</script>
 </head>
 
 <section>
@@ -70,22 +81,34 @@
                      @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <div class="row">
+            </div>
+            <div class = "col1">
+
+                <!--REGION PROVINCE CITY SELECTOR-->
+            <div class="row">
+                <select id="province" name="province" required>
+                </select>
+            </div>
+
+            <div class="row">
+                <select id="city" name="city" required>    
+                </select>
+            </div>
+
+                <!-- END OF LOCATION SELECTOR -->
+
+            <!--<div class="row">
+                    <input type="text" placeholder="City" id="city" name="city" value ="{{ old('city')}}"required>
+                    </div>
+                    @error('city')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror-->
+                    <div class="row">
                     <input type="text" placeholder="Address" id="address" name="address" value ="{{ old('address')}}"required>
                 </div>
                 @error('address')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-
-            </div>
-            <div class = "col1">
-
-            <div class="row">
-                    <input type="text" placeholder="City" id="city" name="city" value ="{{ old('city')}}"required>
-                    </div>
-                    @error('city')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
                     @error('email_address')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -197,6 +220,7 @@
             </div>
         </div>
         <!-- End div for Modal -->
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
     const contactInput = document.getElementById("contact");
@@ -227,8 +251,6 @@
                 radio.addEventListener('change', handleUserTypeChange);
             });
         });
-      
-
     @if($message = Session::get('success'))
     <script type="text/javascript">
     $(window).on('load', function() {
@@ -236,6 +258,8 @@
     });
     
     @endif
+
+
     </script>
     </body>
 
