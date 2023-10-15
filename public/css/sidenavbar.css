@@ -30,7 +30,7 @@
 	justify-content: space-between;
 	padding: 1vw 6vw;
 	background-color: #470047;
-	z-index: 1000;
+	z-index: 100;
 }
 .logo{
 	font-size: 2vw;

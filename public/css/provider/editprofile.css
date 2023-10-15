@@ -3,7 +3,8 @@
     top:0;
     left: 0;
     width: 100%;
-    z-index: 1; 
+    z-index: 999999; 
+    margin-top: 11vh;
 }
 
 .alert {
@@ -11,7 +12,7 @@
     padding: 10px;
 	place-items: center;
     text-align: center;
-	z-index: 1; 
+	z-index: 999991; 
 	
 }
 
@@ -32,16 +33,6 @@
 
 
 
-.header{
-    position: relative;
-    padding: 150px 0 0 0;
-    width: fit-content;
-    width: 100%;
-    text-align: center;
-    color: white;
-    font-size: 25px;
-}
-
 
 
 .wrapper h1 {
@@ -52,13 +43,17 @@
 }
 
 .wrapper{
-    background-color: #470047;
-    margin: 1rem;
-    padding: 2rem 2rem;
-    font-size: 20px;
-    border-radius: 26px;
-    height: fit-content;
-    text-align: left;
+    position: fixed;
+	width: 100%;
+    margin-top: 11vh;
+	height: 100%;
+	background-color: #470047;
+	display: block;
+	overflow-y: auto;
+	justify-content: center;
+	place-items: center;
+	background-color: #470047;
+	z-index: 99;
 }
 
 .wrapper input[type="file"]{

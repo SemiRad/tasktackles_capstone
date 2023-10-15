@@ -17,17 +17,20 @@
       
        
         <div class="wrapper">
-        @if(session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                                @endif
+     
+        <div class="errormsg">
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+                @endif
 
-                                @if(session('error'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
+                @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+                @endif
+            </div>
 
         <form action="{{ route('updatesn', ['id' => $user->id]) }}" method="post">
             <input type="hidden" name="id" value="{{$user->id}}">
@@ -39,13 +42,21 @@
             <br>
         
                 <div class="row">
-                    Service Name: <input type="text" placeholder="Set New Service Name" name="service_name" >
+                    Service Name: 
+                   <input type="text" placeholder="Set New Service Name" name="service_name" >
                 </div>
+                <span>
+                @error('service_name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+
                 <br>
                 
                 <div class="row">
                     <input type="submit" value="Update Service Name" id="newpw">
                 </div>
+               
             </form>
 </div>
     

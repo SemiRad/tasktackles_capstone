@@ -203,7 +203,7 @@ class UserController extends Controller
             'address' => 'required',
             'city' => 'required',
             'contact' => 'required|numeric',
-            'service_name' => 'required|unique:user',
+            'service_name' => 'required|unique:user,service_name,'.$id,
             'email_address' => 'required|email|unique:user,email_address,'.$id,
             'username' => 'required|string|max:255|unique:user,username,'.$id.'|regex:/^\S*$/u|alpha_dash',]);
     
@@ -410,11 +410,18 @@ class UserController extends Controller
 
     public function updateServiceName(Request $request, $id){
         $request->validate([
-                'service_name' => 'required',]);
+                'service_name' => 'required|unique:user',]);
         $user = User::find($id);
         $user->service_name =$request->service_name;
-        $user->save();
-        return redirect()->back()->with('success', 'Service Name changed successfully');}  
+       
+        $saveuser = $user->save();
+            
+                if ($saveuser) {
+                    return redirect('provserv')->with('success', 'Service name changed successfully.');
+                } else {
+                    return back()->with('error', 'There is an error. Please try again.');
+                }
+    }  
 
     public function editServiceView($sID) {
         $user = array();

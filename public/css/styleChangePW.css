@@ -7,13 +7,13 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif;
-
 }
+
 
 
 .alert-container {
     position: fixed;
-    top:0;
+    top:100px;
     left: 0;
     width: 100%;
     z-index: 9999; 
@@ -25,7 +25,7 @@
 	place-items: center;
     text-align: center;
 	z-index: 9999; 
-	
+
 }
 
 .alert-success {
@@ -36,7 +36,7 @@
 
 }
 
-.alert-error {
+.alert-danger {
     background-color: #f44336; 
 	height: fit-content;
 	border-radius: 8px;
@@ -56,12 +56,14 @@ h1{
 	position: fixed;
 	width: 100%;
 	height: 100%;
+	margin-top: 11vh;
 	background-color: #470047;
 	display: block;
 	overflow-y: auto;
 	justify-content: center;
 	place-items: center;
 	background-color: #470047;
+	z-index: 99;
 }
 
 

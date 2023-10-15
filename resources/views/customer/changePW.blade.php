@@ -15,17 +15,19 @@
     <body>
 
         <div class="wrapper">
-        @if(session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                                @endif
+        <div class="errormsg">
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+                @endif
 
-                                @if(session('error'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
+                @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+                @endif
+            </div>
         <form action="{{ route('update-Password', ['id' => $user->id]) }}" method="post">
             <input type="hidden" name="id" value="{{$user->id}}">
             @csrf
@@ -38,6 +40,12 @@
                 <div class="row">
                     Current Password: <input type="password" placeholder="Current Password" name="password" >
                 </div>
+                <span>
+                @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+
                 <br>
                 <div class="row">
                     New Password: <input type="password" placeholder="New Password" name="npassword" >
@@ -48,6 +56,12 @@
                     Confirm New Password: <input type="password" placeholder="Confirm New Password" name="password_confirmation" >
              
                 </div>
+                <span>
+                @error('password_confirmation')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+
                 <br>
  
                 <div class="row">

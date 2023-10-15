@@ -15,7 +15,7 @@ use App\Http\Controllers\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::post("/signin", [UserController::class, "gohome"])->name("signin")->middleware('isLoggedIn');
+Route::post("/signin", [UserController::class, "gohome"])->name("signin");
 Route::post("/register", [UserController::class, "register"])->name("register");
 Route::get("logout", [UserController::class, "logout"])->name("logout");
 

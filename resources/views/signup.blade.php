@@ -91,7 +91,7 @@
                     </div>
                    
                 <div class="row">
-                    <input type="text" placeholder="Username" id="username" name="username" value ="={{ old('username')}}"required>
+                    <input type="text" placeholder="Username" id="username" name="username" value ="{{ old('username')}}"required>
                 </div>
                 @error('username')
                     <div class="alert alert-danger">{{ $message }}</div>
