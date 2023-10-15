@@ -73,7 +73,15 @@
                 <label for="description">Description:</label></div>
                 <textarea id="description" rows="5" cols="100" placeholder="Aa" name="description">{{ old('description') }}</textarea>
             </div>
-
+            <div class="row">
+                    City:<input type="text" placeholder="Aa" name="city" value="{{ $user->city}}" required>
+                </div>
+                <span>
+                @error('city')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+                <br>
                 <br>
                 <div class="row">
                     Price:<input type="number" placeholder="00.00" name="price" step="1.00" min="100" value="{{ old('price') }}" required>

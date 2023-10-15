@@ -42,31 +42,32 @@
 	width: 35%;
 }
 .menuitems {
-	
+	height:auto;
+	width: 25%;
 	display: flex;
-	margin: auto 0;
+	justify-content: flex-end;
 }
-.menuitems li{
-	width: fit-content;
-	display: flex;
-	list-style: none;
-	margin: 0 1.5vw;
+.menuitems li {
+    flex: 1; 
+    list-style: none;
+    text-align: center; 
 }
-.menuitems li a{
-	display: block;
-	color: white;
-	font-size: 25px;
-	letter-spacing: 1px;
-	padding: 0px 10px 0px 10px;
-	text-decoration: none;
+.menuitems li a {
+    display: block;
+    color: white;
+    font-size: 25px;
+    letter-spacing: 1px;
+    padding: 0px 10px 0px 10px;
+    text-decoration: none;
 }
-.menuitems li:hover a, .menuitems li a.active{
-	color: #470047;
-	background: #F97134;
-	height: 100%;
-	width: 100%;
-	border-radius: 3px;
+.menuitems li:hover a, .menuitems li a.active {
+    color: #470047;
+    background: #F97134;
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
 }
+
 
 #check {
 	display: none;
