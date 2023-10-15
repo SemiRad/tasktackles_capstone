@@ -33,8 +33,7 @@
         <form action="{{ route('updatePassword', ['id' => $user->id]) }}" method="post">
             <input type="hidden" name="id" value="{{$user->id}}">
             @csrf
-            <br>
-            <br>
+           
             
             <h1> Change Password </h1>
             <br>
