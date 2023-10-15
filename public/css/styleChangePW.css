@@ -7,7 +7,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif;
-	
+
 }
 
 
@@ -46,30 +46,22 @@
 h1{
 	font-family: 'Poppins', sans-serif;
 	font-size: 30px;
-	color: #470047;
+	color: white;
 	text-align: center;
 	
 }
 
-.b{
-	display: grid;
-	width: 100%;
-	height: 100vh;
-	justify-content: center;
-	place-items: center;
-	background-color: #470047;
-	overflow-y: auto;
-}
 
 .wrapper{
 	position: fixed;
-	width: 90%;
-	background: white;
-	margin-top: 1vh;
-	border-radius: 8px;
-	max-height:1000px;
+	width: 100%;
+	height: 100%;
+	background-color: #470047;
 	display: block;
 	overflow-y: auto;
+	justify-content: center;
+	place-items: center;
+	background-color: #470047;
 }
 
 
@@ -81,7 +73,7 @@ h1{
 	height:  100%;
 	width: 100%;
 	margin-bottom: 10px;
-	color: black;
+	color: white;
 	
 }
 

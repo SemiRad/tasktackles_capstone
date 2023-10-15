@@ -13,7 +13,7 @@
 
 <section>
     <body>
-        <div class ="b">
+
       
        
         <div class="wrapper">
@@ -32,6 +32,9 @@
         <form action="{{ route('updatesn', ['id' => $user->id]) }}" method="post">
             <input type="hidden" name="id" value="{{$user->id}}">
             @csrf
+            <br>
+            <br>
+            
             <h1> Update Service Name </h1>
             <br>
         
@@ -45,8 +48,7 @@
                 </div>
             </form>
 </div>
-    </div>
-
+    
     </body>
 </section>
 </html>

@@ -13,7 +13,7 @@
 
 <section>
     <body>
-        <div class ="b">
+ 
         <div class="wrapper">
         @if(session('success'))
                         <div class="alert alert-success" role="alert">
@@ -30,6 +30,9 @@
         <form action="{{ route('updatePassword', ['id' => $user->id]) }}" method="post">
             <input type="hidden" name="id" value="{{$user->id}}">
             @csrf
+            <br>
+            <br>
+            
             <h1> Change Password </h1>
             <br>
         
@@ -53,7 +56,7 @@
                 </div>
             </form>
 </div>
-    </div>
+    
 
     </body>
 </section>
