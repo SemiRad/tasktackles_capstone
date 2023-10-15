@@ -37,8 +37,11 @@ class UserController extends Controller
                 $request->session()->put('loginID', $user->id);
                 if ($user->usertype === 'Provider') {
                 return redirect()->route('provserv')->with(compact('user'));}
-                else {
-                    return redirect()->route('customer-home')->with(compact('user'));}}
+                else if ($user->usertype === 'Customer'){
+                    return redirect()->route('customer-home')->with(compact('user'));}
+                else if ($user->usertype === 'Admin'){
+                    return redirect()->route('admin-home')->with(compact('user'));
+                }}
             else {
                 return back()->with('error', 'Invalid Credentials', compact('user'));}}
         else {

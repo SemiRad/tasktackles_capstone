@@ -60,7 +60,7 @@ Route::post('/review-customer/{id}', [UserController::class, 'addCrev'])->name('
 
 
 //CUSTOMER
-Route::get("Home", [UserController::class, "cHome"])->name("customer-home");
+Route::get("customer-home", [UserController::class, "cHome"])->name("customer-home");
 Route::get("customer-account-page", [UserController::class, "custacc"])->name("customer-account-page")->middleware('isLoggedIn');
 Route::post('/update-page/{id}', [UserController::class, 'updateCusProfile'])->name('update-page')->middleware('isLoggedIn');
 Route::get("book-service/{id}", [UserController::class, "makebooking"])->name("book-service")->middleware('isLoggedIn');
@@ -87,3 +87,4 @@ Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'reset']
 
 //admin controller
 Route::get('/admin', [AdminController::class,'home']);
+Route::get("admin-home", [UserController::class, "cHome"])->name("admin-home");
