@@ -14,8 +14,6 @@
 <section>
     <body>
         <div class ="b">
-      
-       
         <div class="wrapper">
         @if(session('success'))
                         <div class="alert alert-success" role="alert">

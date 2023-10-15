@@ -6,7 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Session;
-class LoginFirst
+use App\Models\User;
+class isAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,9 +16,14 @@ class LoginFirst
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Session()->has('loginID')){
-            return redirect('/')->with('fail', 'Session Expired.');
+        $user = User::find(Session::get('loginID'));
+
+        if ($user && $user->usertype === 'Admin') {
+            return $next($request);
         }
-        return $next($request);
+
+        return redirect('/login')->with('fail', 'Session Expired.');
     }
-}
+    }
+    
+

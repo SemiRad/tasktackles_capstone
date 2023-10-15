@@ -64,7 +64,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <input type="submit" value="Add Service" id="ss">
+                    <input type="submit" value="List Service" id="ss">
                 </div>
             </form>
 </div>
