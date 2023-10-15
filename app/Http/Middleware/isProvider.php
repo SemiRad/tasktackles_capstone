@@ -22,6 +22,6 @@ class isProvider
             return $next($request);
         }
 
-        return redirect('/login')->with('fail', 'Session Expired.');
+        return redirect('/login')->with('error', 'Session Expired.');
     }
 }

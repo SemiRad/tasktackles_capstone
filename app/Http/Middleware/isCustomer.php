@@ -23,6 +23,6 @@ class isCustomer
             return $next($request);
         }
 
-        return redirect('/login')->with('fail', 'Session Expired.');
+        return back('/login')->with('error', 'Session Expired.');
     }
 }
