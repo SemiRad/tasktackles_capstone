@@ -52,7 +52,7 @@
                     </div>
                     <br>
              <div class="row"> Time: <span id="error-message" style="color: red;"></span>
-             <input type="time" placeholder="Aa" name="time" id="timeInput" min="08:00" max="17:00" value="{{ old('time') }}" required disabled>
+             <input type="time" placeholder="Aa" name="time" id="timeInput" value="{{ old('time') }}" required disabled>
             </div>
                 <br>
                 <div class="row">
@@ -88,19 +88,6 @@
             timeInput.removeAttribute("disabled");
         } else {
             timeInput.setAttribute("disabled", "disabled");
-        }
-    });
-
-    const errorMessage = document.getElementById("error-message");
-
-    timeInput.addEventListener("input", function () {
-        const selectedTime = timeInput.value;
-
-        if (selectedTime < "08:00" || selectedTime > "17:00") {
-            timeInput.value = "";
-            errorMessage.textContent = "Please select a time between 8:00 AM and 5:00 PM.";
-        } else {
-            errorMessage.textContent = "";
         }
     });
 </script>
