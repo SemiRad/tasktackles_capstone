@@ -658,12 +658,14 @@ class UserController extends Controller
         if(Session::has('loginID')){
         $id = Session::get('loginID');
         $user = User::where('id', '=', $id)->first();  
-        $cCity = $user->city;
+      //  $cCity = $user->city;
 
-        $services = Service::where('status' , 'AVAILABLE')->whereHas('user', function ($query) use ($cCity) {
-            $query->where('city', $cCity);
-        })
-        ->get();
+        $services = Service::all();
+        
+        //where('status' , 'AVAILABLE')->whereHas('user', function ($query) use ($cCity) {
+           // $query->where('city', $cCity);
+      //  })
+      //  ->get();
         return view('customer.custservices', compact('services','user'));}}
  
     public function logout(){
