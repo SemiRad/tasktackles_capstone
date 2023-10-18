@@ -41,23 +41,13 @@
     <img src="{{ asset('images/' . $service->photo ) }}">
     </div><br>
     <div class="row">
-            Service List Name: <input type="text"  value="{{ $service->service_list_name }}" readonly disabled>
-    </div><br>
-    <div class="row">
-            Service Provider Name: <input type="text"  value="{{ $user->firstname . ' ' . $user->lastname }}" readonly disabled>
-    </div><br>
-    <div class="row">
-            Category: <input type="text"  value="{{ $service->category }}" readonly disabled>
-    </div><br>
-    <div class="row">
-            Description: <input type="text"  value="{{ $service->description }}" readonly disabled>
-    </div><br>
-    <div class="row">
-            Price: <input type="text"  value="{{ $service->price }}" readonly disabled>
-    </div>
-    <div class="row">
-            G-Cash Number: <input type="text"  value="{{ $service->gcashnum }}" readonly disabled>
-    </div>
+            Service List Name: {{ $service->service_list_name }}<br>
+            Service Provider Name: {{ $user->firstname . ' ' . $user->lastname }}<br>
+            Category: {{ $service->category }} <br>
+            Description: {{ $service->description }}<br>
+            Price: {{ $service->price }}<br>
+            G-Cash Number: {{ $service->gcashnum }}
+
             <br>
 
 </div>
