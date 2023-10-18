@@ -32,6 +32,35 @@
                                     </div>
                                 @endif
 </div>
+@php
+		$puserID = $service->user_id;
+		$user = \App\Models\user::find($puserID);
+		@endphp
+<div class = "sname">
+    <div class="row">
+    <img src="{{ asset('images/' . $service->photo ) }}">
+    </div><br>
+    <div class="row">
+            Service List Name: <input type="text"  value="{{ $service->service_list_name }}" readonly disabled>
+    </div><br>
+    <div class="row">
+            Service Provider Name: <input type="text"  value="{{ $user->firstname . ' ' . $user->lastname }}" readonly disabled>
+    </div><br>
+    <div class="row">
+            Category: <input type="text"  value="{{ $service->category }}" readonly disabled>
+    </div><br>
+    <div class="row">
+            Description: <input type="text"  value="{{ $service->description }}" readonly disabled>
+    </div><br>
+    <div class="row">
+            Price: <input type="text"  value="{{ $service->price }}" readonly disabled>
+    </div>
+    <div class="row">
+            G-Cash Number: <input type="text"  value="{{ $service->gcashnum }}" readonly disabled>
+    </div>
+            <br>
+
+</div>
         @csrf
         <form action="{{ route('booking-requested', ['id' => $service->id]) }}" method="post">
             <h1> Book a Service Appointment</h1>
@@ -91,6 +120,39 @@
         }
     });
 </script>
+<style>
+    .sname{
+        position: relative;
+        top:25px;
+        width: 50%;
+       left: 100px;
+        background-color: #470047;
+        display: block;
+        overflow-y: auto;
+        justify-content: center;
+        place-items: center;
+        background-color: #470047;
+        z-index: 99;
+    }
 
+    .sname .row{
+    
+	height:  100%;
+	width: 100%;
+	margin-bottom: 10px;
+	color: white;
+	
+}
+
+.sname .row input{
+	height: 45px;
+	width: 100%;
+	padding-left: 10px;
+	border-radius: 8px;
+	border: 0;
+	background-color: lightgray;
+}
+    }
+    </style>
 </section>
 </html>
