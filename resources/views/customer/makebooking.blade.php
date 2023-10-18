@@ -114,35 +114,12 @@
     .sname{
         position: relative;
         top:25px;
-        width: 50%;
-       left: 100px;
-        background-color: #470047;
-        display: block;
-        overflow-y: auto;
-        justify-content: center;
-        place-items: center;
-        background-color: #470047;
-        z-index: 99;
+       color: WHITE;
+       margin-left:10px;
     }
 
-    .sname .row{
+
     
-	height:  100%;
-	width: 100%;
-	margin-bottom: 10px;
-	color: white;
-	
-}
-
-.sname .row input{
-	height: 45px;
-	width: 100%;
-	padding-left: 10px;
-	border-radius: 8px;
-	border: 0;
-	background-color: lightgray;
-}
-    }
     </style>
 </section>
 </html>
