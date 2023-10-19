@@ -29,18 +29,19 @@
             </div>
 
             <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
-            <form action="#" method="post">
+            <form action="{{route('forgetpassword')}}" method="post">
             <div class="register">
-            <p id="text" style= "text-align:left; font-size:small;">Enter your email address and we'll send you an email with instructions to reset your password<br></p>
+                <h1 style="color: #F97134;">ACCOUNT RECOVERY</h1>
+            <p id="text" style= "text-align:left; font-size:small;">Enter your email address and we will send you a link to reset your password.<br></p>
         </div>
             @csrf
             
                 <div class="row">
-                    <input type="email" placeholder="Email" name="email">
+                    <input type="email" placeholder="Enter Email Address" name="email">
                 </div>
              
                 <div class="row">
-                    <input type="submit" value="Email Reset Password Link" id="login">
+                    <input type="submit" value="Send Link" id="login">
                 </div>
             </form>
 
@@ -52,7 +53,7 @@
            
            
            
-        
+        <br>
     </div>
 
     </body>

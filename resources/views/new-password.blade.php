@@ -46,7 +46,7 @@
                     Confirm New Password: <input type="password" placeholder="Confirm New Password" name="password_confirmation" >
              </div>
                 <div class="row">
-                    <input type="submit" value="SAVE PASSWORD" id="login">
+                    <input type="submit" value="RESET PASSWORD" id="login">
                 </div>
             </form>
 

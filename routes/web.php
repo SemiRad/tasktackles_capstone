@@ -80,9 +80,9 @@ Route::post('/add-refno/{id}', [UserController::class, 'CustconfirmPayment'])->n
 
 //forget password
 Route::get('/forget-password', [ForgetPasswordController::class, 'viewForgetPassword'])->name('forget-password');
-//Route::post('/forgetpassword', [ForgetPasswordController::class, 'forgetPassword'])->name('forgetpassword');
+Route::post('/forgetpassword', [ForgetPasswordController::class, 'forgetPassword'])->name('forgetpassword');
 Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'reset'])->name('reset-password');
-//Route::post('/resetpassword', [ForgetPasswordController::class, 'resetPassword'])->name('resetpassword');
+Route::post('/resetpassword', [ForgetPasswordController::class, 'resetPassword'])->name('resetpassword');
 
 
 //admin controller

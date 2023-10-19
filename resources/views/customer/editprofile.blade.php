@@ -46,7 +46,7 @@
                 <input type="file" id="photo" name="profile_picture" accept="image/*" value="{{$user->profile_picture}}"  > </div>
 
     
-  
+   
                
                 <div class="row">
                         <label>First Name:</label><input type="text" placeholder="Aa" name="firstname"value="{{$user->firstname}}" required>
