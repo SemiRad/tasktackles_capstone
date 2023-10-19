@@ -66,13 +66,7 @@ h1{
 	z-index: 99;
 }
 
-
-.wrapper form{
-	padding: 30px 20px 25px 20px;
-}
-
 .wrapper form .row{
-	height:  100%;
 	width: 100%;
 	margin-bottom: 10px;
 	color: white;
@@ -122,6 +116,36 @@ h1{
 	cursor: pointer;
 }
 
+.wrapper .sname {
+	display: flex;
+	gap: 50px;
+	width: fit-content;
+	margin: 0 auto;
+  	padding: 3px;
+}
+
+.wrapper .sname .row{
+	font-size: 26px;
+}
+
+.wrapper .sname img {
+	max-width: 600px;
+	max-height: auto;
+}
+
+.wrapper .sname .contentLine b{
+	display: inline-block;
+  	width: 50%;
+  	position: relative;
+  	padding-right: 10px;
+  	color: #FFB94E;
+}
+
+.wrapper .sname .contentLine b::after {
+	content: ":";
+  	position: absolute;
+  	right: 10px;
+}
 
 @media screen and (max-width: 1200px)    {
     .wrapper{
@@ -137,5 +161,10 @@ h1{
     .wrapper h1 {
         text-align: center;
         margin-left: 0px;
+    }
+
+    .wrapper .sname {
+    	display: block;
+    	margin: 0;
     }
 }

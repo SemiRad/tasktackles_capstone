@@ -38,19 +38,17 @@
 		@endphp
 <div class = "sname">
     <div class="row">
-    <img src="{{ asset('images/' . $service->photo ) }}">
-    </div><br>
-    <div class="row">
-            Service List Name: {{ $service->service_list_name }}<br>
-            Service Provider Name: {{ $user->firstname . ' ' . $user->lastname }}<br>
-            Category: {{ $service->category }} <br>
-            Description: {{ $service->description }}<br>
-            Price: {{ $service->price }}<br>
-            G-Cash Number: {{ $service->gcashnum }}
-
+    <img src="{{ asset('images/' . $service->photo ) }}"><br>
+    <ul class="contentLine">
+            <li><b>Service List Name</b>{{ $service->service_list_name }}</li>
+            <li><b>Service Provider </b>{{ $user->firstname . ' ' . $user->lastname }}</li>
+            <li><b>Category</b>{{ $service->category }}</li>
+            <li><b>Description</b>{{ $service->description }}</li>
+            <li><b>Price</b>PHP {{ $service->price }}</li>
+            <li><b>G-Cash Number</b>{{ $service->gcashnum }}</li>
+        </ul>
             <br>
-
-</div>
+        </div>
         @csrf
         <form action="{{ route('booking-requested', ['id' => $service->id]) }}" method="post">
             <h1> Book a Service Appointment</h1>
@@ -93,7 +91,8 @@
                 </div>
             </form>
 </div>
-    </div>
+</div>
+
 
 
    
