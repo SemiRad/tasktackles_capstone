@@ -119,13 +119,14 @@ h1{
 .wrapper .sname {
 	display: flex;
 	gap: 50px;
-	width: fit-content;
+	width: 80%;
 	margin: 0 auto;
   	padding: 3px;
 }
 
-.wrapper .sname .row{
+.wrapper .sname #displayrow{
 	font-size: 26px;
+	width: 50%;
 }
 
 .wrapper .sname img {
@@ -135,7 +136,7 @@ h1{
 
 .wrapper .sname .contentLine b{
 	display: inline-block;
-  	width: 50%;
+  	width: 22%;
   	position: relative;
   	padding-right: 10px;
   	color: #FFB94E;

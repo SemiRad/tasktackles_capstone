@@ -37,11 +37,11 @@
 		$user = \App\Models\user::find($puserID);
 		@endphp
 <div class = "sname">
-    <div class="row">
+    <div class="row" id="displayrow">
     <img src="{{ asset('images/' . $service->photo ) }}"><br>
     <ul class="contentLine">
-            <li><b>Service List Name</b>{{ $service->service_list_name }}</li>
-            <li><b>Service Provider </b>{{ $user->firstname . ' ' . $user->lastname }}</li>
+            <li><b>Service</b>{{ $service->service_list_name }}</li>
+            <li><b>Provider </b>{{ $user->firstname . ' ' . $user->lastname }}</li>
             <li><b>Category</b>{{ $service->category }}</li>
             <li><b>Description</b>{{ $service->description }}</li>
             <li><b>Price</b>PHP {{ $service->price }}</li>
