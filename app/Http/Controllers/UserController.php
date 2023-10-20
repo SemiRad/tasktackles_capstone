@@ -440,6 +440,7 @@ class UserController extends Controller
             'rating' => 'required', 
             'comments' => 'required',]);
              $booking = Book::findOrFail($id);
+
              $rating = new Rate();
                 $rating->booking_id = $booking->id;
                 $rating->user_id_reviewer = $booking->user_id_provider; 
@@ -448,7 +449,9 @@ class UserController extends Controller
                 $rating->comments = $request->comments;
                 
                     $rating->save();
-                
+                 $booking->isRated = 1;
+                $booking->isffbyProv = 1;
+                $booking->save();
                     return redirect()->back()->with('success', 'Rating submitted successfully');  }
                 
                 
@@ -633,7 +636,8 @@ class UserController extends Controller
             $rating->comments = $request->comments;
             
                 $rating->save();
-            
+                $booking->isffbyCust = 1;
+                $booking->save();
                 return redirect()->back()->with('success', 'Rating submitted successfully');  }
     
 //FUNCTIONS
