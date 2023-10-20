@@ -11,7 +11,7 @@
 <section>
     <body>
     <div class="slideshow-container">
-                <img class="lg" src="asset/log2.png" draggable="false">
+                <img class="lg" src="{{ asset('asset/log2.png') }}" draggable="false">
 </div>
         <div class="wrapper">
         <div class="errormsg">
@@ -28,22 +28,21 @@
                 @endif
             </div>
 
-            <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
+            <div class="title"><img src="{{ asset('asset/TT-txt.png') }}" alt="TaskTackles"></div>
             <form action="{{ route('resetpassword') }}" method="post">
             <div class="register">
-            <p id="text" style= "text-align:left; font-size:x-large;">Reset Password<br></p>
+            <p id="text" style= "text-align:center; font-size:x-large; font-weight: bold;">Reset Password<br></p>
         </div>
             @csrf
             <input type = "text" name ="token" hidden value ="{{$token}}">
             <div class="row">
-                    Email: <input type="email" placeholder="Email" name="email" >
+                    <input type="email" placeholder="Email" name="email" >
             </div>
             <div class="row">
-                    New Password: <input type="password" placeholder="New Password" name="password" >
+                    <input type="password" placeholder="New Password" name="password" >
             </div>
-            <br>
             <div class="row">
-                    Confirm New Password: <input type="password" placeholder="Confirm New Password" name="password_confirmation" >
+                    <input type="password" placeholder="Confirm New Password" name="password_confirmation" >
              </div>
                 <div class="row">
                     <input type="submit" value="RESET PASSWORD" id="login">
