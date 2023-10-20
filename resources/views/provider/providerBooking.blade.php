@@ -6,6 +6,7 @@
 <head>   
     <link rel = "stylesheet" href="{{ asset('css/bookingProv.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
@@ -84,15 +85,13 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
             </form>
         @endif
        
-        @if($bs->status =="Fulfilled")
+        @if($bs->status == "Fulfilled")
             <form action="{{ route('paid', ['id' => $bs->id]) }}" method="get">
                 <button id="pos">PAID</button>
             </form>
-           
-            </div>
-        <div class="ratesheet">
-        
-            
+            <button id="rate">RATE</button>
+            <div class="modal" id="rateModal">
+                <div class="ratesheet">
             <form action="{{ route('review-customer', ['id' => $bs->id]) }}" method="post">
                 <textarea name="comments" id="comments" rows="4" cols="60"></textarea>
                 @csrf
@@ -101,33 +100,30 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
             <input type="hidden" name="booking_id" value="{{ $bs->id }}">
         </div>
             <div class="rating-box">
-        <div class="stars">
-        <input type="radio" name="rating" value="1" id="star1" required >
-        <label for="star1"><i class="fa-solid fa-star"></i></label>
+            <div class="stars">
+                <input type="radio" name="rating" value="1" id="star1" required >
+                <label for="star1"><i class="fa-solid fa-star"></i></label>
 
-        <input type="radio" name="rating" value="2" id="star2">
-        <label for="star2"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" value="2" id="star2">
+                <label for="star2"><i class="fa-solid fa-star"></i></label>
 
-        <input type="radio" name="rating" value="3" id="star3">
-        <label for="star3"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" value="3" id="star3">
+                <label for="star3"><i class="fa-solid fa-star"></i></label>
 
-        <input type="radio" name="rating" value="4" id="star4">
-        <label for="star4"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" value="4" id="star4">
+                <label for="star4"><i class="fa-solid fa-star"></i></label>
 
-        <input type="radio" name="rating" value="5" id="star5">
-        <label for="star5"><i class="fa-solid fa-star"></i></label>
-       
-        <button id="rate">RATE</button>
+                <input type="radio" name="rating" value="5" id="star5">
+                <label for="star5"><i class="fa-solid fa-star"></i></label>
+                <button id="submitRating">SUBMIT</button>
+            </div>
         </div>
-    </div>
-        </form>
-    </div>
-            @endif
+            </div>
+        @endif
 </div>
 </div>
 </div>
 </div>
-
         @endforeach
 		</div>
 		</div>
@@ -188,6 +184,23 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
     const ratesheets = document.querySelectorAll(".rating-box");
         ratesheets.forEach((ratesheet) => {
         handleRating(ratesheet);
+    });
+
+    $(document).ready(function() {
+        // Hide the modal initially
+        $('#rateModal').hide();
+
+        // Show the modal when the "RATE" button is clicked
+        $('#rate').on('click', function() {
+            $('#rateModal').show();
+        });
+
+        // Close the modal when clicking outside of it (optional)
+        $(document).on('click', function(event) {
+            if ($(event.target).is('#rateModal')) {
+                $('#rateModal').hide();
+            }
+        });
     });
 </script>
 

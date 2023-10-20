@@ -74,7 +74,11 @@
                 $hours = floor($timeDifference / 3600);
                 $minutes = floor(($timeDifference % 3600) / 60);
 
+                if($timeDifference < 0){
+                    
+                } else {
                 echo '(' . $hours . ' hours ' . $minutes . ' minutes' . ')';
+            }
                 ?></span></p> 
             
             <label>Status:</label>

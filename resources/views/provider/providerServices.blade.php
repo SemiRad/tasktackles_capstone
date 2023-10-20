@@ -85,7 +85,9 @@
 				
 			</svg></a></p>
 				
-				<p class="cc" style="height: 100px">{{$services->description }}</p>
+				<p class="cc" style="height: 100px"><i>Description:</i> <br>
+			        {{ strlen($services->description) > 70 ? substr($services->description, 0, 70) . '...' : $services->description }}
+			    </p>
 				<p class="price">G-Cash No.: {{$services->gcashnum }} <br> Price: {{ 'PHP ' . $services->price }} <br></p>
 
 			
