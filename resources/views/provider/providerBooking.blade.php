@@ -86,9 +86,17 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
         @endif
        
         @if($bs->status == "Fulfilled")
-            <form action="{{ route('paid', ['id' => $bs->id]) }}" method="get">
-                <button id="pos">PAID</button>
-            </form>
+        <form action="{{ route('paid', ['id' => $bs->id]) }}" method="get">
+            <button id="pos">PAID</button>
+        </form>
+        
+        @php
+            $existingRating = \App\Models\Rate::where('user_id_recipient', $bs->user_id_customer)
+                ->where('user_id_reviewer', $bs -> user_id_provider)
+                ->where('booking_id', $bs->id)
+                ->first();
+        @endphp
+        @if (!$existingRating)
             <button id="rate">RATE</button>
             <div class="modal" id="rateModal">
                 <div class="ratesheet">
@@ -118,8 +126,8 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
                 <button id="submitRating">SUBMIT</button>
             </div>
         </div>
-            </div>
         @endif
+@endif
 </div>
 </div>
 </div>
