@@ -20,12 +20,15 @@
                     {{ session('success') }}
                 </div>
                 @endif
-
                 @if(session('error'))
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-success" role="alert">
                     {{ session('error') }}
                 </div>
                 @endif
+                @error('email')
+                    <div class="alert alert-danger">{{ 'Email does not exist' }}</div>
+                @enderror
+               
             </div>
 
             <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
@@ -39,7 +42,7 @@
                 <div class="row">
                     <input type="email" placeholder="Enter Email Address" name="email">
                 </div>
-             
+               
                 <div class="row">
                     <input type="submit" value="Send Link" id="login">
                 </div>
