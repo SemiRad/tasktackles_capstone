@@ -22,21 +22,33 @@ class ForgetPasswordController extends Controller
         $request->validate([
             'email' => 'required|email|exists:User,email_address'
         ]);
+    
+   
+        $emailExists = DB::table('User')
+            ->where('email_address', $request->email)
+            ->count() > 0;
+    
+        if ($emailExists) {
+      
+            $token = Str::random(64);
+    
+      
+            DB::table('password_reset_tokens')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+    
 
-        $token = Str::random(64);
-
-        DB::table('password_reset_tokens')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
-
-        Mail::send("emails.forget-password", ['token' => $token], function ($message) use ($request){
-            $message->to($request->email);
-            $message->subject("RESET PASSWORD");
-        });
-
-        return redirect()->to(route("forget-password"))->with("success", "We have sent the link in your email.");
+            Mail::send("emails.forget-password", ['token' => $token], function ($message) use ($request){
+                $message->to($request->email);
+                $message->subject("RESET PASSWORD");
+            });
+    
+            return redirect()->to(route("forget-password"))->with("success", "We have sent the reset password link to your email.");
+        } else {
+            return redirect()->to(route("forget-password"))->with("error", "This email does not exist in our system.");
+        }
     }
         
 
