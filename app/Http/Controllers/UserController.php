@@ -126,13 +126,13 @@ class UserController extends Controller
         $user = array();
         if(Session::has('loginID')){
             $id = Session::get('loginID');
-            $services = Service::where('user_id', '=', $id)->where('status', 'AVAILABLE')->get();
+            $services = Service::where('user_id', '=', $id)->get();
             $user = User::where('id', '=', $id)->first();  
             return view('provider.providerprofile',  compact('user','services'));}}  
 
     public function viewprovacc($id){
         $user = User::find($id);
-        $services = Service::where('user_id', '=', $id)->where('status', 'AVAILABLE')->get();
+        $services = Service::where('user_id', '=', $id)->get();
         return view('provider.customerviewprovprofile', compact('user', 'services'));}
 
 
