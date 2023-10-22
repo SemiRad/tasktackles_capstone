@@ -49,10 +49,9 @@
     top: 0;
 	width: 100%;
     margin-top: 11vh;
-	height: 100vh;
+	height: auto;
 	background-color: #470047;
 	display: block;
-	overflow-y: auto;
 	justify-content: center;
 	place-items: center;
 	background-color: #470047;

@@ -154,6 +154,7 @@ button[type="submit"] img {
 .btnstat:hover {
 	scale: 1.1;
 	cursor: pointer;
+	transition: ease-in .3s;
 }
 
 /*CARD CSS*/
@@ -245,6 +246,7 @@ main .caption .taskName #editbtn:hover{
 	scale: 1.1;
 	background-color: #FFB94E;
 	cursor: pointer;
+	transition: ease-in .2s;
 }
 
 main .caption #bookbtn {
@@ -275,6 +277,7 @@ main .caption .btnstatcs:hover{
 	scale: 1.1;
 	background-color: #FFB94E;
 	cursor: pointer;
+	transition: ease-in .2s;
 }
 
 main .caption #delbtn:hover {
