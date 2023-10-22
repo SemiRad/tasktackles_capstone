@@ -117,7 +117,7 @@
                 <button class="rate" data-modal-id="rateModal_{{ $bs->id }}">RATE</button>
                 <div class="modal" id="rateModal_{{ $bs->id }}">
                 <div class="ratesheet">
-            <form action="{{ route('review-customer', ['id' => $bs->id]) }}" method="post">
+            <form action="{{ route('review-provider', ['id' => $bs->id]) }}" method="post">
                 <textarea name="comments" id="comments" rows="4" cols="60"></textarea>
                 @csrf
             <input type="hidden" name="user_id_reviewer" value="{{ $user->id }}">

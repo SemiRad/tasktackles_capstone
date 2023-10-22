@@ -74,7 +74,7 @@ Route::get("cancel/{id}", [UserController::class, "cancelBookedService"])->name(
 
 Route::post('/update-Password/{id}', [UserController::class, 'updatePassword'])->name('update-Password')->middleware('isCustomer');
 Route::post('/booking-requested/{id}', [UserController::class, 'bookservice'])->name('booking-requested')->middleware('isCustomer');
-//Route::post('/review-provider/{id}', [UserController::class, 'addPrev'])->name('review-customer');
+Route::post('/review-provider/{id}', [UserController::class, 'addPrev'])->name('review-provider')->middleware('isCustomer');
 Route::post('/add-refno/{id}', [UserController::class, 'CustconfirmPayment'])->name('add-refno')->middleware('isCustomer');
 
 
