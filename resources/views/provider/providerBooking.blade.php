@@ -97,8 +97,8 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
                 ->first();
         @endphp
         @if (!$existingRating)
-            <button id="rate">RATE</button>
-            <div class="modal" id="rateModal">
+                <button class="rate" data-modal-id="rateModal_{{ $bs->id }}">RATE</button>
+                <div class="modal" id="rateModal_{{ $bs->id }}">
                 <div class="ratesheet">
             <form action="{{ route('review-customer', ['id' => $bs->id]) }}" method="post">
                 <textarea name="comments" id="comments" rows="4" cols="60"></textarea>
@@ -195,22 +195,16 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
     });
 
     $(document).ready(function() {
-        // Hide the modal initially
-        $('#rateModal').hide();
+    // Hide all rateModals initially
+    $('.modal').hide();
 
-        // Show the modal when the "RATE" button is clicked
-        $('#rate').on('click', function() {
-            $('#rateModal').show();
-            $('#rate').hide();
-        });
-
-        // Close the modal when clicking outside of it (optional)
-        $(document).on('click', function(event) {
-            if ($(event.target).is('#rateModal')) {
-                $('#rateModal').hide();
-            }
-        });
+    // Show the modal when a "RATE" button is clicked
+    $('.rate').on('click', function() {
+        var modalId = $(this).data('modal-id');
+        $('#' + modalId).show();
+        $(this).hide();
     });
+});
 </script>
 
 
