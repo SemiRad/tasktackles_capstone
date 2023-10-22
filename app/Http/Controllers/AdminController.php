@@ -69,7 +69,7 @@ class AdminController extends Controller
         $d = User::where('id', $UID)->first();
         $d->account_status = "Banned";
         $d->save();
-        return redirect()->back()->with('success', 'User Denied.');}
+        return redirect()->back()->with('success', 'User Banned.');}
 }
     
     
