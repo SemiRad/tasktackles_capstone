@@ -36,7 +36,7 @@ Route::get("provserv", [UserController::class, "provserv"])->name("provserv")->m
 Route::get("account-page", [UserController::class, "provacc"])->name("account-page")->middleware('isProvider');
 Route::get("edit-profile-page", [UserController::class, "ProvEditP"])->name("edit-profile-page")->middleware('isProvider');
 Route::post('/updatepage/{id}', [UserController::class, 'updateProvProfile'])->name('updatepage')->middleware('isProvider');
-Route::get("view-customer-account-page/{id}", [UserController::class, "viewcusvacc"])->name("view-customer-account-page")->middleware('isProvider');
+Route::get("view-customer-account-page/{id}", [UserController::class, "viewcusvacc"])->name("view-customer-account-page")->middleware('isProvider')->middleware('isCustomer');
 Route::get("unavailable/{id}", [UserController::class, "setUnavailableService"])->name("unavailable")->middleware('isProvider');
 Route::get("available/{id}", [UserController::class, "setAvailableService"])->name("available")->middleware('isProvider');
 Route::get("delete/{id}", [UserController::class, "deleteAService"])->name("delete")->middleware('isProvider');
@@ -65,7 +65,7 @@ Route::get("customer-account-page", [UserController::class, "custacc"])->name("c
 Route::post('/update-page/{id}', [UserController::class, 'updateCusProfile'])->name('update-page')->middleware('isCustomer');
 Route::get("book-service/{id}", [UserController::class, "makebooking"])->name("book-service")->middleware('isCustomer');
 Route::get("bookings", [UserController::class, "viewbooking"])->name("bookings")->middleware('isCustomer');
-Route::get("view-provider-account-page/{id}", [UserController::class, "viewprovacc"])->name("view-provider-account-page")->middleware('isCustomer');
+Route::get("view-provider-account-page/{id}", [UserController::class, "viewprovacc"])->name("view-provider-account-page");
 Route::get("services", [UserController::class, "displayServices"])->name("services");
 Route::get("edit-profile-customer", [UserController::class, "CustEditP"])->name("edit-profile-customer")->middleware('isCustomer');
 Route::get('/cChangepw', [UserController::class, 'cChangepw'])->name('cChangepw')->middleware('isCustomer');
