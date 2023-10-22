@@ -32,7 +32,7 @@ class UserController extends Controller
             'password' => 'required',]);
 
         $user = User::where('username', $request->username)->orWhere('email_address', $request->username)->first();
-        if ($user && $user->isValid == 1) {
+        if ($user && $user->isValid == 1 && $user->account_status == "Active") {
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginID', $user->id);
                 if ($user->usertype === 'Provider') {

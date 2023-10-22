@@ -87,3 +87,11 @@ Route::post('/resetpassword', [ForgetPasswordController::class, 'resetPassword']
 
 //admin controller
 Route::get('/admin', [AdminController::class,'home'])->name('admin')->middleware('isAdmin');
+Route::get('/admin-user', [AdminController::class,'displayUsers'])->name('admin-user')->middleware('isAdmin');
+Route::get('/admin-service', [AdminController::class,'displayServices'])->name('admin-service')->middleware('isAdmin');
+Route::get('/admin-booking', [AdminController::class,'displayBookings'])->name('admin-booking')->middleware('isAdmin');
+Route::get('/admin-rate', [AdminController::class,'displayRating'])->name('admin-rates')->middleware('isAdmin');
+Route::post('/admin-verify', [AdminController::class,'verifyUser'])->name('admin-verify')->middleware('isAdmin');
+Route::post('/admin-deny', [AdminController::class,'denyUser'])->name('admin-deny')->middleware('isAdmin');
+Route::post('/admin-ban', [AdminController::class,'banUser'])->name('admin-ban')->middleware('isAdmin');
+Route::post('/admin-verify', [AdminController::class,'verifyUser'])->name('admin-verify')->middleware('isAdmin');

@@ -20,12 +20,15 @@
                     {{ session('success') }}
                 </div>
                 @endif
-
                 @if(session('error'))
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-success" role="alert">
                     {{ session('error') }}
                 </div>
                 @endif
+                @error('password')
+                    <div class="alert alert-danger">{{ 'Password does not match' }}</div>
+                @enderror
+               
             </div>
 
             <div class="title"><img src="{{ asset('asset/TT-txt.png') }}" alt="TaskTackles"></div>
