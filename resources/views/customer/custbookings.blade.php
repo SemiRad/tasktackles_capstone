@@ -5,6 +5,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ asset('css/bookingProv.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
@@ -102,6 +103,51 @@
             </div>
            
         </div>
+
+        <div class="col3">     
+        @if($bs->status == "Fulfilled")
+       
+        @php
+            $existingRating = \App\Models\Rate::where('user_id_recipient', $bs->user_id_provider)
+                ->where('user_id_reviewer', $bs -> user_id_customer)
+                ->where('booking_id', $bs->id)
+                ->first();
+        @endphp
+        @if (!$existingRating)
+                <button class="rate" data-modal-id="rateModal_{{ $bs->id }}">RATE</button>
+                <div class="modal" id="rateModal_{{ $bs->id }}">
+                <div class="ratesheet">
+            <form action="{{ route('review-customer', ['id' => $bs->id]) }}" method="post">
+                <textarea name="comments" id="comments" rows="4" cols="60"></textarea>
+                @csrf
+            <input type="hidden" name="user_id_reviewer" value="{{ $user->id }}">
+            <input type="hidden" name="user_id_recipient" value="{{ $bs->user_id_customer}}">
+            <input type="hidden" name="booking_id" value="{{ $bs->id }}">
+        </div>
+            <div class="rating-box">
+            <div class="stars">
+                <input type="radio" name="rating" value="1" id="star1" required >
+                <label for="star1"><i class="fa-solid fa-star"></i></label>
+
+                <input type="radio" name="rating" value="2" id="star2">
+                <label for="star2"><i class="fa-solid fa-star"></i></label>
+
+                <input type="radio" name="rating" value="3" id="star3">
+                <label for="star3"><i class="fa-solid fa-star"></i></label>
+
+                <input type="radio" name="rating" value="4" id="star4">
+                <label for="star4"><i class="fa-solid fa-star"></i></label>
+
+                <input type="radio" name="rating" value="5" id="star5">
+                <label for="star5"><i class="fa-solid fa-star"></i></label>
+                <button id="submitRating">SUBMIT</button>
+            </div>
+        </div>
+        @endif
+@endif
+</div>
+</div>
+</div>
     </div>
     </div>
 
@@ -149,5 +195,34 @@
             filterBookingCards();
         });
     });
+
+    function handleRating(ratesheet) {
+        const stars = ratesheet.querySelectorAll(".stars i");
+        stars.forEach((star, index1) => {
+            star.addEventListener("click", () => {
+                stars.forEach((star, index2) => {
+                    index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+                });
+            });
+        });
+    }
+
+    const ratesheets = document.querySelectorAll(".rating-box");
+        ratesheets.forEach((ratesheet) => {
+        handleRating(ratesheet);
+    });
+
+    $(document).ready(function() {
+    // Hide all rateModals initially
+    $('.modal').hide();
+
+    // Show the modal when a "RATE" button is clicked
+    $('.rate').on('click', function() {
+        var modalId = $(this).data('modal-id');
+        $('#' + modalId).show();
+        $(this).hide();
+    });
+});
+
 </script>
 </html>
