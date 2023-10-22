@@ -510,18 +510,17 @@ class UserController extends Controller
             'time' => 'required',
             'location' => 'required',
             'payment_type' => 'required']);
-            
+            $userId = Session::get('loginID');
+            $user = User::where('id', '=', $userId)->first();
+
             $service = Service::findOrFail($id);
             $user_id_provider = $request->user_id_provider;
-            $user_id_customer = $request->user_id_customer;
-
-
             $provider = Service::where('user_id', '=', $user_id_provider)->first();
-            $customer = User::findOrFail($user_id_customer);
+
                 
                 $booking = new Book();
                 $booking->service_id = $service->id;
-                $booking->user_id_customer = $customer->id;
+                $booking->user_id_customer = $user->id;
                 $booking->user_id_provider = $provider->user_id;
                 $booking->date = $request->date;
                 $booking->time = $request->time;

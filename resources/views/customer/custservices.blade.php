@@ -85,9 +85,14 @@
         {{ strlen($service->description) > 70 ? substr($service->description, 0, 70) . '...' : $service->description }}
     </p>
     <p class="price"><i>G-Cash No.:</i> {{$service->gcashnum}} <br> Price: <b>{{ 'PHP ' . $service->price }}</b><br></p>
-    <form action="{{ route('book-service', ['id' => $service->id]) }}" method="get" id="bookbtn">
+	@if ($service->status === 'Unavailable')
+                    
+                    <button class="btnstatcs" disabled>Unavailable</button>
+                @else
+	<form action="{{ route('book-service', ['id' => $service->id]) }}" method="get" id="bookbtn">
         <button class="btnstatcs">Book Service</button>
     </form>
+	@endif
 </div>
 </div>
 @endforeach
