@@ -9,6 +9,7 @@
     <link rel = "stylesheet" href="{{ asset('css/styleChangePW.css') }}" >
     <link rel = "icon" href = "/asset/icon.png" type = "image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel = "stylesheet" href="{{ asset('css/custsidenavbar.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -93,7 +94,16 @@
                 <label for="acceptTerms" style="margin-top: -10px; font-size: 18px;">I accept the <a href="#" style="color: #FFB94E;" data-toggle="modal" data-target="#termsAndConditionsModal">Terms & Conditions</a>
             </label>
             </div>
-  <!-- Modal for Terms and Conditions -->
+  
+                <div class="row">
+                    <input type="submit" value="Book Service" id="save">
+                </div>
+            </form>
+</div>
+</div>
+
+
+<!-- Modal for Terms and Conditions -->
   <div class="modal fade" id="termsAndConditionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -119,15 +129,6 @@
                 </div>
             </div>
         </div>
-                <div class="row">
-                    <input type="submit" value="Book Service" id="save">
-                </div>
-            </form>
-</div>
-</div>
-
-
-
    
     
     </body>
