@@ -68,7 +68,7 @@
                 
             </svg></a></p>
                 
-                <p class="cc" style="height: 100px">{{$services->description }}</p>
+                <p class="cc" style="height: 100px">{{ strlen($services->description) > 20 ? substr($services->description, 0, 20) . '...' : $services->description }}</p>
                 <p class="price">G-Cash No.: {{$services->gcashnum }} <br> Price: {{ 'PHP ' . $services->price }} <br></p>
 
             
@@ -108,4 +108,11 @@
     </main>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    const maxCharacters = 11;
+    document.querySelectorAll('[class^="text-"]').forEach((textElement) => {
+        if (textElement.textContent.length > maxCharacters) {
+            textElement.style.fontSize = '22px';
+        }
+    });</script>
 </html>

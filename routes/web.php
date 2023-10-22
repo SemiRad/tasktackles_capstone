@@ -95,3 +95,11 @@ Route::post('/admin-verify', [AdminController::class,'verifyUser'])->name('admin
 Route::post('/admin-deny', [AdminController::class,'denyUser'])->name('admin-deny')->middleware('isAdmin');
 Route::post('/admin-ban', [AdminController::class,'banUser'])->name('admin-ban')->middleware('isAdmin');
 Route::post('/admin-verify', [AdminController::class,'verifyUser'])->name('admin-verify')->middleware('isAdmin');
+
+
+//messaging
+Route::get('/provmsg', [UserController::class, 'provmsg']);
+Route::get('/viewConversation/{id}', [UserController::class, 'viewConversation'])->name('viewConversation');
+Route::post('/send-message', [UserController::class, 'sendMessage'])->name('sendMessage');
+
+

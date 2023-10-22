@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Service;
 use App\Models\Book;
 use App\Models\Rate;
+use App\Models\Message;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -677,8 +678,49 @@ class UserController extends Controller
             Session::pull('loginID');
         return Redirect('/login')->with('msg', 'Logged out successfully');}}
 
+//MESSAGING
+    public function provmsg()
+    {
+        $id = Session::get('loginID');
+        $user = User::where('id', '=', $id)->first();  
+        $messages = Message::all();
 
-        
+        return view('provider.providerMessages', compact('user', 'messages'));
     }
+
+    public function viewConversation($id){
+    $UserId = Session::get('loginID');
+    $user = User::where('id', '=', $id)->first(); 
+    
+    $messages = Message::where(function ($query) use ($id, $UserId) {
+        $query->where('user_sender_id', $id)
+              ->where('user_receiver_id', $UserId);
+    })->orWhere(function ($query) use ($id, $UserId) {
+        $query->where('user_sender_id', $UserId)
+              ->where('user_receiver_id', $id);
+    })->get();
+        return view('provider.conversation', compact('user','messages','UserId'));
+    }
+
+    public function sendMessage(Request $request){
+    $UserId = Session::get('loginID');
+    $validatedData = $request->validate([
+        'message' => 'required|string',
+        'user_receiver_id' => 'required|integer',
+        'user_sender_id' => 'required|integer',
+    ]);
+
+    $message = new Message();
+    $message->text = $validatedData['message'];
+    $message->user_sender_id = $validatedData['user_sender_id'];
+    $message->user_receiver_id = $validatedData['user_receiver_id'];
+    $message->timestamp = now();
+
+    $message->save();
+    return redirect()->back()->with('message', 'Message sent successfully');
+    }
+//end message
+    }
+  
         
 

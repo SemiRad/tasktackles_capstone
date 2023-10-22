@@ -11,19 +11,35 @@
 <body>
 	<div class="navpad"></div>
 	<div class="msghead">Messages</div>
-	<div class="content">
-		<!-- foreach -->
-		<div class="row">
-			<span class="msger"> Celine Joy Libre </span><br>
-			<span class="msgcon"> Hello! </span>
-			<span class="status">◉</span>  
-			<p class="timedate"> 11:00PM --- 09/17/2023</p>
-		</div>
-
+	@php
+        $displayedUsernames = []; // Array to track displayed usernames
+    @endphp
+    <div class="content">
+        @foreach($messages as $message)
+            @if ($user->id === $message->user_sender_id || $user->id === $message->user_receiver_id)
+                @php
+                    $otherUserId = $user->id === $message->user_sender_id ? $message->user_receiver_id : $message->user_sender_id;
+                    $otherUser = $user->where('id', $otherUserId)->first();
+                @endphp
+                @if (!in_array($otherUser->username, $displayedUsernames))
+                <a href="/viewConversation/{{ $otherUser->id }}" style="color: black;">
+                    <div class="row">
+                        <span class="msger">{{ $otherUser->username }}</span> <i>({{ $otherUser->firstname }} {{ $otherUser->lastname }})</i> <br>
+                        <span class="msgcon"></span>
+                        <span class="status">{{ $message->text }}</span>
+                        <p class="timedate">{{ $message->timestamp }}</p>
+                    </div>
+                </a>
+                    @php
+                        $displayedUsernames[] = $otherUser->username; // Add the username to the displayed list
+                    @endphp
+                @endif
+            @endif
+        @endforeach
 		<!-- message row -->
 		<div class="msgrow">
-			hello
 		</div>
+		<!--end div-->
 	</div>
 </body>
 </html>

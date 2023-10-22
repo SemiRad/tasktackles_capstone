@@ -59,7 +59,7 @@
     <div class="caption">
         <p class="taskName"><span class="text-{{$service}}">{{$service->service_list_name}}</span></p>
         <p class="cc"><a href = {{route ('view-provider-account-page' ,[ 'id' => $user->id])}}">{{ '@' .$user->username}}</a></p><br>
-        <p class="cc" style="height: 100px"><i>Description:</i> <br>{{$service->description}}</p>
+        <p class="cc" style="height: 100px"><i>Description:</i> <br>{{ strlen($services->description) > 20 ? substr($services->description, 0, 20) . '...' : $services->description }}</p>
         <p class="price"><i>G-Cash No.:</i> {{$service->gcashnum}} <br> Price: <b>{{ 'PHP ' . $service->price }}</b><br></p>
         <form action="{{ route('book-service', ['id' => $service->id]) }}" method="get" id="bookbtn">
             <button class="btnstatcs">Book Service</button>
