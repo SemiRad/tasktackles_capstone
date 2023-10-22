@@ -8,6 +8,10 @@
 	<meta name = "viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="{{ asset('css/styleChangePW.css') }}" >
     <link rel = "icon" href = "/asset/icon.png" type = "image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <title>TaskTackles</title>
 </head>
 
@@ -84,8 +88,37 @@
                     </select>
                 </div>
                 <br>
-               
-
+                <div class="row2" id="tnc">
+                <input type="checkbox" id="acceptTerms" name="acceptTerms" style="width: 20px; height: 20px;" required>
+                <label for="acceptTerms" style="margin-top: -10px; font-size: 18px;">I accept the <a href="#" style="color: #FFB94E;" data-toggle="modal" data-target="#termsAndConditionsModal">Terms & Conditions</a>
+            </label>
+            </div>
+  <!-- Modal for Terms and Conditions -->
+  <div class="modal fade" id="termsAndConditionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Terms and Conditions</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <b>Terms and Conditions</b><br><br>
+                        By using our services or making bookings, you agree to these Terms and Conditions. You have the right to disapprove with our services.
+                        <br><br><b>Booking for Services</b><br><br>
+                        You may request services through TaskTackles. When you've successfully booked a service, your request will enter a pending status. It's then up to our service providers to review and decide whether to accept or decline your request, taking into account their availability and flexibility.                        <br><br><b>Cancellation Policy</b><br><br>
+                        You can cancel a booking terms based on these following terms:
+                        <br>(a) The request for service is not approved yet. 
+                        <br>(b) If your booking request is approved, you can only cancel the booking if the requested service is scheduled to take place at least 6 hours in the future from the time of your cancellation request.
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
                 <div class="row">
                     <input type="submit" value="Book Service" id="save">
                 </div>
@@ -115,6 +148,7 @@
         top:25px;
        color: WHITE;
        margin-left:10px;
+
     }
 
 
