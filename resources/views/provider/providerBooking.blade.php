@@ -201,6 +201,7 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
         // Show the modal when the "RATE" button is clicked
         $('#rate').on('click', function() {
             $('#rateModal').show();
+            $('#rate').hide();
         });
 
         // Close the modal when clicking outside of it (optional)
