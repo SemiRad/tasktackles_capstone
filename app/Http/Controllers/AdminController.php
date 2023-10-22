@@ -60,9 +60,7 @@ class AdminController extends Controller
 
     
     public function denyUser($UID) {
-        $d = User::where('id', $UID)->first();
-        $d->account_status = "Denied";
-        $d->save();
+        $d = User::where('id', $UID)->delete();
         return redirect()->back()->with('success', 'User Denied.');}
 
     public function banUser($UID) {

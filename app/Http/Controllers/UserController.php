@@ -10,6 +10,8 @@ use App\Models\Rate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class UserController extends Controller
 {
@@ -42,13 +44,17 @@ class UserController extends Controller
                 else{
                     return redirect()->route('admin')->with(compact('user'));
                 }}
-            else {
-                return back()->with('error', 'Invalid Credentials', compact('user'));}}
-        else {
+         else {
             return back()->with('error', 'Invalid Credentials', compact('user'));}}
+        else if ($user && $user->isValid == 1 && $user->account_status == "Banned") {
+            return back()->with('error', 'Account banned', compact('user'));}
+        else if ($user && $user->isValid == 0 ) {
+            return back()->with('error', 'Account is not verified yet.', compact('user'));}
+                else {
+                    return back()->with('error', 'Invalid Credentials', compact('user'));}}
 
-    
-    public function register(Request $request){
+
+    public function register(Request $request) {
         $request->validate([
             'firstname' => 'required|regex:/^([^0-9]*)$/',
             'lastname' => 'required|regex:/^([^0-9]*)$/',
@@ -88,12 +94,7 @@ class UserController extends Controller
                     $request->id_img->move(public_path('images'), $imageName);
                 }
 
-               /* if ($request->hasFile('id_img')) {
-                    $image = $request->file('id_img');
-                    $imageName = time() . '.' . $image->getClientOriginalExtension();
-                    $image->storeAs('your_disk_name', 'assets/' . $imageName); // Specify your disk name
-                    $user->id_img = $imageName;
-                }*/
+            
             
                 if ($request->input('usertype') === 'Customer') {
                     $user->service_name = null;
@@ -102,11 +103,11 @@ class UserController extends Controller
                 }
             
                 $user->account_status = "Active";
-                $user->isValid = 1;
+              
                 $saveuser = $user->save();
             
                 if ($saveuser) {
-                    return redirect("login")->with('success', 'You have successfully registered.');
+                    return redirect("login")->with('success', 'Registration successful! Please wait for your account to be verified.');
                 } else {
                     return back()->with('error', 'There is an error. Please try again.');
                 }
