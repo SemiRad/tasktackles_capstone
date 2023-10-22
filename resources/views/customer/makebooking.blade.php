@@ -93,7 +93,16 @@
                 <label for="acceptTerms" style="margin-top: -10px; font-size: 18px;">I accept the <a href="#" style="color: #FFB94E;" data-toggle="modal" data-target="#termsAndConditionsModal">Terms & Conditions</a>
             </label>
             </div>
-  <!-- Modal for Terms and Conditions -->
+  
+                <div class="row">
+                    <input type="submit" value="Book Service" id="save">
+                </div>
+            </form>
+</div>
+</div>
+
+
+<!-- Modal for Terms and Conditions -->
   <div class="modal fade" id="termsAndConditionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -119,15 +128,6 @@
                 </div>
             </div>
         </div>
-                <div class="row">
-                    <input type="submit" value="Book Service" id="save">
-                </div>
-            </form>
-</div>
-</div>
-
-
-
    
     
     </body>
