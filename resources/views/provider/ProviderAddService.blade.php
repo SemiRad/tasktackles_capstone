@@ -93,7 +93,7 @@
                 </span>
                 <br>
                 <div class="row">
-                G-Cash Number: </label> <input type="text" placeholder="Aa" id="gcashnum" name="gcashnum" value="{{old('gcashnum')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                G-Cash Number: </label> <input type="text" placeholder="G Cash number" id="gcashnum" name="gcashnum" value="{{old('gcashnum')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
 
              </div>
              <span>
