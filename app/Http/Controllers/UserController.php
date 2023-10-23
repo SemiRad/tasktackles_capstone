@@ -19,7 +19,8 @@ class UserController extends Controller
    
     public function home(){ //added
         $user = null; 
-        $services = Service::all();
+        $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
+
     
         if (Session::has('loginID')) {
             $id = Session::get('loginID');
@@ -665,7 +666,8 @@ class UserController extends Controller
         $user = User::where('id', '=', $id)->first();  
       //  $cCity = $user->city;
 
-        $services = Service::all();
+        $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
+
         
         //where('status' , 'AVAILABLE')->whereHas('user', function ($query) use ($cCity) {
            // $query->where('city', $cCity);
