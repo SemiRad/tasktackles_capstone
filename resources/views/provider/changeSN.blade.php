@@ -43,7 +43,7 @@
         
                 <div class="row">
                     Service Name: 
-                   <input type="text" placeholder="Set New Service Name" name="service_name" >
+                   <input type="text" placeholder="Set New Service Name" name="service_name" value = "{{$user->service_name}}">
                 </div>
                 <span>
                 @error('service_name')

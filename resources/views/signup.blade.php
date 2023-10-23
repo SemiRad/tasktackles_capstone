@@ -76,7 +76,8 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="row">
-                    <input type="number" placeholder="Contact Number" id="contact" value ="09{{ old('contact')}}"name="contact" maxlength="11" required>
+                <label>Contact Number:</label>
+<input type="text" placeholder="Aa" id="contact" name="contact" value="09{{old('contact')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                      </div>
                      @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>

@@ -86,8 +86,8 @@
                 </span>
                 <br>
                 <div class="row">
-                    <label>Contact Number:</label><input type="number" placeholder="Aa" name="contact" value="{{$user->contact}}" required>
-                </div>
+                <label>Contact Number:</label>
+<input type="text" placeholder="Aa" id="contact" name="contact" value="{{$user->contact}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">                </div>
                 <span>
                 @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -144,5 +144,18 @@
 </div>
 
     </body>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const contactInput = document.getElementById("contact");
+
+    const maxLength = 11;
+
+    contactInput.addEventListener("input", function () {
+        if (contactInput.value.length > maxLength) {
+            contactInput.value = contactInput.value.slice(0, maxLength);
+        }
+    });
+});
+</script>
 </section>
 </html>

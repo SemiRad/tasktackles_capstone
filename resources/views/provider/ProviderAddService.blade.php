@@ -82,7 +82,7 @@
                 @enderror
                 </span>
                 <br>
-                <br>
+                
                 <div class="row">
                     Price:<input type="number" placeholder="00.00" name="price" step="1.00" min="100" value="{{ old('price') }}" required>
                 </div>
@@ -93,7 +93,8 @@
                 </span>
                 <br>
                 <div class="row">
-                G-Cash Number: </label><input type="number" maxlength="11" placeholder="" name="gcashnum" value="{{ old('gcashnum') }}" >  
+                G-Cash Number: </label> <input type="text" placeholder="Aa" id="gcashnum" name="gcashnum" value="{{old('gcashnum')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+
              </div>
              <span>
                 @error('gcashnum')
@@ -106,6 +107,9 @@
                 <div class="row">
                     <input type="submit" value="List Service" id="newpw">
                 </div>
+                <br>
+                <br>
+                <br>
             </form>
 </div>
 
@@ -113,6 +117,18 @@
 
 
     <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const contactInput = document.getElementById("gcashnum");
+
+    const maxLength = 11;
+    contactInput.addEventListener("input", function () {
+        if (contactInput.value.length > maxLength) {
+            contactInput.value = contactInput.value.slice(0, maxLength);
+        }
+    });
+});
+
     const sln = document.getElementById("sln");
     const slnInput = document.getElementById("slnin");
     const errorMessage = document.getElementById("error-message");

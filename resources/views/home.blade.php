@@ -40,7 +40,8 @@
     </div>
     <div class="caption">
     <p class="taskName"><span class="text-{{$service}}">{{$service->service_list_name}}</span></p>
-    <p class="cc"><a href="{{ route('view-provider-account-page', ['id' => $user->id]) }}">{{ '@' . $user->username }}</a></p><br>
+    <p class="cc"><a href="{{ route('view-provider-account-page', ['id' => $user->id]) }}">{{ $user->service_name }}</a></p><br>
+    <p class="cc"><i>Category:</i> <br>{{ $service->category }}
     <p class="cc" style="height: 100px"><i>Description:</i> <br>
         {{ strlen($service->description) > 70 ? substr($service->description, 0, 70) . '...' : $service->description }}
     </p>

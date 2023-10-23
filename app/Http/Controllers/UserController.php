@@ -19,7 +19,7 @@ class UserController extends Controller
    
     public function home(){ //added
         $user = null; 
-        $services = Service::where('status', 'AVAILABLE')->get();
+        $services = Service::all();
     
         if (Session::has('loginID')) {
             $id = Session::get('loginID');

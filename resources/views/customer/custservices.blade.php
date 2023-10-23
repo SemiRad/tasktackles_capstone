@@ -80,14 +80,18 @@
     </div>
     <div class="caption">
     <p class="taskName"><span class="text-{{$service}}">{{$service->service_list_name}}</span></p>
-    <p class="cc"><a href="{{ route('view-provider-account-page', ['id' => $user->id]) }}">{{ '@' . $user->username }}</a></p><br>
-    <p class="cc" style="height: 100px"><i>Description:</i> <br>
+    <p class="cc"><a href="{{ route('view-provider-account-page', ['id' => $user->id]) }}">{{ '@' . $user->service_name }}</a></p><br>
+    <p class="cc"><i>Category:</i> <br>{{ $service->category }}
+    </p>
+	<p class="cc" style="height: 100px"><i>Description:</i> <br>
         {{ strlen($service->description) > 70 ? substr($service->description, 0, 70) . '...' : $service->description }}
     </p>
-    <p class="price"><i>G-Cash No.:</i> {{$service->gcashnum}} <br> Price: <b>{{ 'PHP ' . $service->price }}</b><br></p>
-	@if ($service->status === 'Unavailable')
+    <p class="cc"><i>G-Cash No.:</i> {{$service->gcashnum}} </p>
+	<p class="cc"><i>Price.:</i> <b>{{ 'PHP ' . $service->price }}</b> </p>
+	
+	@if ($service->status === 'UNAVAILABLE')
                     
-                    <button class="btnstatcs" disabled>Unavailable</button>
+                    <button class="btnstatcs" style ="background-color: white; color: black; border: 2px solid gray;"disabled>Currently Unavailable</button>
                 @else
 	<form action="{{ route('book-service', ['id' => $service->id]) }}" method="get" id="bookbtn">
         <button class="btnstatcs">Book Service</button>
