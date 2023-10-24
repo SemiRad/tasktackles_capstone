@@ -106,3 +106,4 @@ Route::post('/send-message', [UserController::class, 'sendMessage'])->name('send
 
 
 Route::get('/search', [UserController::class, 'searchServices'])->name('search');
+Route::get("service", [UserController::class, "service"])->name("service");
