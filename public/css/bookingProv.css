@@ -177,7 +177,7 @@
 	padding: 10px 0;
 }
 
-.rating-box .stars {
+.rating-box .stars .stars-only{
 	display: flex;
 	align-items: center;
 	gap: 2px;
@@ -197,11 +197,13 @@
 #pos {
 	color: white;
 	background-color: #7ED957;;
+	height: fit-content;
 }
 
 #neg {
 	color: white;
 	background-color: #FF5757;
+	height: fit-content;
 }
 
 
@@ -236,5 +238,8 @@
 		height: fit-content;
 	}
 
-	
+	.col3 .btnstat {
+		width: 100%;
+		display: block;
+	}
 }
