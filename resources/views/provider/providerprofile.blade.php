@@ -37,7 +37,8 @@
                 <ul>
                 <div id="stat">
                     <li><a href="#" class="tab-link" data-status="Services">Services</a></li>
-                    <!--<li><a href="#" class="tab-link" data-status="Feedbacks">Feedbacks</a></li>-->
+                    <li><a href="#" class="tab-link" data-status="Ratings">Ratings</a></li>  
+                    <li><a href="#" class="tab-link" data-status="Feedbacks">Outgoing Feedbacks</a></li>
                   
                 </div>
             </ul>
@@ -45,10 +46,10 @@
 	</div>
 </div>
 <main>
-		<!-- diri ang foreach -->
 		
 		<input type="hidden" name="user_id" value="{{$user->id}}">
-	
+		<!-- Services -->
+		<div id="services-content" class="content" style="display: none">
 		@foreach($services as $services)
 		<div class="card @if($services->status == 'AVAILABLE') available @elseif($services->status == 'UNAVAILABLE') unavailable @else deleted @endif">
 
@@ -97,27 +98,21 @@
   				<path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clip-rule="evenodd" /><button class="hide" style ="border: 0; width: 5%;" ></button>
 				</svg> 
 			</a>
-
-
-		
-
-
 			</div>
 		</div>
 	</div>
 		@endforeach
-		<!-- end foreach -->
-	
-
-	<div class="addcard">
-		<form action="add-service" method="GET" class="hide">
-		<button>
-		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  		<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-		</svg>
-		</form>
-	</button>
 	</div>
+		<!-- end of services -->
+
+	<div id="ratings-content" class="content" style="display: none">
+    	Ratings
+	</div>
+
+	<div id="feedbacks-content" class="content" style="display: none">
+	    Feedbacks
+	</div>
+
 	</main>
 </body>
 
@@ -157,7 +152,32 @@
                 });
             }
         });
+
+        $(document).ready(function () {
+            // Automatically select "Services" tab when the page opens
+            selectTab('Services'); // Call the function to set "Services" as active
+
+            // Add a click event handler to the top bar links
+            $('.tab-link').click(function () {
+                var status = $(this).data('status');
+
+                // Hide all content sections
+                $('.content').hide();
+
+                // Show the content section based on the selected status
+                $('#' + status.toLowerCase() + '-content').show();
+
+                // Remove the "active" class from all tabs
+                $('.tab-link').removeClass('active');
+
+                // Add the "active" class to the clicked tab
+                $(this).addClass('active');
+            });
+        });
+        
+        function selectTab(tabName) {
+            $('#' + tabName.toLowerCase() + '-content').show();
+            $('a[data-status="' + tabName + '"]').addClass('active');
+        }
 </script>
-
-
 </html>

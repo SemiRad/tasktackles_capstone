@@ -126,6 +126,7 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
                 <button id="submitRating">SUBMIT</button>
             </div>
         </div>
+    </div>
         @endif
 @endif
 </div>

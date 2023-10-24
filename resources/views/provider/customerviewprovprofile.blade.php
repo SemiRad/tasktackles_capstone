@@ -35,7 +35,8 @@
             <div class="topbar">
                 <ul>
                 <div id="stat">
-                    <li><a href="#" class="tab-link" data-status="Services">Services</a></li>                  
+                    <li><a href="#" class="tab-link" data-status="Services">Services</a></li>
+                    <li><a href="#" class="tab-link" data-status="Ratings">Ratings</a></li>                          
                 </div>
             </ul>
 
