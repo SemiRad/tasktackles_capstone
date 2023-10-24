@@ -252,7 +252,14 @@ main .caption .taskName #editbtn:hover{
 main .caption #bookbtn {
 	padding-left: 20%;
 }
-
+.search select{
+	height: 100%;
+	width: 25%;
+	padding-left: 10px;
+	border-radius: 8px;
+	border: 1px solid black;
+	color:#F97134;
+}
 main .caption .btnstat {
 	position: absolute;
 	margin-top: 10px;
@@ -302,6 +309,20 @@ main .caption #delbtn:hover {
 		width: fit-content;
 		padding-top: 90px;
 	}
+	.search{
+		width: 100%;
+		text-align: center;
+		font-size: small;
+	}
+
+	input[type="text"] {
+		width: 90%;
+		
+		padding: 8px;
+		border-radius: 12px;
+		border: 0;
+		background-color: #A02B68;
+		color: white;}
 
 	.searchBar {
 		max-width: 1000px;
@@ -310,6 +331,7 @@ main .caption #delbtn:hover {
 
 	.searchBar ul li {
 		margin: auto;
+		font-size: small;
 	}
 
 	.searchBar #bar {
