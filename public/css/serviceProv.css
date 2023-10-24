@@ -17,7 +17,34 @@ input[type="text"] {
 	border: 0;
 	background-color: #A02B68;
 	color: white;
-	
+}
+
+select[name="task-dropdown"] option:hover {
+    background-color: #f0f0f0;
+}
+
+select[name="task-dropdown"]::after {
+    content: "\25BC"; /* Down arrow */
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    padding: 0 10px;
+    background-color: #f9f9f9;
+}
+
+select[name="task-dropdown"]::-ms-expand {
+    display: none;
+}
+
+select[name="task-dropdown"] {
+    width: fit-content;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    margin-right: 10px; /* Add margin to separate from the button */
 }
 
 
@@ -34,10 +61,7 @@ button[type="submit"] img {
 	width: 20px;
 	height: 20px; 
 	vertical-align: middle; 
-
 }
-
-
 
 /*BREADCRUMBS CSS */
 ::placeholder {
@@ -252,13 +276,15 @@ main .caption .taskName #editbtn:hover{
 main .caption #bookbtn {
 	padding-left: 20%;
 }
+
 .search select{
 	height: 100%;
 	width: 25%;
 	padding-left: 10px;
 	border-radius: 8px;
 	border: 1px solid black;
-	color:#F97134;
+	font-size: 18px;
+	margin-top: 10px;
 }
 main .caption .btnstat {
 	position: absolute;
@@ -301,6 +327,56 @@ main .caption #delbtn:hover {
 .text {
     font-size: inherit;
 }
+
+.modal {
+        display: none;
+        position: fixed;
+        z-index: 99999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        max-height: 70%; /* Set a maximum height for the modal content */
+        overflow: auto; /* Add overflow property to make it scrollable */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #confirmDelete {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+	}
+
+	#confirmDelete:hover {
+	    background-color: #d32f2f;
+	}
 
 
 /*RESPONSIVENESS*/

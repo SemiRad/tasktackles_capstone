@@ -63,12 +63,6 @@ select[name="task-dropdown"]::-ms-expand {
     display: none;
 }
 
-.dropdown-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
 select[name="task-dropdown"] {
     width: 70%;
     padding: 10px;
@@ -78,6 +72,12 @@ select[name="task-dropdown"] {
     background-color: #fff;
     color: #333;
     margin-right: 10px; /* Add margin to separate from the button */
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .find-button {
