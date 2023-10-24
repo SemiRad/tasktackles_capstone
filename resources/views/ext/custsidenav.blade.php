@@ -28,15 +28,9 @@
 							<li><a href="{{ route('customer-account-page') }}"> Profile Page </a></li>
 							<li><a href="{{ route('cChangepw') }}"> Change Password </a></li>
                             <br>
-							<br>
 							<li><a href="#"> Messages </a></li>
-                            <li><a href="#"> View Ratings </a></li>
-							<li><a href="#"> Outgoing Feedbacks </a></li>
-							<li><a href="#"> Payment Receipt </a></li>
-							<br>
 							<br>
 							<li><a href="/logout"> Sign Out </a></li>
-							
 							</div>
  				 </div> 
 

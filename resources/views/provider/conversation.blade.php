@@ -38,7 +38,6 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            
         }
 
         .custom-primary-button {
@@ -55,6 +54,21 @@
 	        background-color: #F97134;
 	    }
 
+        @media screen and (max-width: 1000px){
+            .message-input {
+                width: 60%;
+                padding: 10px;
+                margin: 0 20px;
+            }
+            .send-button {
+                width: fit-content;
+                padding: 10px;
+                background-color: #FF8F2F;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+        }
 	    /* COLOR SCHEMES (DARK TO LIGHT)
 			PURPLE:
 			#470047

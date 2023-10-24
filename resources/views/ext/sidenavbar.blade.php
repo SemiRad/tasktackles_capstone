@@ -27,13 +27,9 @@
 							<li><a href="{{ route('pChangepw') }}"> Change Password </a></li>
 							<br>
 							<br>
-							<li><a href="{{ route('add-service') }}#"> Add Service </a></li>
+							<li><a href="{{ route('add-service') }}"> Add Service </a></li>
 							<br>
-							<br>
-							<li><a href="#"> Messages </a></li>
-							<li><a href="#"> View Ratings </a></li>
-							<li><a href="#"> Outgoing Feedbacks </a></li>
-							<li><a href="#"> Payment Receipt </a></li>
+							<li><a href="{{ route('provmsg') }}"> Messages </a></li>
 							<br>
 							<br>
 							<li><a href="/logout"> Sign Out </a></li>
