@@ -1,92 +1,86 @@
 @include ('ext.navbar')
 
-
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel = "stylesheet" href="{{ asset('css/serviceProv.css') }}">
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 </head>
-
-
 <body>
-@csrf
+	<div class="topbar"></div>
+    <div class="content">
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="{{ asset('asset/img1.jpg') }}" alt="Image 1">
+            </div>
+            <div class="mySlides">
+                <img src="{{ asset('asset/img2.jpg') }}" alt="Image 2">
+            </div>
+            <div class="mySlides">
+                <img src="{{ asset('asset/img3.jpg') }}" alt="Image 3">
+            </div>
+            <div class="mySlides">
+                <img src="{{ asset('asset/img4.jpg') }}" alt="Image 4">
+            </div>
+            <div class="mySlides">
+                <img src="{{ asset('asset/img5.jpg') }}" alt="Image 5">
+            </div>
+            <div class="mySlides">
+                <img src="{{ asset('asset/img6.jpg') }}" alt="Image 6">
+            </div>
+            <div class="mySlides">
+                <img src="{{ asset('asset/img7.jpg') }}" alt="Image 7">
+            </div>
+            <div class="mySlides">
+                <img src="{{ asset('asset/img8.jpg') }}" alt="Image 8">
+            </div>
 
-
-	<div class="breadcrumbs">
-		
-	</div>
-	<div class="search">
-		<li id="bar">
-        <input type="text" id="searchInput" placeholder="Search for a service">
-    </li>
-	</div>
-
-
-	<main>
-		<!-- diri ang foreach -->
-		
-		@foreach($services as $service)
-		@php
-		$puserID = $service->user_id;
-		$user = \App\Models\user::find($puserID);
-		@endphp
-
-		<div class="card">
-    <div class="image">
-        <img src="{{ asset('images/' . $service->photo) }}" alt="default">
+            <div class="centered-box">
+			    <h1>Task for Help</h1>
+			    <p style="letter-spacing: -6px; color: #470047;">-----------------------</p>		
+			        <p>What task would you like us to tackle?</p>
+			        <br>
+                    <form action="{{ route('search') }}" method="get">
+    @csrf
+    <div class="dropdown-container">
+        <select name="category" required>
+            <option value="">Choose...</option>
+            <option value="Kitchen">Kitchen</option>
+            <option value="LivingRoom">Living Room</option>
+            <option value="Bedroom">Bedroom</option>
+            <option value="Bathroom">Bathroom</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Yard">Yard/Lawn</option>
+            <option value="Others">Others</option>
+        </select>
+        <button type="submit" class="find-button">Search Services</button>
     </div>
-    <div class="caption">
-    <p class="taskName"><span class="text-{{$service}}">{{$service->service_list_name}}</span></p>
-    <p class="cc"><a href="{{ route('view-provider-account-page', ['id' => $user->id]) }}">{{ $user->service_name }}</a></p><br>
-    <p class="cc"><i>Category:</i> <br>{{ $service->category }}
-    <p class="cc" style="height: 100px"><i>Description:</i> <br>
-        {{ strlen($service->description) > 70 ? substr($service->description, 0, 70) . '...' : $service->description }}
-    </p>
-    <p class="price"><i>G-Cash No.:</i> {{$service->gcashnum}} <br> Price: <b>{{ 'PHP ' . $service->price }}</b><br></p>
-    <form action="{{ route('book-service', ['id' => $service->id]) }}" method="get" id="bookbtn">
-        <button class="btnstatcs">Book Service</button>
-    </form>
-</div>
-</div>
-@endforeach
-		<!-- end foreach -->
-	</main>
+</form>
 
-	
-		</form>
-		</div>
-</body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    const maxCharacters = 11;
-    document.querySelectorAll('[class^="text-"]').forEach((textElement) => {
-        if (textElement.textContent.length > maxCharacters) {
-            textElement.style.fontSize = '22px';
+			</div>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            const slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.opacity = 0;
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.opacity = 1;
+            setTimeout(showSlides, 5000); // Change image every 2 seconds
         }
-    });
-
-    $(document).ready(function () {
-        const searchInput = $('#searchInput');
-        const serviceCards = $('.card');
-
-        searchInput.on('input', function () {
-            const searchTerm = searchInput.val().toLowerCase();
-
-            serviceCards.each(function () {
-                const card = $(this);
-                const serviceName = card.find('.taskName').text().toLowerCase();
-                const serviceDescription = card.find('.cc').text().toLowerCase();
-
-                if (serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm)) {
-                    card.show();
-                } else {
-                    card.hide();
-                }
-            });
-        });
-    });
-</script>
+    </script>
+</body>
 </html>
