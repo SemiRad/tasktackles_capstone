@@ -40,7 +40,7 @@
             <div class = "butts">
             <form action="{{ route('edit-profile-page') }}" method="get">
                 <div class="ed">     
-                    <input type="submit" value="Edit Profile" id="editprof">
+                    <input type="submit" value="Edit Profile" id="editbtn">
                 </div>
             </form>
 
