@@ -168,9 +168,10 @@
                 </div>
     
                 <div class="row" id="id-row" style="display: none;  color: white;">
-                <span style="margin: 10px 10px 0 -30px;">Proof of Identity:</span>
+                <span style="margin: 10px 10px 0 -30px;" title="Student ID, National ID, Driver's License, Passport, Voter's ID, and other Valid ID">Proof of Identity:</span>
                 <input type="file" placeholder="ID verification" id="id_img" name="id_img" required>
                 </div>
+
                 <div class="row2" id="tnc">
                 <input type="checkbox" id="acceptTerms" name="acceptTerms" style="width: 20px; height: 20px;" required>
                 <label for="acceptTerms" style="margin-top: -10px; font-size: 18px;">I accept the <a href="#" style="color: #FFB94E;" data-toggle="modal" data-target="#termsAndConditionsModal">Terms & Conditions</a>
