@@ -55,12 +55,15 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif;
+	
 }
 
 html,body{
 	display: grid;
 	height: 100%;
 	place-items: center;
+	overflow-y: auto;
+	width: 100%;
 	
 }
 
@@ -152,4 +155,15 @@ html,body{
 
 .wrapper .forgotpassword #forgotpw:hover{
 	color: #FF8F2F;
+}
+
+
+@media screen and (max-width: 900px){
+	.wrapper{
+		height: 100vh;
+		width: auto;
+		margin: auto;
+		padding: 50% 0;
+	}
+
 }
