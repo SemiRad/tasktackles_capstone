@@ -43,7 +43,23 @@
 	<div class="search">
 		<li id="bar">
         <input type="text" id="searchInput" placeholder="Search for a service">
+
     </li>
+	<div class="filter">
+    <label for="categorySelect">Filter by Category:</label>
+    <select id="categorySelect" >
+        <option value="all">All</option>
+        <option value="Kitchen">Kitchen</option>
+        <option value="LivingRoom">Living Room</option>
+        <option value="Bedroom">Bedroom</option>
+        <option value="Bathroom">Bathroom</option>
+        <option value="Plumbing">Plumbing</option>
+        <option value="Electricity">Electricity</option>
+        <option value="Yard">Yard/Lawn</option>
+        <option value="Others">Others</option>
+    </select>
+</div>
+
 	</div>
 	  <input type="hidden" name="user_id" value="{{$user->id}}">
 <!--
@@ -81,7 +97,7 @@
     <div class="caption">
     <p class="taskName"><span class="text-{{$service}}">{{$service->service_list_name}}</span></p>
     <p class="cc"><a href="{{ route('view-provider-account-page', ['id' => $user->id]) }}">{{ '@' . $user->service_name }}</a></p><br>
-    <p class="cc"><i>Category:</i> <br>{{ $service->category }}
+    <p class="category"><i>Category:</i> <br>{{ $service->category }}
     </p>
 	<p class="cc" style="height: 100px"><i>Description:</i> <br>
         {{ strlen($service->description) > 70 ? substr($service->description, 0, 70) . '...' : $service->description }}
@@ -119,22 +135,32 @@
     $(document).ready(function () {
         const searchInput = $('#searchInput');
         const serviceCards = $('.card');
+        const categorySelect = $('#categorySelect'); 
 
-        searchInput.on('input', function () {
+        function filterServices() {
             const searchTerm = searchInput.val().toLowerCase();
+            const selectedCategory = categorySelect.val().toLowerCase(); 
 
             serviceCards.each(function () {
                 const card = $(this);
                 const serviceName = card.find('.taskName').text().toLowerCase();
                 const serviceDescription = card.find('.cc').text().toLowerCase();
+                const serviceCategory = card.find('.category').text().toLowerCase();
 
-                if (serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm)) {
+                const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
+                const matchesCategory = selectedCategory === 'all' || serviceCategory.includes(selectedCategory);
+
+                if (matchesSearch && matchesCategory) {
                     card.show();
                 } else {
                     card.hide();
                 }
             });
-        });
+        }
+
+        searchInput.on('input', filterServices);
+        categorySelect.on('change', filterServices); 
     });
 </script>
+
 </html>
