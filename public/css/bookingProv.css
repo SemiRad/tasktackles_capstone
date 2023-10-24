@@ -225,5 +225,14 @@
 		width: fit-content;
 		padding: 20px;
 	}
-
+	.search input {
+		width: 100%;
+		margin-top: 20px;
+		padding: 10px 0 10px 15px;
+		border-radius: 12px;
+		border: 0;
+		background-color: #A02B68;
+		color: white;
+		height: fit-content;
+	}
 }
