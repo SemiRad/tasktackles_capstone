@@ -55,6 +55,17 @@
     margin: 0 20px;
 }
 
+.menuitems li span {
+	display: block;
+    color: white;
+    font-size: 25px;
+    letter-spacing: 1px;
+    padding: 0px 10px 0px 10px;
+    text-decoration: none;
+    height: fit-content;
+    font-weight: bold;
+}
+
 .menuitems li a {
     display: block;
     color: white;

@@ -1,4 +1,4 @@
-@include ('ext.navbar')
+@include ('ext.adminnav')
 
 <!DOCTYPE html>
 <html>
@@ -86,20 +86,22 @@
                     <!--end modal-->
                 <td>
                 @if ($users->isValid === 1)
-    Verified
-    @else
-    Pending
-@endif</td>
-                      
-                        <form action="{{ route('admin-ban', ['id' => $users->id]) }}" method="get"class ="hide">
+                    Verified
+                    <form action="{{ route('admin-ban', ['id' => $users->id]) }}" method="get"class ="hide">
                         @csrf
                         <td><button class="btn btn-danger">Ban</button></td></form>
-                        <form action="{{ route('admin-verify', ['id' => $users->id]) }}" method="get"class ="hide">
+                    @else
+                    Pending
+                    <form action="{{ route('admin-verify', ['id' => $users->id]) }}" method="get"class ="hide">
                         @csrf
                         <td><button class="btn btn-success">Verify</button></form></td>
                         <form action="{{ route('admin-deny', ['id' => $users->id]) }}" method="get"class ="hide">
                         @csrf
                         <td><button class="btn btn-danger">Deny</button></td></form>
+                @endif</td>
+                      
+                        
+                        
                     
                 </td>
             </tr>
