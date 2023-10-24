@@ -9,7 +9,6 @@
 	<title></title>
 </head>
 <body>
-@foreach($services as $services )
 	<div class="topbar"></div>
     <div class="content">
         <div class="slideshow-container">
@@ -43,9 +42,8 @@
 			    <p style="letter-spacing: -6px; color: #470047;">-----------------------</p>		
 			        <p>What task would you like us to tackle?</p>
 			        <br>
-                    <form action="{{ route('search', ['selectedCategory' => $services->category]) }}" method="post">
+                    <form action="{{ route('search') }}" method="post">
     @csrf
-    
     <div class="dropdown-container">
         <select name="category" id ="category" required>
             <option value="">Choose...</option>
@@ -65,7 +63,6 @@
 			</div>
         </div>
     </div>
-    @endforeach
 
     <script>
         let slideIndex = 0;
@@ -92,13 +89,12 @@
             e.preventDefault();
 
             const catValue = cat.value;
-
+            
             if (catValue) {
                 // Redirect to the services page with the selected category
                 window.location.href = `/services?category=${catValue}`;
             } 
-        });
-
+});
 
     </script>
 </body>

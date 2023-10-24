@@ -685,7 +685,7 @@ class UserController extends Controller
             Session::pull('loginID');
         return Redirect('/login')->with('msg', 'Logged out successfully');}}
 
-        public function searchServices(Request $request, $selectedCategory)
+        public function searchServices(Request $request)
         {
             $request->validate([
                 'category' => 'required|in:Kitchen,LivingRoom,Bedroom,Bathroom,Plumbing,Electricity,Yard,Others',
