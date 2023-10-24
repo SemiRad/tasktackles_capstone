@@ -68,6 +68,13 @@ class AdminController extends Controller
         $d->account_status = "Banned";
         $d->save();
         return redirect()->back()->with('success', 'User Banned.');}
+
+
+    public function suspendService($UID) {
+         $d = Service::where('id', $UID)->first();
+        $d->status = "Deleted";
+        $d->save();
+            return redirect()->back()->with('success', 'Service suspend.');}
 }
     
     
