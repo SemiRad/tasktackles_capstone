@@ -109,6 +109,7 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
         </div>
             <div class="rating-box">
             <div class="stars">
+                <div class="stars-only">
                 <input type="radio" name="rating" value="1" id="star1" required >
                 <label for="star1"><i class="fa-solid fa-star"></i></label>
 
@@ -123,6 +124,7 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
 
                 <input type="radio" name="rating" value="5" id="star5">
                 <label for="star5"><i class="fa-solid fa-star"></i></label>
+                </div>
                 <button id="submitRating">SUBMIT</button>
             </div>
         </div>
