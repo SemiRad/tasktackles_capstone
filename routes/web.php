@@ -98,7 +98,7 @@ Route::post('/admin-verify', [AdminController::class,'verifyUser'])->name('admin
 
 
 //messaging
-Route::get('/provmsg', [UserController::class, 'provmsg']);
+Route::get('/provmsg', [UserController::class, 'provmsg'])->name('provmsg');
 Route::get('/viewConversation/{id}', [UserController::class, 'viewConversation'])->name('viewConversation');
 Route::post('/send-message', [UserController::class, 'sendMessage'])->name('sendMessage');
 
