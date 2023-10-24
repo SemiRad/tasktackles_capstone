@@ -21,7 +21,7 @@
             </div>
             
             <div class = "butts">
-            <form action="#" method="get">
+            <form action="/viewConversationCustomer/{{$user->id}}" method="get">
                 <div class="send">     
                     <input type="submit" value="Send Message" id="editbtn">
                 </div>

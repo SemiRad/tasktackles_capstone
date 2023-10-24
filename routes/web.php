@@ -99,6 +99,8 @@ Route::get('/admin-ban/{id}', [AdminController::class,'banUser'])->name('admin-b
 //messaging
 Route::get('/provmsg', [UserController::class, 'provmsg'])->name('provmsg');
 Route::get('/viewConversation/{id}', [UserController::class, 'viewConversation'])->name('viewConversation');
+Route::get('/custmsg', [UserController::class, 'custmsg'])->name('custmsg');
+Route::get('/viewConversationCustomer/{id}', [UserController::class, 'viewConversationCustomer'])->name('viewConversationCustomer');
 Route::post('/send-message', [UserController::class, 'sendMessage'])->name('sendMessage');
 
 

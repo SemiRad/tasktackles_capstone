@@ -28,7 +28,7 @@
 							<li><a href="{{ route('customer-account-page') }}"> Profile Page </a></li>
 							<li><a href="{{ route('cChangepw') }}"> Change Password </a></li>
                             <br>
-							<li><a href="#"> Messages </a></li>
+							<li><a href="{{ route('custmsg') }}"> Messages </a></li>
 							<br>
 							<li><a href="/logout"> Sign Out </a></li>
 							</div>
