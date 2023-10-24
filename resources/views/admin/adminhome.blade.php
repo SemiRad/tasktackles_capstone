@@ -85,7 +85,11 @@
                     </div>
                     <!--end modal-->
                 <td>
-                    {{$users->isValid}}</td>
+                @if ($users->isValid === 1)
+    Verified
+    @else
+    Pending
+@endif</td>
                       
                         <form action="{{ route('admin-ban', ['id' => $users->id]) }}" method="get"class ="hide">
                         @csrf
@@ -141,8 +145,11 @@
                 <!--end modal-->
                 <td>{{ $services->category }}</td>
                 <td>{{ $services->status }}</td>
+                <td style = "display: none;">{{ $services->id }}</td>
                 <td>
-                    <button class="btn btn-danger">Delete</button>
+                <form action="{{ route('admin-suspend', ['id' => $services->id]) }}" method="get">
+                        @csrf
+                        <td><button class="btn btn-danger">Suspend</button></form></td>
                 </td>
             </tr>
                 @endforeach

@@ -94,6 +94,7 @@ Route::get('/admin-rate', [AdminController::class,'displayRating'])->name('admin
 Route::get('/admin-verify/{id}', [AdminController::class,'verifyUser'])->name('admin-verify')->middleware('isAdmin');
 Route::get('/admin-deny/{id}', [AdminController::class,'denyUser'])->name('admin-deny')->middleware('isAdmin');
 Route::get('/admin-ban/{id}', [AdminController::class,'banUser'])->name('admin-ban')->middleware('isAdmin');
+Route::get('/admin-suspend/{id}', [AdminController::class,'suspendService'])->name('admin-suspend')->middleware('isAdmin');
 
 
 //messaging
