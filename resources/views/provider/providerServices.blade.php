@@ -36,7 +36,7 @@
 	
 	<option value="AVAILABLE">Available</option>
 		<option value="UNAVAILABLE">Unavailable</option>
-       
+	
     </select>
 </div>
 
@@ -73,9 +73,9 @@
 				<p class="cc" style="height: 100px"><i>Description:</i> <br>
 			        {{ strlen($services->description) > 70 ? substr($services->description, 0, 70) . '...' : $services->description }}
 			    </p>
-				<p class="price">G-Cash No.: {{$services->gcashnum }} <br> Price: {{ 'PHP ' . $services->price }} <br></p>
-
-				<p class="status"><i>status:</i> <br>{{ $services->status }}</p>
+				<p class="price">G-Cash No.: {{$services->gcashnum }} </p>
+				<p class="price"> Price: {{ 'PHP ' . $services->price }}</p>
+				<p class="status" style= "display:none;"><i>status:</i> <br>{{ $services->status }}</p>
 				<div >
         		@if($services->status =="AVAILABLE")
 				<form action="{{ route('unavailable', ['id' => $services->id]) }}" method="get"class ="hide">
@@ -146,9 +146,10 @@
                 const serviceName = card.find('.taskName span').text().toLowerCase();
                 const serviceDescription = card.find('.cc').text().toLowerCase();
                 const serviceStatus = card.find('.status').text().toLowerCase();
-
+				
                 const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
-                const matchesCategory = selectedCategory === "AVAILABLE" || serviceStatus.includes(selectedCategory);
+				 const matchesCategory =  selectedCategory == "AVAILABLE" || serviceStatus.includes(selectedCategory);
+
 
                 if (matchesSearch && matchesCategory) {
                     card.show();
@@ -157,8 +158,6 @@
                 }
             });
         }
-
-        categorySelect.val('AVAILABLE');
 
         filterServices();
 
