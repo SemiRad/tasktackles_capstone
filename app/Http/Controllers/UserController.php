@@ -685,19 +685,22 @@ class UserController extends Controller
             Session::pull('loginID');
         return Redirect('/login')->with('msg', 'Logged out successfully');}}
 
-        public function searchServices(Request $request)
+        public function searchServices(Request $request, $selectedCategory)
         {
-            $user = null; 
-            $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
-    
+            $request->validate([
+                'category' => 'required|in:Kitchen,LivingRoom,Bedroom,Bathroom,Plumbing,Electricity,Yard,Others',
+            ]);
         
-            if (Session::has('loginID')) {
-                $id = Session::get('loginID');
-                $user = User::where('id', $id)->first();
-            }
+            $selectedCategory = $request->input('category');
         
-            return view('services', compact('services', 'user'));
+            $services = Service::with('user')
+                ->whereIn('status', ['AVAILABLE', 'UNAVAILABLE'])
+                ->where('category', $selectedCategory)
+                ->get();
+        
+            return view('services', compact('services', 'selectedCategory'));
         }
+        
         
         public function service(){ //added
             $user = null; 
