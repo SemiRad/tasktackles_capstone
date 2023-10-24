@@ -24,7 +24,13 @@
         <input type="text" id="searchInput" placeholder="Search for a service">
 
     </li>
+
 	<div class="filter">
+    @if(isset($selectedCategory))
+<div class="selected-category">
+    Selected Category: {{ $selectedCategory }}
+</div>
+@endif
     <label for="categorySelect">Filter by Category:</label>
     <select id="categorySelect" >
         <option value="all">All</option>
@@ -40,7 +46,8 @@
 </div>
 
 	</div>
-	
+
+
 
 	<main>
 		
