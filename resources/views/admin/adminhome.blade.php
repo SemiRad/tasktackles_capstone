@@ -85,14 +85,18 @@
                     </div>
                     <!--end modal-->
                 <td>
-                    @if($user->isValid == 1)
-                        Verified
-                        <td><button class="btn btn-danger">Ban</button></td>
-                    @else
-                        Unverified
-                        <td><button class="btn btn-success">Verify</button></td>
-                        <td><button class="btn btn-danger">Deny</button></td>
-                    @endif
+                    {{$users->isValid}}</td>
+                      
+                        <form action="{{ route('admin-ban', ['id' => $users->id]) }}" method="get"class ="hide">
+                        @csrf
+                        <td><button class="btn btn-danger">Ban</button></td></form>
+                        <form action="{{ route('admin-verify', ['id' => $users->id]) }}" method="get"class ="hide">
+                        @csrf
+                        <td><button class="btn btn-success">Verify</button></form></td>
+                        <form action="{{ route('admin-deny', ['id' => $users->id]) }}" method="get"class ="hide">
+                        @csrf
+                        <td><button class="btn btn-danger">Deny</button></td></form>
+                    
                 </td>
             </tr>
                 @endforeach
@@ -114,7 +118,7 @@
                 <td>{{ $services->service_list_name }}</td>
                 <td>{{ $users->where('id', $services->user_id)->first()->username }}</td>
                 <td>PHP {{ $services->price }}</td>
-                <td>{{ strlen($services->description) > 70 ? substr($services->description, 0, 70) . '...' : $servicesss->description }}</td>
+                <td>{{ strlen($services->description) > 70 ? substr($services->description, 0, 70) . '...' : $services->description }}</td>
                 <td>
                     <img src="{{ asset('images/' . $services->photo) }}" alt="Service Photo" style="max-width: 150px" data-toggle="modal" data-target="#photoModal-{{$services->id}}">
                 </td>
