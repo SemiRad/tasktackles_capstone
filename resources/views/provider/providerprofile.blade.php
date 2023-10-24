@@ -10,14 +10,30 @@
     <body>
         @csrf
         <div class="wrapper">
-     
+     	<?php
+	        use App\Models\User;
+	        use App\Models\Service;
+	        use App\Models\Book;
+	        use App\Models\Rate;
+	        $user = array();
+	        if (Session::has('loginID')) {
+	            $id = Session::get('loginID');
+	            $user = User::where('id', '=', $id)->first();
+	            $users = User::all();
+	            $b = Book::all();
+	            $services = Service::all();
+	            $r = Rate::where('user_id_recipient', $id)->get();
+
+	            $totalRate = $r->avg('rating');
+	        }
+	        ?>
             <div class="parent">
             <div class="left"><img src="{{ asset('images/' . $user->profile_picture ) }}"></div>
             <div class="right">
             <input type="hidden" name="user_id" value="{{$user->id}}">
                 <p class = "p1"><b>{{$user->firstname }} {{$user->lastname}}</b></p>
                 <p style="color: white;">{{ '@' . $user->username }}</a></p>
-                <p class = "r1">Rating:</p>
+                <p class = "r1">Rating: <span style="color:#FFB94E; font-size: 18px; font-weight: bold;">{{ $totalRate }}</span></p>
             </div>
 
             
@@ -46,7 +62,6 @@
 	</div>
 </div>
 <main>
-		
 		<input type="hidden" name="user_id" value="{{$user->id}}">
 		<!-- Services -->
 		<div id="services-content" class="content" style="display: none">
@@ -95,7 +110,7 @@
 				
 				<a href="{{ route('delete', ['id' => $services->id]) }}">
 				<svg id="delbtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">	
-  				<path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clip-rule="evenodd" /><button class="hide" style ="border: 0; width: 5%;" ></button>
+  				<path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clip-rule="evenodd" /><button class="hide" style ="border: 0; width: 5%;"></button>
 				</svg> 
 			</a>
 			</div>
@@ -104,15 +119,52 @@
 		@endforeach
 	</div>
 		<!-- end of services -->
-
+	<div class="table-wrapper">
 	<div id="ratings-content" class="content" style="display: none">
-    	Ratings
+		<table>
+	    <tr>
+	        <th>Booked Service</th>
+	        <th>Reviewer</th>
+	        <th>Date & Time</th>
+	        <th>Rating</th>
+	        <th>Comment</th>
+	    </tr>
+	    @foreach($r as $rate)
+	    <tr>
+	        <td>{{ $services->where('id', $b->where('id', $rate->booking_id)->first()->service_id)->first()->service_list_name }}</td>
+	        <td>{{ $users->where('id', $rate->user_id_reviewer)->first()->username }}</td>
+	        <td>{{ $rate->created_at }}</td>
+	        <td>{{ $rate->rating }}</td>
+	        <td>{{ $rate->comments }}</td>
+	    </tr>
+	    @endforeach
+	</table>
 	</div>
 
 	<div id="feedbacks-content" class="content" style="display: none">
-	    Feedbacks
+		<table>
+	    <tr>
+	        <?php
+	            $fb = Rate::where('user_id_reviewer', $id)->get();
+	        ?>
+	        <th>Booked Service</th>
+	        <th>Recipient</th>
+	        <th>Date & Time</th>
+	        <th>Rating</th>
+	        <th>Comment</th>
+	    </tr>
+	    @foreach($fb as $feedback)
+	    <tr>
+	        <td>{{ $services->where('id', $b->where('id', $feedback->booking_id)->first()->service_id)->first()->service_list_name }}</td>
+	        <td>{{ $users->where('id', $feedback->user_id_recipient)->first()->username }}</td>
+	        <td>{{ $feedback->created_at }}</td>
+	        <td>{{ $feedback->rating }}</td>
+	        <td>{{ $feedback->comments }}</td>
+	    </tr>
+	    @endforeach
+	</table>
 	</div>
-
+</div>
 	</main>
 </body>
 

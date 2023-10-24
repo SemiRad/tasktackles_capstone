@@ -271,6 +271,41 @@ html,body{
     width: 100%;
 }
 
+.table-wrapper {
+    max-width: 100%;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    white-space: nowrap; /* Prevent text wrapping in cells */
+    table-layout: fixed;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+
 /*CARD CSS*/
 main {
 	max-width: 1500px;
@@ -433,6 +468,14 @@ main .caption #delbtn:hover {
 	.searchBar #stat {
 		margin: 0;
 		gap: 10px;
+	}
+
+	table {
+	    width: 100%;
+	    border-collapse: collapse;
+	    border-spacing: 0;
+	    white-space: nowrap; /* Prevent text wrapping in cells */
+	    table-layout: auto;
 	}
 }
 
