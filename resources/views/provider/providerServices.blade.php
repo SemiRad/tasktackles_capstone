@@ -12,28 +12,7 @@
 <body>
 @csrf
 	<div class="breadcrumbs">
-		<!-- BREADCRUMBS
-		<ul>
-			<li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-			  <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd" />
-			</svg></a>
-			</li>
-
-			<li class="arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-			<path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-			</svg>
-			</li>
-
-			<li><a href="#">Services</a></li>
-
-			<li class="arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-			<path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-			</svg>
-			</li>
-
-			<li><a href="#">Available</a></li>
-		</ul>
-		-->
+	
 	</div>
 	  <input type="hidden" name="user_id" value="{{$user->id}}">
 
@@ -52,10 +31,16 @@
         <input type="text" placeholder="Search for a service">
     </li>
 
-    <div id="stat">
-    <li><a href="#" class="tab-link" data-status="available">Available</a></li>
-    <li><a href="#" class="tab-link" data-status="unavailable">Unavailable</a></li>
-	</div>
+	<div class="stat">
+    <select id="categorySelect" >
+	
+	<option value="AVAILABLE">Available</option>
+		<option value="UNAVAILABLE">Unavailable</option>
+       
+    </select>
+</div>
+
+
 
 </ul>
 
@@ -90,7 +75,7 @@
 			    </p>
 				<p class="price">G-Cash No.: {{$services->gcashnum }} <br> Price: {{ 'PHP ' . $services->price }} <br></p>
 
-			
+				<p class="status"><i>status:</i> <br>{{ $services->status }}</p>
 				<div >
         		@if($services->status =="AVAILABLE")
 				<form action="{{ route('unavailable', ['id' => $services->id]) }}" method="get"class ="hide">
@@ -148,54 +133,38 @@
     });
 
     $(document).ready(function () {
-    	$('.card').hide();
-        $('.card.available').show();
-        $('.tab-link[data-status="available"]').addClass('active');
+        const searchInput = $('#bar input');
+        const serviceCards = $('.card');
+        const categorySelect = $('#categorySelect');
 
-        $('.tab-link').click(function (e) {
-            e.preventDefault();
-            const status = $(this).data('status');
-            
-            $('.card').hide();
+        function filterServices() {
+            const searchTerm = searchInput.val().toLowerCase();
+            const selectedCategory = categorySelect.val().toLowerCase();
 
-            $('.tab-link').removeClass('active');
+            serviceCards.each(function () {
+                const card = $(this);
+                const serviceName = card.find('.taskName span').text().toLowerCase();
+                const serviceDescription = card.find('.cc').text().toLowerCase();
+                const serviceStatus = card.find('.status').text().toLowerCase();
 
-            if (status === 'available') {
-                $('.available').show();
-                $(this).addClass('active');
-            } else if (status === 'unavailable') {
-                $('.unavailable').show();
-                $(this).addClass('active');
-            }
-        });
+                const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
+                const matchesCategory = selectedCategory === "AVAILABLE" || serviceStatus.includes(selectedCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    card.show();
+                } else {
+                    card.hide();
+                }
+            });
+        }
+
+        categorySelect.val('AVAILABLE');
+
+        filterServices();
+
+        searchInput.on('input', filterServices);
+        categorySelect.on('change', filterServices);
     });
-
-    // Handle search input
-        $('#bar input').keyup(function () {
-            const searchValue = $(this).val().toLowerCase();
-            const status = $('.tab-link.active').data('status');
-
-            // Hide all services
-            $('.card').hide();
-
-            if (status === 'available') {
-                // Show available services that match the search query
-                $('.card.available').each(function () {
-                    const serviceName = $(this).find('.taskName').text().toLowerCase();
-                    if (serviceName.includes(searchValue)) {
-                        $(this).show();
-                    }
-                });
-            } else if (status === 'unavailable') {
-                // Show unavailable services that match the search query
-                $('.card.unavailable').each(function () {
-                    const serviceName = $(this).find('.taskName').text().toLowerCase();
-                    if (serviceName.includes(searchValue)) {
-                        $(this).show();
-                    }
-                });
-            }
-        });
 </script>
 
 

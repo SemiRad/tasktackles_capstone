@@ -288,7 +288,7 @@ class UserController extends Controller
             'gcashnum' => 'nullable|numeric', 
             'category' => 'required', 
             'photo' => 'nullable|image|mimes:jpeg,png,gif|max:2048',]);
-            $save = Service::find($id);
+          
             
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');
@@ -297,11 +297,10 @@ class UserController extends Controller
                 $save->photo = $imageName;
                 $request->photo->move(public_path('images'), $imageName);
             }
-            
             if (empty($request->gcashnum)) {
                 $request->gcashnum = 'n/a';
             }
-            
+            $save = Service::find($id);
           
             $save->service_list_name = $request->input('service_list_name');
             $save->price = $request->input('price');

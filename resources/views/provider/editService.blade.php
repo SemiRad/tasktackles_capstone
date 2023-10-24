@@ -40,7 +40,7 @@
      <div class="image">
      <img src="{{ asset('images/' . $services->photo ) }}"></div>
      <div class="row">
-             Service Photo: <input type="file" id="photo" name="photo" accept="image/png, image/gif, image/jpeg" required value="{{ $services->photo }}">
+             Service Photo: <input type="file" id="photo" name="photo" accept="image/png, image/gif, image/jpeg" value="{{ $services->photo }}">
          </div>
       
          <div class="row">
