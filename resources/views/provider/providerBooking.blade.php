@@ -86,10 +86,12 @@ cancelled @elseif($bs->status == 'Fulfilled') fulfilled @else pending @endif">
         @endif
        
         @if($bs->status == "Fulfilled")
-        <form action="{{ route('paid', ['id' => $bs->id]) }}" method="get">
-            <button id="pos">PAID</button>
-        </form>
-        
+            @if($bs->payment_status != "Paid")
+                <form action="{{ route('paid', ['id' => $bs->id]) }}" method="get">
+                    <button id="pos">PAID</button>
+                </form>
+            @endif
+       
         @php
             $existingRating = \App\Models\Rate::where('user_id_recipient', $bs->user_id_customer)
                 ->where('user_id_reviewer', $bs -> user_id_provider)
