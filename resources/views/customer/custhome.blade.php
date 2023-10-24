@@ -41,20 +41,24 @@
 			    <p style="letter-spacing: -6px; color: #470047;">-----------------------</p>		
 			        <p>What task would you like us to tackle?</p>
 			        <br>
-			        <div class="dropdown-container">
-			        <select name="task-dropdown" required>
-			        	<option value="">Choose...</option>
-			            <option value="kitchen">Kitchen</option>
-			            <option value="living-room">Living Room</option>
-			            <option value="bedroom">Bedroom</option>
-			            <option value="bathroom">Bathroom</option>
-			            <option value="plumbing">Plumbing</option>
-			            <option value="electricity">Electricity</option>
-			            <option value="yard-lawn">Yard/Lawn</option>
-			            <option value="others">Others</option>
-			        </select>
-			    <button type="button" class="find-button">Search Services</button>
-			    </div>
+                    <form action="{{ route('search') }}" method="get">
+    @csrf
+    <div class="dropdown-container">
+        <select name="category" required>
+            <option value="">Choose...</option>
+            <option value="Kitchen">Kitchen</option>
+            <option value="LivingRoom">Living Room</option>
+            <option value="Bedroom">Bedroom</option>
+            <option value="Bathroom">Bathroom</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Yard">Yard/Lawn</option>
+            <option value="Others">Others</option>
+        </select>
+        <button type="submit" class="find-button">Search Services</button>
+    </div>
+</form>
+
 			</div>
         </div>
     </div>

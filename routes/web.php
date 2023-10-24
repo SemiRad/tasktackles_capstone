@@ -105,3 +105,4 @@ Route::get('/viewConversationCustomer/{id}', [UserController::class, 'viewConver
 Route::post('/send-message', [UserController::class, 'sendMessage'])->name('sendMessage');
 
 
+Route::get('/search', [UserController::class, 'searchServices'])->name('search');

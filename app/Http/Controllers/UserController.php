@@ -685,6 +685,21 @@ class UserController extends Controller
             Session::pull('loginID');
         return Redirect('/login')->with('msg', 'Logged out successfully');}}
 
+        public function searchServices(Request $request)
+        {
+            $user = array();
+            if(Session::has('loginID')){
+            $id = Session::get('loginID');
+            $user = User::where('id', '=', $id)->first();
+            $category = $request->input('category');
+            $services = Service::where('category', $category)->get();
+        
+            return view('customer.custservices', compact('services','user'));}
+        }
+
+
+
+
 //MESSAGING
     public function provmsg()
     {

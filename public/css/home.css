@@ -46,11 +46,11 @@
     width: 40%;
 }
 
-select[name="task-dropdown"] option:hover {
+select[name="category"] option:hover {
     background-color: #f0f0f0;
 }
 
-select[name="task-dropdown"]::after {
+select[name="category"]::after {
     content: "\25BC"; /* Down arrow */
     position: absolute;
     top: 12px;
@@ -59,11 +59,11 @@ select[name="task-dropdown"]::after {
     background-color: #f9f9f9;
 }
 
-select[name="task-dropdown"]::-ms-expand {
+select[name="category"]::-ms-expand {
     display: none;
 }
 
-select[name="task-dropdown"] {
+select[name="category"] {
     width: 70%;
     padding: 10px;
     border: 1px solid #ccc;
