@@ -214,7 +214,8 @@ html,body{
 	}
 
 	.wrapper form #subtn {
-	display: block;
+	
+	margin:auto;
 	}
 
 	.wrapper .col1 {
