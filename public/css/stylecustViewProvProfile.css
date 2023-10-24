@@ -40,7 +40,8 @@
 	margin-top: 20px;
 	padding: 10px 0 10px 0;
 	height: fit-content;
-    justify-content: center;  
+    justify-content: center;
+    overflow-x: auto;  
 }
 
 .topbar ul {
@@ -48,6 +49,7 @@
 	align-items: center;
 	padding: 0;
 	margin: 0;
+
 }
 
 .topbar ul li {
@@ -56,7 +58,6 @@
 
 .topbar .active {
 	color: #F97134;
-	text-decoration: underline;
 }
 
 .topbar ul li a {
