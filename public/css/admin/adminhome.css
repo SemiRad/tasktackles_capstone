@@ -17,7 +17,7 @@
 	width: 100%;
 	background-color: #470047;
 	height: 20px;
-	padding-top: 150px;
+	padding-top: 30px;
 }
 
 .table1 {
@@ -49,22 +49,21 @@
 
 .t1c1 {
 	text-align: center;
-	font-size: 26px;
+	font-size: 22px;
 	margin-top: 20px;
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
 }
 
-.t1c1 ul li {
-	display:inline;
-	margin: 0 20px;
-	padding: 20px;
+.t1c1 table {
+    margin: 0 auto;
 }
 
-.t1c1 ul li a {
-	color: black;
+table {
+	width: 100%;
+	table-layout: fixed;
 }
 
-.t1c1 ul li a:hover {
-	color: #F97134;
+.t1c1 td {
+	font-size: 16px;
 }
