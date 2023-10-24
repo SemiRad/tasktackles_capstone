@@ -33,10 +33,8 @@
 
 	<div class="stat">
     <select id="categorySelect" >
-	
 	<option value="AVAILABLE">Available</option>
-		<option value="UNAVAILABLE">Unavailable</option>
-	
+	<option value="UNAVAILABLE">Unavailable</option>
     </select>
 </div>
 
@@ -148,7 +146,7 @@
                 const serviceStatus = card.find('.status').text().toLowerCase();
 				
                 const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
-				 const matchesCategory =  selectedCategory == "AVAILABLE" || serviceStatus.includes(selectedCategory);
+				const matchesCategory = selectedCategory == "AVAILABLE" || serviceStatus.includes(selectedCategory);
 
 
                 if (matchesSearch && matchesCategory) {
