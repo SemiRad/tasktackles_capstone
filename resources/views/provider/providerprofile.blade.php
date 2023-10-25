@@ -22,9 +22,9 @@
 				$users = User::all();
 				$b = Book::all();
 				$services = Service::where('user_id', $id)
-				->whereIn('status', ['AVAILABLE', 'UNAVAILABLE'])
-				->get();
-							$r = Rate::where('user_id_recipient', $id)->get();
+					->whereIn('status', ['AVAILABLE', 'UNAVAILABLE'])
+					->get();
+				$r = Rate::where('user_id_recipient', $id)->get();
 	
 				$totalRate = $r->avg('rating');
 	        }
