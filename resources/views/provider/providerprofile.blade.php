@@ -17,14 +17,16 @@
 	        use App\Models\Rate;
 	        $user = array();
 	        if (Session::has('loginID')) {
-	            $id = Session::get('loginID');
-	            $user = User::where('id', '=', $id)->first();
-	            $users = User::all();
-	            $b = Book::all();
-	            $services = Service::all();
-	            $r = Rate::where('user_id_recipient', $id)->get();
-
-	            $totalRate = $r->avg('rating');
+				$id = Session::get('loginID');
+				$user = User::where('id', '=', $id)->first();
+				$users = User::all();
+				$b = Book::all();
+				$services = Service::where('user_id', $id)
+				->whereIn('status', ['AVAILABLE', 'UNAVAILABLE'])
+				->get();
+							$r = Rate::where('user_id_recipient', $id)->get();
+	
+				$totalRate = $r->avg('rating');
 	        }
 	        ?>
             <div class="parent">

@@ -14,7 +14,7 @@
 	<input type="checkbox" id="check">
 	<nav>
 		<div class = "navbar">
-		<a href="#"><div class="logo"><img src="{{ asset('asset/TT-txt.png') }}"></div></a>
+		<a href="{{ route('home') }}"><div class="logo"><img src="{{ asset('asset/TT-txt.png') }}"></div></a>
 			<ol class = "menuitems">
 				<li><a href="login"> Log In </a></li>
 				<li><a href="signup"> Sign Up </b></a></li>

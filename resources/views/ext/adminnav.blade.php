@@ -14,7 +14,7 @@
 	<input type="checkbox" id="check">
 	<nav>
 		<div class = "navbar">
-		<a href="#"><div class="logo"><img src="{{ asset('asset/TT-txt.png') }}"></div></a>
+		<a href="{{ route('admin-user') }}"><div class="logo"><img src="{{ asset('asset/TT-txt.png') }}"></div></a>
 			<ol class="menuitems">
 		    	<li><span class="non-clickable"> ADMIN </span></li>
 		    	<li><a href="{{ route('logout') }}"> Log out </a></li>
