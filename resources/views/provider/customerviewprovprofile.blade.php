@@ -46,7 +46,7 @@
     
 <main>
         <!-- diri ang foreach -->
-        
+        <div id="services-content" class="content" style="display: flex;">
         @foreach($services as $service)
         @php
         $puserID = $service->user_id;
@@ -75,15 +75,55 @@
         <button class="btnstatcs">Book Service</button>
     </form>
 	@endif
-</div>
-</div>
-@endforeach
-		<!-- end foreach -->
-	</main>
+    </div>
+    </div>
+    
+    @endforeach
+    </div>
 
-	
-		</form>
-		</div>
+
+        <?php
+            use App\Models\User;
+            use App\Models\Service;
+            use App\Models\Book;
+            use App\Models\Rate;
+            $user = array();
+            if (Session::has('loginID')) {
+                $id = Session::get('loginID');
+                $user = User::where('id', '=', $id)->first();
+                $users = User::all();
+                $b = Book::all();
+                $services = Service::where('user_id', $service->user_id)
+                ->whereIn('status', ['AVAILABLE', 'UNAVAILABLE'])
+                ->get();
+                            $r = Rate::where('user_id_recipient', $puserID)->get();
+    
+                $totalRate = $r->avg('rating');
+            }
+            ?>
+        <div class="table-wrapper">
+    <div id="ratings-content" class="content" style="display: none">
+        <table>
+        <tr>
+            <th>Booked Service</th>
+            <th>Reviewer</th>
+            <th>Date & Time</th>
+            <th>Rating</th>
+            <th>Comment</th>
+        </tr>
+        @foreach($r as $rate)
+        <tr>
+            <td>{{ $services->where('id', $b->where('id', $rate->booking_id)->first()->service_id)->first()->service_list_name }}</td>
+            <td>{{ $users->where('id', $rate->user_id_reviewer)->first()->username }}</td>
+            <td>{{ $rate->created_at }}</td>
+            <td>{{ $rate->rating }}</td>
+            <td>{{ $rate->comments }}</td>
+        </tr>
+        @endforeach
+    </table>
+    </div>
+</div>
+</main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -114,5 +154,32 @@
             });
         });
     });
+
+    $(document).ready(function () {
+    selectTab('Services'); // Call the function to set "Services" as active
+    // Add a click event handler to the top bar links
+    $('.tab-link').click(function () {
+        var status = $(this).data('status');
+
+        // Hide all content sections
+        $('.content').hide();
+
+        // Show the content section based on the selected status
+        $('#' + status.toLowerCase() + '-content').show();
+
+        // Remove the "active" class from all tabs
+        $('.tab-link').removeClass('active');
+
+        // Add the "active" class to the clicked tab
+        $(this).addClass('active');
+        });
+    });
+
+    function selectTab(tabName) {
+        // Show the content section for the selected tab
+        $('#' + tabName.toLowerCase() + '-content').show();
+        // Add the "active" class to the corresponding tab
+        $('a[data-status="' + tabName + '"]').addClass('active');
+    }
 </script>
 </html>
