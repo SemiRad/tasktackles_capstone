@@ -18,7 +18,7 @@ class DeniedUserController extends Controller
         return view ("resend-proof.rproof");
     }
 
-    function forgetPassword(Request $request){
+    function getEmail(Request $request){
         $request->validate([
             'email' => 'required|email|exists:user,email_address' 
         ]);
@@ -50,7 +50,7 @@ class DeniedUserController extends Controller
         });
     
         
-            return redirect()->to(route("#"))->with("success", "We have sent the reregistration link to your email.");
+            return redirect()->to(route("resend"))->with("success", "We have sent the reregistration link to your email.");
         
     }
     
@@ -58,29 +58,43 @@ class DeniedUserController extends Controller
 
     
 
-    function reset($token){
+    function reregister($token){
         return view ('resend-proof.resendproof', compact('token'));
     }
 
-    function resetpassword(Request $request){
+    function reregisterAccount(Request $request)
+    {
         $request->validate([
-            'email' => 'required|email|exists:User,email_address',
+            'email' => 'required|email|exists:user,email_address', // Correct table name 'users'
             'id_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-          
+            'token' => 'required',
         ]);
-
-        $rp = DB::table('denies')->where([
-            'email'=> $request->email,
-            'token' => $request->token
-        ])->first();
-
-        if(!$rp){
-            return back()->with("error", "There is something wrong.");
+    
+        // Check if the token exists in the 'denies' table
+        $tokenExists = DB::table('denies')
+            ->where('email', $request->email)
+            ->where('token', $request->token)
+            ->first(); // Retrieve the entry
+    
+        if (!$tokenExists) {
+            return back()->with("error", "Invalid token or email.");
         }
-        User::where('email_address', $request->email)->update('id_img', $request->id_img);
-
+    
+        // Handle the image upload
+        if ($request->hasFile('id_img')) {
+            $image = $request->file('id_img');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName); // Move and save the image
+        }
+    
+        // Update the 'id_img' column in the 'users' table
+        User::where('email_address', $request->email)
+            ->update(['id_img' => $imageName]);
+    
+        // Delete the entry from the 'denies' table
         DB::table('denies')->where(['email' => $request->email])->delete();
-        return redirect("login")->with("success", "Reregistration sucessful! Please wait for your account to be verified.");
-
+    
+        return redirect("login")->with("success", "Reregistration successful! Please wait for your account to be verified.");
     }
+    
 }

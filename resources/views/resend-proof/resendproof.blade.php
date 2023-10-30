@@ -32,7 +32,7 @@
             </div>
 
             <div class="title"><img src="{{ asset('asset/TT-txt.png') }}" alt="TaskTackles"></div>
-            <form action="{{ route('reregister-account') }}" method="post">
+            <form action="{{ route('reregister-account') }}" method="post" enctype="multipart/form-data">
             <div class="register">
             <p id="text" style= "text-align:center; font-size:x-large; font-weight: bold;">Reset Password<br></p>
         </div>

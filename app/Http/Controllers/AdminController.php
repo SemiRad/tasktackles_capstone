@@ -55,6 +55,7 @@ class AdminController extends Controller
     public function verifyUser($UID) {
         $d = User::where('id', $UID)->first();
         $d->isValid = 1;
+        $d->account_status = "Active";
         $d->save();
         return redirect()->back()->with('success', 'User Validated.');}
 

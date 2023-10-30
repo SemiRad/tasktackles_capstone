@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DeniedUserController;
+
 //use App\Http\Controllers\ForgetPasswordController;
 /*
 |--------------------------------------------------------------------------
@@ -110,7 +112,7 @@ Route::get("service", [UserController::class, "service"])->name("service");
 
 
 //deniedusers
-Route::get('/resend', [ForgetPasswordController::class, 'viewSendLink'])->name('resend');
-Route::post('/get-email', [ForgetPasswordController::class, 'getEmail'])->name('/get-email');
-Route::get('/reregister/{token}', [ForgetPasswordController::class, 'reregister'])->name('reregister');
-Route::post('/reregister-account', [ForgetPasswordController::class, 'resetPassword'])->name('reregister-account');
+Route::get('/resend', [DeniedUserController::class, 'viewSendLink'])->name('resend');
+Route::post('/get-email', [DeniedUserController::class, 'getEmail'])->name('get-email');
+Route::get('/reregister/{token}', [DeniedUserController::class, 'reregister'])->name('reregister');
+Route::post('/reregister-account', [DeniedUserController::class, 'reregisterAccount'])->name('reregister-account');
