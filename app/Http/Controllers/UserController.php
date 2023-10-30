@@ -338,7 +338,7 @@ class UserController extends Controller
         $d->save();
 
         $pendingBookings = Book::where('service_id', $d->id)
-        ->where('status', 'Pending')
+        ->where('status', 'Pending') //changed
         ->get();
          foreach ($pendingBookings as $booking) {
             $booking->status = "Declined";

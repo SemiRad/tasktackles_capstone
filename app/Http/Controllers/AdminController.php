@@ -67,13 +67,34 @@ class AdminController extends Controller
         $d = User::where('id', $UID)->first();
         $d->account_status = "Banned";
         $d->save();
+
+
+        if($d->usertype == "Provider"){
+            $pendingBookings = Book::where('service_id', $d->id)
+            ->where('status', 'Pending' ,'Accepted')
+            ->get();
+             foreach ($pendingBookings as $booking) {
+                $booking->status = "Declined";
+                $booking->save();}
+        }
+      
+
         return redirect()->back()->with('success', 'User Banned.');}
 
 
     public function suspendService($UID) {
-         $d = Service::where('id', $UID)->first();
+        $d = Service::where('id', $UID)->first();
         $d->status = "Deleted";
         $d->save();
+
+        $pendingBookings = Book::where('service_id', $d->id)
+        ->where('status', 'Pending', 'Accepted')
+        ->get();
+         foreach ($pendingBookings as $booking) {
+            $booking->status = "Declined";
+            $booking->save();}
+
+
             return redirect()->back()->with('success', 'Service suspend.');}
 }
     
