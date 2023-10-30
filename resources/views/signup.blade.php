@@ -77,7 +77,7 @@
                 @enderror
                 <div class="row">
                 <label>Contact Number:</label>
-<input type="text" placeholder="Aa" id="contact" name="contact" value="09{{old('contact')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+<input type="text" placeholder="Aa" id="contact" name="contact" value="{{old('contact')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                      </div>
                      @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>

@@ -60,7 +60,10 @@ class AdminController extends Controller
 
     
     public function denyUser($UID) {
-        $d = User::where('id', $UID)->delete();
+        $d = User::where('id', $UID)->first();
+        $d->isValid = 1;
+        $d->account_status = "Denied";
+        $d->save();
         return redirect()->back()->with('success', 'User Denied.');}
 
     public function banUser($UID) {
@@ -76,6 +79,7 @@ class AdminController extends Controller
              foreach ($pendingBookings as $booking) {
                 $booking->status = "Declined";
                 $booking->save();}
+                return redirect()->back()->with('success', 'User Banned.');
         }
       
 

@@ -105,5 +105,12 @@ Route::get('/viewConversationCustomer/{id}', [UserController::class, 'viewConver
 Route::post('/send-message', [UserController::class, 'sendMessage'])->name('sendMessage');
 
 
-Route::post('/search', [UserController::class, 'searchServices'])->name('search');
+Route::post('/search    ', [UserController::class, 'searchServices'])->name('search');
 Route::get("service", [UserController::class, "service"])->name("service");
+
+
+//deniedusers
+Route::get('/resend', [ForgetPasswordController::class, 'viewSendLink'])->name('resend');
+Route::post('/get-email', [ForgetPasswordController::class, 'getEmail'])->name('/get-email');
+Route::get('/reregister/{token}', [ForgetPasswordController::class, 'reregister'])->name('reregister');
+Route::post('/reregister-account', [ForgetPasswordController::class, 'resetPassword'])->name('reregister-account');

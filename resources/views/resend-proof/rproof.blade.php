@@ -20,38 +20,43 @@
                     {{ session('success') }}
                 </div>
                 @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {!! session('error') !!}
-                    </div>
+                @if(session('error'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('error') }}
+                </div>
                 @endif
-
+                @error('email')
+                    <div class="alert alert-danger">{{ 'Email does not exist' }}</div>
+                @enderror
+               
             </div>
 
             <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
-            <form action="{{ route('signin') }}" method="post">
-
+            <form action="{{route('get-email')}}" method="post">
+            <div class="register">
+                <h1 style="color: #F97134;">REREGISTER</h1>
+            <p id="text" style= "text-align:left; font-size:small;">Enter your email address and we will send you a link to reregister.<br></p>
+        </div>
             @csrf
+            
                 <div class="row">
-                    <input type="text" placeholder="Username or Email" name="username" value ="{{ old('username')}}">
+                    <input type="email" placeholder="Enter Email Address" name="email">
                 </div>
+               
                 <div class="row">
-                    <input type="password" placeholder="Password"name="password" >
-                </div>
-                <div class="row">
-                    <input type="submit" value="LOG IN" id="login">
+                    <input type="submit" value="Send Link" id="login">
                 </div>
             </form>
+
+           
+
             <div class="forgotpassword">
-                <a href="{{route('forget-password')}}" target="_self" id="forgotpw">Forgot password?</a><br>
+                <a href="/login" target="_self" id="forgotpw">Go Back</a><br>
             </div>
-            <form action="/signup" method ="get">
-            <div class="register">
-                <p id="text">Don't have an account?<br></p>
-                <input type="submit" value="SIGN UP" id="signup">
-            </div>
-        </form>
+           
+           
+           
+        <br>
     </div>
 
     </body>

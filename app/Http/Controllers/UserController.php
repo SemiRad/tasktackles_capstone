@@ -30,30 +30,38 @@ class UserController extends Controller
         return view('home', compact('services', 'user'));
     }
 
-    public function gohome(Request $request){
+    public function gohome(Request $request)
+    {
         $request->validate([
             'username' => 'required',
-            'password' => 'required',]);
-
+            'password' => 'required',
+        ]);
+    
         $user = User::where('username', $request->username)->orWhere('email_address', $request->username)->first();
+    
         if ($user && $user->isValid == 1 && $user->account_status == "Active") {
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginID', $user->id);
                 if ($user->usertype === 'Provider') {
-                return redirect()->route('provserv')->with(compact('user'));}
-                else if ($user->usertype === 'Customer'){
-                    return redirect()->route('customer-home')->with(compact('user'));}
-                else{
+                    return redirect()->route('provserv')->with(compact('user'));
+                } elseif ($user->usertype === 'Customer') {
+                    return redirect()->route('customer-home')->with(compact('user'));
+                } else {
                     return redirect()->route('admin')->with(compact('user'));
-                }}
-         else {
-            return back()->with('error', 'Invalid Credentials', compact('user'));}}
-        else if ($user && $user->isValid == 1 && $user->account_status == "Banned") {
-            return back()->with('error', 'Account banned', compact('user'));}
-        else if ($user && $user->isValid == 0 ) {
-            return back()->with('error', 'Account is not verified yet.', compact('user'));}
-                else {
-                    return back()->with('error', 'Invalid Credentials', compact('user'));}}
+                }
+            } else {
+                return back()->with('error', 'Invalid Credentials', compact('user'));
+            }
+        } elseif ($user && $user->isValid == 1 && $user->account_status == "Banned") {
+            return back()->with('error', 'Account banned', compact('user'));
+        } elseif ($user && $user->isValid == 0) {
+            return back()->with('error', 'Account is not verified yet.', compact('user'));
+        } elseif ( ($user && $user->isValid == 1 && $user->account_status == "Denied")) {
+            return back()->with('error', 'Account is denied, please <a href="' . route('resend') . '">reregister</a> again.', compact('user'));
+        }
+        return back()->with('error', 'Account does not exist.', compact('user'));
+    }
+    
 
 
     public function register(Request $request) {
@@ -105,7 +113,7 @@ class UserController extends Controller
                 }
             
                 $user->account_status = "Active";
-              
+            
                 $saveuser = $user->save();
             
                 if ($saveuser) {
@@ -126,13 +134,19 @@ class UserController extends Controller
                 
     public function provacc(){
         $user = array();
-        if(Session::has('loginID')){
-            $id = Session::get('loginID');
-            $services = Service::where('user_id', $id)
-            ->whereIn('status', ["AVAILABLE", "UNAVAILABLE"])
-            ->get();
-            $user = User::where('id', '=', $id)->first();  
-            return view('provider.providerprofile',  compact('user','services'));}}  
+        if (Session::has('loginID')) {
+        $id = Session::get('loginID');
+        $services = Service::where('user_id', $id)->whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
+        $user = User::where('id', '=', $id)->first();
+                    
+        if ($services->isEmpty()) {
+            $noServicesMessage = 'No services available.';
+                return view('provider.providerprofile', compact('user', 'noServicesMessage'));
+        } else {
+            return view('provider.providerprofile', compact('user', 'services'));}
+                }
+            }
+            
 
     public function viewprovacc($id){
         $user = User::find($id);
@@ -144,28 +158,7 @@ class UserController extends Controller
         return view('provider.customerviewprovprofile', compact('user', 'services'));}
 
 
-    /*public function viewAllbookingrequests() {
-
-            $u = null;
-                
-            if (Session::has('loginID')) {
-            $id = Session::get('loginID');
-            $u = User::where('id', $id)->first();
-            }
-                
-        if ($u) {
-            $bookings = Book::where('user_id_provider', $u->id)
-            ->orderBy('date', 'asc') 
-            ->get();
-            $services = Service::whereIn('user_id', $bookings->pluck('user_id_provider'))->get();
-            $cIds = $services->pluck('user_id_customer')->toArray();
-
-            $up = User::whereIn('id', $cIds)->get();       
-            return view('provider.providerBooking', compact('u', 'bookings', 'services', 'up'));
-            }
-                
-                }
-*/
+ 
 
 //trial for booking request handling
     public function viewAllbookingrequests() {
@@ -669,16 +662,12 @@ class UserController extends Controller
         if(Session::has('loginID')){
         $id = Session::get('loginID');
         $user = User::where('id', '=', $id)->first();  
-      //  $cCity = $user->city;
+     
+        if ($user->account_status !== "Banned") {
+            $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
 
-        $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
-
-        
-        //where('status' , 'AVAILABLE')->whereHas('user', function ($query) use ($cCity) {
-           // $query->where('city', $cCity);
-      //  })
-      //  ->get();
-        return view('customer.custservices', compact('services','user'));}}
+    
+        return view('customer.custservices', compact('services','user'));}}}
  
     public function logout(){
         if(Session::has('loginID')){

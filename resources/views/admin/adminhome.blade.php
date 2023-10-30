@@ -85,11 +85,19 @@
                     </div>
                     <!--end modal-->
                 <td>
-                @if ($users->isValid === 1)
+                @if ($users->isValid === 1 && $users->account_status === "Active")
                     Verified
                     <form action="{{ route('admin-ban', ['id' => $users->id]) }}" method="get"class ="hide">
                         @csrf
                         <td><button class="btn btn-danger">Ban</button></td></form>
+                    @elseif ($users->isValid === 1 && $users->account_status === "Denied")
+                    Denied
+                    <form action="{{ route('admin-verify', ['id' => $users->id]) }}" method="get"class ="hide">
+                        @csrf
+                        <td><button class="btn btn-success">Verify</button></form></td>
+                        <form action="{{ route('admin-deny', ['id' => $users->id]) }}" method="get"class ="hide">
+                        @csrf
+                        <td><button class="btn btn-danger">Deny</button></td></form>
                     @else
                     Pending
                     <form action="{{ route('admin-verify', ['id' => $users->id]) }}" method="get"class ="hide">
