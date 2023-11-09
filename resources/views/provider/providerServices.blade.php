@@ -98,14 +98,14 @@
 			<!-- Modal for Terms and Conditions -->
 		      <div id="modal{{$services->id}}" class="modal">
 		        <div class="modal-content">
-		            <a href="#" class="close" id="closeModal">&times;</a>
+		            <a href="{{ route('provserv') }}" class="close" id="closeModal">&times;</a>
 		            <h2>Confirm Deletion of Service</h2>
 		            <br>
 		            <p>
-		                This action is irreversible and will result in the permanent removal of all your information and content associated with your account. Please double-check your decision as all data, including information, posts, and any associated records, will be lost. If you are certain about this decision, please click "DELETE" to confirm. If you have any doubts or wish to retain your data, kindly click the "x" or anywhere outside the box. Your privacy and choices are important to us, and we want to ensure you are making this decision knowingly.
+		                Are you sure you want to delete the service?
 		            </p>
 		            <br>
-		            <button type="submit" id="confirmDelete">DELETE</button>
+		            <button type="submit" id="confirmDelete">Yes</button>
 		        </div>
 		    </div>
 		    <!-- end modal -->
