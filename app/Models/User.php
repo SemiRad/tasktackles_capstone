@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class user extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -22,7 +22,9 @@ class User extends Model
         'birthday',
         'gender',
         'contact',
-        'address',
+        'street',
+        'province',
+        'hnum',
         'city',
         'email_address',
         'usertype',
@@ -32,4 +34,5 @@ class User extends Model
         'account_status',
         'id_img'
     ];
+
 }

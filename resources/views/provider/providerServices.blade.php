@@ -33,8 +33,8 @@
 
 	<div class="stat">
     <select id="categorySelect" name="task-dropdown">
-	<option value="AVAILABLE">Available</option>
-	<option value="UNAVAILABLE">Unavailable</option>
+	<option value="A">Available</option>
+	<option value="U">Unavailable</option>
     </select>
 </div>
 
@@ -50,7 +50,7 @@
 		<input type="hidden" name="user_id" value="{{$user->id}}">
 	
 		@foreach($services as $services)
-		<div class="card @if($services->status == 'AVAILABLE') available @elseif($services->status == 'UNAVAILABLE') unavailable @else deleted @endif">
+		<div class="card @if($services->status == 'A') available @elseif($services->status == 'U') unavailable @else deleted @endif">
 
 			<div class="image">
 
@@ -75,14 +75,14 @@
 				<p class="price"> Price: {{ 'PHP ' . $services->price }}</p>
 				<p class="status" style= "display:none;"><i>status:</i> <br>{{ $services->status }}</p>
 				<div >
-        		@if($services->status =="AVAILABLE")
+        		@if($services->status =="A")
 				<form action="{{ route('unavailable', ['id' => $services->id]) }}" method="get"class ="hide">
 				@csrf
 						<button class="btnstat">Set Unavailable</button>
 					</form>
 				@endif
 
-				@if($services->status =="UNAVAILABLE")
+				@if($services->status =="U")
 						<form action="{{ route('available', ['id' => $services->id]) }}" method="get"class ="hide">
 						@csrf
 						<button class="btnstat">Set Available</button>
@@ -154,7 +154,7 @@
                 const serviceStatus = card.find('.status').text().toLowerCase();
 				
                 const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
-				const matchesCategory = selectedCategory == "AVAILABLE" || serviceStatus.includes(selectedCategory);
+				const matchesCategory = selectedCategory == "A" || serviceStatus.includes(selectedCategory);
 
 
                 if (matchesSearch && matchesCategory) {

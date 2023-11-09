@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Service;
-use App\Models\Book;
-use App\Models\Rate;
-use App\Models\Message;
+use App\Models\user;
+use App\Models\service;
+use App\Models\book;
+use App\Models\rate;
+use App\Models\message;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -19,12 +19,12 @@ class UserController extends Controller
    
     public function home(){ //added
         $user = null; 
-        $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
+        $services = service::whereIn('status', ["A", "U"])->get();
 
     
         if (Session::has('loginID')) {
             $id = Session::get('loginID');
-            $user = User::where('id', $id)->first();
+            $user = user::where('id', $id)->first();
         }
     
         return view('home', compact('services', 'user'));
@@ -37,7 +37,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
     
-        $user = User::where('username', $request->username)->orWhere('email_address', $request->username)->first();
+        $user = user::where('username', $request->username)->orWhere('email_address', $request->username)->first();
     
         if ($user && $user->isValid == 1 && $user->account_status == "Active") {
             if (Hash::check($request->password, $user->password)) {
@@ -70,10 +70,12 @@ class UserController extends Controller
             'lastname' => 'required|regex:/^([^0-9]*)$/',
             'gender' => 'required',
             'birthday' => 'required|date',
-            'address' => 'required',  
+            'street' => 'required',  
             'city' => 'required',
+            'province' => 'required',
             'contact' => 'required|numeric',
             'usertype' => 'required',
+            'hnum' => 'nullable|numeric',
             'service_name' => ($request->input('usertype') === 'Provider') ? 'required|unique:user' : '',
             'email_address' => 'required|email|unique:user', 
             'username' => 'required|string|max:255|unique:user|regex:/^\S*$/u|alpha_dash',
@@ -82,7 +84,7 @@ class UserController extends Controller
             'password_confirmation' => 'required|required_with:password|same:password',
                 ]);
             
-                $user = new User();
+                $user = new user();
                 $user->username = $request->input('username');
                 $user->email_address = $request->input('email_address');
                 $user->password = Hash::make($request->input('password'));
@@ -90,7 +92,8 @@ class UserController extends Controller
                 $user->lastname = $request->input('lastname');
                 $user->gender = $request->input('gender');
                 $user->birthday = $request->input('birthday');
-                $user->address = $request->input('address');
+                $user->province = $request->input('province');
+                $user->street = $request->input('street');
                 $user->city = $request->input('city');
                 $user->contact = $request->input('contact');
                 $user->usertype = $request->input('usertype');
@@ -105,7 +108,10 @@ class UserController extends Controller
                 }
 
             
-            
+                if ($request->has('hnum')) {
+                    $user->hnum = $request->input('hnum');
+                }
+
                 if ($request->input('usertype') === 'Customer') {
                     $user->service_name = null;
                 } elseif ($request->input('usertype') === 'Provider') {
@@ -128,16 +134,16 @@ class UserController extends Controller
     public function provserv(){
         if (Session::has('loginID')) {
             $id = Session::get('loginID');
-            $user = User::find($id);
-            $services = Service::where('user_id', '=', $id)->get();
+            $user = user::find($id);
+            $services = service::where('user_id', '=', $id)->get();
             return view('provider.providerServices', compact('user', 'services'));}}      
                 
     public function provacc(){
         $user = array();
         if (Session::has('loginID')) {
         $id = Session::get('loginID');
-        $services = Service::where('user_id', $id)->whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
-        $user = User::where('id', '=', $id)->first();
+        $services = service::where('user_id', $id)->whereIn('status', ["A", "U"])->get();
+        $user = user::where('id', '=', $id)->first();
                     
         if ($services->isEmpty()) {
             $noServicesMessage = 'No services available.';
@@ -149,9 +155,9 @@ class UserController extends Controller
             
 
     public function viewprovacc($id){
-        $user = User::find($id);
-        $services = Service::where('user_id', $id)
-        ->whereIn('status', ["AVAILABLE", "UNAVAILABLE"])
+        $user = user::find($id);
+        $services = service::where('user_id', $id)
+        ->whereIn('status', ["A", "U"])
         ->get();
     
 
@@ -165,34 +171,34 @@ class UserController extends Controller
         $u = null;
         if (Session::has('loginID')) {
             $id = Session::get('loginID');
-            $u = User::where('id', $id)->first();}
+            $u = user::where('id', $id)->first();}
         if ($u) {
             $validStatus = ['Accepted', 'Declined', 'Pending', 'Cancelled', 'Fulfilled'];
-            $bookings = Book::where('user_id_provider', $u->id)->whereIn('status', $validStatus)->orderBy('date', 'asc')->get();
-            $services = Service::whereIn('user_id', $bookings->pluck('user_id_provider'))->get();
+            $bookings = book::where('user_id_provider', $u->id)->whereIn('status', $validStatus)->orderBy('date', 'asc')->get();
+            $services = service::whereIn('user_id', $bookings->pluck('user_id_provider'))->get();
             $cIds = $services->pluck('user_id_customer')->toArray();
-            $up = User::whereIn('id', $cIds)->get();
+            $up = user::whereIn('id', $cIds)->get();
             return view('provider.providerBooking', compact('u', 'bookings', 'services', 'up'));} }
    
     public function ProvEditP(){
         $user = array();
         if(Session::has('loginID')){
         $id = Session::get('loginID');
-        $user = User::where('id', '=', $id)->first();  
+        $user = user::where('id', '=', $id)->first();  
         return view('provider.editprofile',  compact('user'));}   }  
         
     public function startServiceVIEW(){
         $user = array();
         if(Session::has('loginID')){
         $id = Session::get('loginID');
-        $user = User::where('id', '=', $id)->first();  
+        $user = user::where('id', '=', $id)->first();  
         return view('provider.ProviderAddService',  compact('user'));}  }    
 
     public function pChangepw(){
         $user = array();
         if(Session::has('loginID')){
         $id = Session::get('loginID');
-        $user = User::where('id', '=', $id)->first();  
+        $user = user::where('id', '=', $id)->first();  
         return view('provider.changepw',  compact('user'));}  }        
 
     public function updateProvProfile(Request $request, $id){
@@ -202,15 +208,19 @@ class UserController extends Controller
             'gender' => 'required',
             'birthday' => 'required|date',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'address' => 'required',
+            'street' => 'required',
+            'province' => 'required',
+            'hnum' => 'nullable|numeric',
             'city' => 'required',
             'contact' => 'required|numeric',
             'service_name' => 'required|unique:user,service_name,'.$id,
             'email_address' => 'required|email|unique:user,email_address,'.$id,
             'username' => 'required|string|max:255|unique:user,username,'.$id.'|regex:/^\S*$/u|alpha_dash',]);
     
-        $save = User::find($id);
-
+        $save = user::find($id);
+        if ($request->has('hnum')) {
+            $user->hnum = $request->input('hnum');
+        }
         if ($request->hasFile('profile_picture')) {
             $image = $request->file('profile_picture');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -223,8 +233,9 @@ class UserController extends Controller
             $save->lastname = $request->input('lastname');
             $save->gender = $request->input('gender');
             $save->birthday = $request->input('birthday');
-            $save->address = $request->input('address');
+            $save->street = $request->input('street');
             $save->city = $request->input('city');
+            $save->province = $request->input('province');
             $save->contact = $request->input('contact');
             $save->email_address = $request->input('email_address');
             $save->service_name = $request->input('service_name');
@@ -253,7 +264,7 @@ class UserController extends Controller
             $request->gcashnum = 'n/a';
         }
 
-            $s = new Service;
+            $s = new service;
             $s->service_list_name = $request->service_list_name;
             $s->user_id = $request->user_id;
             $s->price = $request->price;
@@ -261,7 +272,7 @@ class UserController extends Controller
             $s->gcashnum = $request->gcashnum;
             $s->category = $request->category;
             $s->photo = $imgName;
-            $s->status = 'AVAILABLE';
+            $s->status = 'A';
             $s->save();
 
             $check = $s->save();
@@ -293,7 +304,7 @@ class UserController extends Controller
             if (empty($request->gcashnum)) {
                 $request->gcashnum = 'n/a';
             }
-            $save = Service::find($id);
+            $save = service::find($id);
           
             $save->service_list_name = $request->input('service_list_name');
             $save->price = $request->input('price');
@@ -306,11 +317,11 @@ class UserController extends Controller
 
 
     public function setUnavailableService($serviceID) {
-        $d = Service::where('id', $serviceID)->first();
-        $d->status = "UNAVAILABLE";
+        $d = service::where('id', $serviceID)->first();
+        $d->status = "U";
         $d->save();
 
-        $pendingBookings = Book::where('service_id', $d->id)
+        $pendingBookings = book::where('service_id', $d->id)
         ->where('status', 'Pending')
         ->get();
          foreach ($pendingBookings as $booking) {
@@ -320,13 +331,13 @@ class UserController extends Controller
 
 
     public function setAvailableService($serviceID) {
-        $d = Service::where('id', $serviceID)->first();
-        $d->status = "AVAILABLE";
+        $d = service::where('id', $serviceID)->first();
+        $d->status = "A";
         $d->save();
     return redirect()->back()->with('success', 'Service is now made available.');}
 
     public function deleteAService($serviceID) {
-        $d = Service::where('id', $serviceID)->first();
+        $d = service::where('id', $serviceID)->first();
         $d->status = "Deleted";
         $d->save();
 
@@ -363,7 +374,7 @@ class UserController extends Controller
     public function ProvConfirmPaymentReceipt(Request $request, $id){
         $request->validate([
             'payment_status' => 'required',]);
-                $book = Book::find($id);
+                $book = book::find($id);
                 $book->payment_status = $request->payment_status;
                 $book->save();
         return redirect()->back()->with('success', 'Payment Confirmed');}
@@ -586,12 +597,17 @@ class UserController extends Controller
             'gender' => 'required',
             'birthday' => 'required|date',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'address' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'province' => 'required',
+            'hnum' => 'nullable|numeric',
             'contact' => 'required|numeric',
             'email_address' => 'required|email|unique:user,email_address,'.$id,
             'username' => 'required|string|max:255|unique:user,username,'.$id.'|regex:/^\S*$/u|alpha_dash',
             ]);
-    
+            if ($request->has('hnum')) {
+                $user->hnum = $request->input('hnum');
+            }
             $save = User::find($id);
     
             if ($request->hasFile('profile_picture')) {
@@ -606,7 +622,11 @@ class UserController extends Controller
             $save->lastname = $request->input('lastname');
             $save->gender = $request->input('gender');
             $save->birthday = $request->input('birthday');
-            $save->address = $request->input('address');
+            $save->street = $request->input('street');
+            $save->city = $request->input('city');
+
+            $save->province = $request->input('province');
+
             $save->contact = $request->input('contact');
             $save->email_address = $request->input('email_address');
             $save->username = $request->input('username');
@@ -664,7 +684,7 @@ class UserController extends Controller
         $user = User::where('id', '=', $id)->first();  
      
         if ($user->account_status !== "Banned") {
-            $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
+            $services = Service::whereIn('status', ["A", "U"])->get();
 
     
         return view('customer.custservices', compact('services','user'));}}}
@@ -683,7 +703,7 @@ class UserController extends Controller
             $selectedCategory = $request->input('category');
         
             $services = Service::with('user')
-                ->whereIn('status', ['AVAILABLE', 'UNAVAILABLE'])
+                ->whereIn('status', ['A', 'U'])
                 ->where('category', $selectedCategory)
                 ->get();
         
@@ -693,7 +713,7 @@ class UserController extends Controller
         
         public function service(){ //added
             $user = null; 
-            $services = Service::whereIn('status', ["AVAILABLE", "UNAVAILABLE"])->get();
+            $services = Service::whereIn('status', ["A", "U"])->get();
     
         
             if (Session::has('loginID')) {

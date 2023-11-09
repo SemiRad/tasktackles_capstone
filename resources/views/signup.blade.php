@@ -47,7 +47,7 @@
     <div class="coldiv">
             <div class = "col1">
                 <div class="row">
-                    <input type="text" placeholder="First Name" id="firstname" name="firstname" value ="{{ old('firstname')}}"required>
+                    <input type="text" placeholder="First Name*" id="firstname" name="firstname" value ="{{ old('firstname')}}"required>
                 </div>
                 @error('firstname')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -56,28 +56,29 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="row">
-                    <input type="text" placeholder="Last Name" id="lastname" name="lastname"  value ="{{ old('lastname')}}"required> 
+                    <input type="text" placeholder="Last Name*" id="lastname" name="lastname"  value ="{{ old('lastname')}}"required> 
                 </div>
                 <div class="row">
                     <select name="gender" id="gender" required>
                         <option value="">Select Gender</option>
-                        <option value="m">Male</option>
-                        <option value="f">Female</option>
-                        <option value="nb">Non-binary</option>
-                        <option value="none">Prefer not to say</option>
+                        <option value="m" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'm') echo 'selected'; ?>>Male</option>
+                        <option value="f" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'f') echo 'selected'; ?>>Female</option>
+                        <option value="nb" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'nb') echo 'selected'; ?>>Non-binary</option>
+                        <option value="none" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'none') echo 'selected'; ?>>Prefer not to say</option>
                     </select>
                 </div>
 
+
                 <div class="row">
-                    <input type="date" placeholder="Birthday" id="birthday" name="birthday" onblur="formatDate(this)" onfocus="(this.type='date')" 
+                    <input type="date" placeholder="Birthday*" id="birthday" name="birthday" onblur="formatDate(this)" onfocus="(this.type='date')" 
                     max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>"value ="{{ old('birthday')}}" required>
                     </div>
                     @error('birthday')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="row">
-                <label>Contact Number:</label>
-<input type="text" placeholder="Aa" id="contact" name="contact" value="{{old('contact')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+           
+                    <input type="text" placeholder="Contact Number (09XXXXXXXXX)*" id="contact" name="contact" value="{{old('contact')}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                      </div>
                      @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -105,8 +106,13 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror-->
                     <div class="row">
-                    <input type="text" placeholder="Address" id="address" name="address" value ="{{ old('address')}}"required>
+                    <input type="text" placeholder="Street Adress*" id="street" name="street" value ="{{ old('street')}}"required>
                 </div>
+                <div class="row">
+                    <input type="text" placeholder="House Number (optional)" id="hnum" name="hnum" value ="{{ old('hnum')}}">
+                </div>
+              
+
                 @error('address')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -115,11 +121,11 @@
                     @enderror
 
                 <div class="row">
-                    <input type="email" placeholder="Email" id="email_address" name="email_address" value ="{{ old('email_address')}}"required>
+                    <input type="email" placeholder="Email*" id="email_address" name="email_address" value ="{{ old('email_address')}}"required>
                     </div>
                    
                 <div class="row">
-                    <input type="text" placeholder="Username" id="username" name="username" value ="{{ old('username')}}"required>
+                    <input type="text" placeholder="Username*" id="username" name="username" value ="{{ old('username')}}"required>
                 </div>
                 @error('username')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -128,9 +134,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="row">
-                    <input type="password" placeholder="Password"  id="password" name="password"required>
+                    <input type="password" placeholder="Password*"  id="password" name="password"required>
                 </div>
-                <p style ="font-size: small; color: gray; text-align:center;"> Your password must be at least 8 characters long. </p>
+                <p style ="font-size: small; color: yellow; text-align:center;"> Your password must be at least 8 characters long. </p>
                 <div class="row">
                     <input type="password" placeholder="Confirm Password" name="password_confirmation" required>
                 </div>
@@ -163,8 +169,8 @@
                         <br>
 
                 <div class="row" id="service-name-row" style="display: none;">
-                <span style="color:#470047; margin: 10px 10px 0 -30px;">Proof of Identity:</span>
-                    <input type="text" placeholder="Service Name" id="service_name" name="service_name">
+                <span style="color:#470047; margin: 10px 10px 0 -30px;">Proof of Identity *:</span>
+                    <input type="text" placeholder="Service Name*" id="service_name" name="service_name">
                 </div>
     
                 <div class="row" id="id-row" style="display: none;  color: white;">

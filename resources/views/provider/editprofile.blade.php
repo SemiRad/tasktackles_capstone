@@ -87,7 +87,7 @@
                 <br>
                     <div class="row">
                     <label>Contact Number:</label>
-<input type="text" placeholder="Aa" id="contact" name="contact" value="{{$user->contact}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">                </div>
+                <input type="text" placeholder="Aa" id="contact" name="contact" value="{{$user->contact}}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">                </div>
                 <span>
                 @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -96,11 +96,12 @@
                 <br>
             </div>
             <div class="dividers">
+               
                 <div class="row">
-                    <label>Address:</label><input type="text" style="width: 350px;" placeholder="Aa" name="address" value="{{$user->address}}" required>
+                    <label>Province:</label><input type="text" placeholder="Aa" name="province" value="{{$user->provice}}" required>
                 </div>
                 <span>
-                @error('address')
+                @error('province')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 </span>
@@ -114,7 +115,25 @@
                 @enderror
                 </span>
                 <br>
-               
+                <div class="row">
+                    <label>Street Address:</label><input type="text" style="width: 350px;" placeholder="Aa" name="street" value="{{$user->street}}" required>
+                </div>
+                <span>
+                @error('street')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+                <br>
+                <div class="row">
+                    <label>House Number:</label><input type="text" style="width: 350px;" placeholder="Aa" name="hnum" value="{{$user->hnum}}" >
+                </div>
+                <span>
+                @error('address')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+                <br>
+
                 <div class="row">
                     <label>Email Address:</label><input type="text" placeholder="Aa" name="email_address" value="{{$user->email_address}}" required>
                 </div>

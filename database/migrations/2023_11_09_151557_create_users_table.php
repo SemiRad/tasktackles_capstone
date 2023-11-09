@@ -21,7 +21,9 @@ return new class extends Migration
             $table->date('birthday');
             $table->string('gender');
             $table->string('contact');
-            $table->string('address');
+            $table->string('street');//added
+            $table->string('province');//added
+            $table->string('hnum'); //adde4d
             $table->string('city'); //added
             $table->string('profile_picture')->nullable();
             $table->string('service_name')->nullable();
@@ -30,6 +32,7 @@ return new class extends Migration
             $table->boolean('isValid')->default(0); //added
             $table->string('id_img');//added
             $table->timestamps();});
+        
     }
 
     /**
