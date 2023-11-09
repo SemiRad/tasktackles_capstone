@@ -25,6 +25,7 @@
 
     </li>
 	<div class="filter">
+    <form action="{{ route('search') }}" method="post" id="bookbtn">
     <label for="categorySelect">Filter by Category:</label>
     <select id="categorySelect" >
         <option value="all">All</option>
@@ -37,6 +38,7 @@
         <option value="Yard">Yard/Lawn</option>
         <option value="Others">Others</option>
     </select>
+</form>
 </div>
 
 	</div>

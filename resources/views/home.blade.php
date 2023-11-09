@@ -82,19 +82,7 @@
             setTimeout(showSlides, 5000); // Change image every 2 seconds
         }
 
-        const form = document.getElementById("form");
-        const cat = document.getElementById('category');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const catValue = cat.value;
-            
-            if (catValue) {
-                // Redirect to the services page with the selected category
-                window.location.href = `/services?category=${catValue}`;
-            } 
-});
+    
 
     </script>
 </body>
