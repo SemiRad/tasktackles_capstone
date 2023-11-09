@@ -59,7 +59,7 @@
                 </div>
                 <span>
                 @error('password_confirmation')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ 'Password does not match' }}</div>
                 @enderror
                 </span>
 
