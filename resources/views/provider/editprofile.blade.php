@@ -128,7 +128,7 @@
                     <label>House Number:</label><input type="text" style="width: 350px;" placeholder="Aa" name="hnum" value="{{$user->hnum}}" >
                 </div>
                 <span>
-                @error('address')
+                @error('hnum')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 </span>

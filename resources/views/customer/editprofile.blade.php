@@ -97,11 +97,11 @@
             </div>
 
             <div class="dividers">
-                <div class="row">
-                    <label>Address:</label><input type="text" style="width: 350px;" placeholder="Aa" name="address" value="{{$user->address}}" required>
+            <div class="row">
+                    <label>Province:</label><input type="text" placeholder="Aa" name="province" value="{{$user->provice}}" required>
                 </div>
                 <span>
-                @error('address')
+                @error('province')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 </span>
@@ -111,6 +111,24 @@
                 </div>
                 <span>
                 @error('city')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+                <br>
+                <div class="row">
+                    <label>Street Address:</label><input type="text" style="width: 350px;" placeholder="Aa" name="street" value="{{$user->street}}" required>
+                </div>
+                <span>
+                @error('street')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                </span>
+                <br>
+                <div class="row">
+                    <label>House Number:</label><input type="text" style="width: 350px;" placeholder="Aa" name="hnum" value="{{$user->hnum}}" >
+                </div>
+                <span>
+                @error('hnum')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 </span>
