@@ -83,11 +83,12 @@
                      @error('contact')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            </div>
-            <div class = "col1">
 
-                <!--REGION PROVINCE CITY SELECTOR-->
-            <div class="row">
+             
+
+               
+                    <br><br>
+                    <div class="row">
                 <select id="province" name="province" required>
                 </select>
             </div>
@@ -96,29 +97,22 @@
                 <select id="city" name="city" required>    
                 </select>
             </div>
-
-                <!-- END OF LOCATION SELECTOR -->
-
-            <!--<div class="row">
-                    <input type="text" placeholder="City" id="city" name="city" value ="{{ old('city')}}"required>
-                    </div>
-                    @error('city')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror-->
+           
                     <div class="row">
                     <input type="text" placeholder="Street Adress*" id="street" name="street" value ="{{ old('street')}}"required>
                 </div>
+                @error('street')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 <div class="row">
                     <input type="text" placeholder="House Number (optional)" id="hnum" name="hnum" value ="{{ old('hnum')}}">
                 </div>
-              
+                <br><br>
+                    </div>
+            
+            <div class = "col1">
 
-                @error('address')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                    @error('email_address')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+            
 
                 <div class="row">
                     <input type="email" placeholder="Email*" id="email_address" name="email_address" value ="{{ old('email_address')}}"required>
