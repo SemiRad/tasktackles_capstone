@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('street');//added
             $table->string('province');//added
-            $table->string('hnum'); //adde4d
+            $table->string('hnum')->nullable();
             $table->string('city'); //added
             $table->string('profile_picture')->nullable();
             $table->string('service_name')->nullable();

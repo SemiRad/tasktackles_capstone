@@ -134,7 +134,7 @@
     const maxCharacters = 11;
     document.querySelectorAll('[class^="text-"]').forEach((textElement) => {
         if (textElement.textContent.length > maxCharacters) {
-            textElement.style.fontSize = '22px';
+            textElement.style.fontSize = '20px';
         }
     });
 
