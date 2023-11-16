@@ -28,6 +28,7 @@
     <div class="filter">
             <label for="selectedCategory">Filter by Category:</label>
             <select id="selectedCategory" name="category">
+            <option value="">Choose...</a></option>
                 <option value="all">All</a>
                 </option>
                 <option value="Kitchen">Kitchen</option>
@@ -100,42 +101,42 @@
             const categorySelect = $('#selectedCategory');
 
             function filterServices() {
-    const searchTerm = searchInput.val().toLowerCase();
-    const selectedCategory = categorySelect.val().toLowerCase();
+            const searchTerm = searchInput.val().toLowerCase();
+            const selectedCategory = categorySelect.val().toLowerCase();
 
-    serviceCards.each(function () {
-        const card = $(this);
-        const serviceName = card.find('.taskName').text().toLowerCase();
-        const serviceDescription = card.find('.cc').text().toLowerCase();
-        const serviceCategory = card.find('.category').text().toLowerCase();
+            serviceCards.each(function () {
+                const card = $(this);
+                const serviceName = card.find('.taskName').text().toLowerCase();
+                const serviceDescription = card.find('.cc').text().toLowerCase();
+                const serviceCategory = card.find('.category').text().toLowerCase();
 
-        const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
-        const matchesCategory = selectedCategory === 'all' || serviceCategory.includes(selectedCategory);
+                const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
+                const matchesCategory = selectedCategory === 'all' || serviceCategory.includes(selectedCategory);
 
-        if (matchesSearch && matchesCategory) {
-            card.show();
-        } else {
-            card.hide();
-        }
-    });
+                if (matchesSearch && matchesCategory) {
+                    card.show();
+                } else {
+                    card.hide();
+                }
+            });
 }
 
             searchInput.on('input', filterServices);
             categorySelect.on('change', filterServices);
 
-            categorySelect.on('change', function () {
-    const selectedCategory = categorySelect.val();
+                categorySelect.on('change', function () {
+        const selectedCategory = categorySelect.val();
 
-    if (selectedCategory === 'all') {
-        window.location.href = "{{ route('service') }}";
-    } else {
-        // Generate the URL based on the selected category
-        const url = "{{ route('search') }}?category=" + encodeURIComponent(selectedCategory);
+        if (selectedCategory === 'all') {
+            window.location.href = "{{ route('service') }}";
+        } else {
+            // Generate the URL based on the selected category
+            const url = "{{ route('search') }}?category=" + encodeURIComponent(selectedCategory);
 
-        // Navigate to the generated URL
-        window.location.href = url;
-    }
-});
+            // Navigate to the generated URL
+            window.location.href = url;
+        }
+    });
 
 
             // Retrieve the selected category value from the query parameter in the URL
