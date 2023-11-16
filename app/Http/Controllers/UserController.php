@@ -697,7 +697,7 @@ class UserController extends Controller
             Session::pull('loginID');
         return Redirect('/login')->with('msg', 'Logged out successfully');}}
 
-        public function searchServices(Request $request)
+    public function searchServices(Request $request)
         {
             $request->validate([
                 'category' => 'required|in:Kitchen,LivingRoom,Bedroom,Bathroom,Plumbing,Electricity,Yard,Others',
@@ -712,6 +712,34 @@ class UserController extends Controller
         
             return view('services', compact('services', 'selectedCategory'));
         }
+    public function searchServicesC(Request $request){
+        $request->validate([
+            'category' => 'required|in:Kitchen,LivingRoom,Bedroom,Bathroom,Plumbing,Electricity,Yard,Others',
+        ]);
+        
+        $user = [];
+        
+        if (Session::has('loginID')) {
+             $id = Session::get('loginID');
+            $user = User::where('id', '=', $id)->first();
+        
+                if ($user->account_status !== "Banned") {
+                    $selectedCategory = $request->input('category');
+        
+                    if ($selectedCategory === 'all') {
+                        // Display all services (both available and unavailable)
+                        $services = Service::with('user')->whereIn('status', ['A', 'U'])->get();
+                    } else {
+                        // Display services based on the selected category
+                        $services = Service::with('user')->whereIn('status', ['A', 'U'])->where('category', $selectedCategory)->get();
+                    }
+        
+                    return view('customer.custservices', compact('services', 'selectedCategory', 'user'));
+                }
+            }
+        }
+        
+        
         
         
         public function service(){ //added

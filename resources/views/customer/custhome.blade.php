@@ -41,7 +41,7 @@
 			    <p style="letter-spacing: -6px; color: #470047;">-----------------------</p>		
 			        <p>What task would you like us to tackle?</p>
 			        <br>
-                    <form action="{{ route('search') }}" method="post">
+                    <form action="{{ route('search-service') }}" method="get">
     @csrf
     <div class="dropdown-container">
         <select name="category" required>
@@ -58,6 +58,7 @@
         <button type="submit" class="find-button">Search Services</button>
     </div>
 </form>
+
 
 			</div>
         </div>

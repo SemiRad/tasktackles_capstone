@@ -67,7 +67,7 @@
     <p class="cc"><i>G-Cash No.:</i> {{$service->gcashnum}} </p>
 	<p class="cc"><i>Price.:</i> <b>{{ 'PHP ' . $service->price }}</b> </p>
 	
-	@if ($service->status === 'UNAVAILABLE')
+	@if ($service->status === 'U')
                     
                     <button class="btnstatcs" style ="background-color: white; color: black; border: 2px solid gray;"disabled>Currently Unavailable</button>
                 @else
@@ -94,7 +94,7 @@
                 $users = User::all();
                 $b = Book::all();
                 $services = Service::where('user_id', $service->user_id)
-                ->whereIn('status', ['AVAILABLE', 'UNAVAILABLE'])
+                ->whereIn('status', ['A', 'U'])
                 ->get();
                             $r = Rate::where('user_id_recipient', $puserID)->get();
     
@@ -121,8 +121,10 @@
         </tr>
         @endforeach
     </table>
+    <BR><BR>
     </div>
 </div>
+
 </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

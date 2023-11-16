@@ -155,6 +155,7 @@
 	    </tr>
 	    @endforeach
 	</table>
+	<BR><BR>
 	</div>
 
 	<div id="feedbacks-content" class="content" style="display: none">
@@ -179,6 +180,7 @@
 	    </tr>
 	    @endforeach
 	</table>
+	<BR><BR>
 	</div>
 </div>
 	</main>

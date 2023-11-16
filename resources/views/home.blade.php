@@ -1,5 +1,4 @@
 @include ('ext.navbar')
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,10 +41,10 @@
 			    <p style="letter-spacing: -6px; color: #470047;">-----------------------</p>		
 			        <p>What task would you like us to tackle?</p>
 			        <br>
-                    <form action="{{ route('search') }}" method="post">
+                    <form action="{{ route('search') }}" method="get">
     @csrf
     <div class="dropdown-container">
-        <select name="category" id ="category" required>
+        <select name="category" required>
             <option value="">Choose...</option>
             <option value="Kitchen">Kitchen</option>
             <option value="LivingRoom">Living Room</option>
@@ -59,6 +58,7 @@
         <button type="submit" class="find-button">Search Services</button>
     </div>
 </form>
+
 
 			</div>
         </div>
@@ -81,9 +81,6 @@
             slides[slideIndex - 1].style.opacity = 1;
             setTimeout(showSlides, 5000); // Change image every 2 seconds
         }
-
-    
-
     </script>
 </body>
 </html>

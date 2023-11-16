@@ -33,8 +33,8 @@
 
 	<div class="stat">
     <select id="categorySelect" name="task-dropdown">
-	<option value="A">Available</option>
-	<option value="U">Unavailable</option>
+	<option value="a">Available</option>
+	<option value="u">Unavailable</option>
     </select>
 </div>
 
@@ -67,7 +67,13 @@
 				<path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
 				
 			</svg></a></p>
-			<p class="cc"><i>Category:</i> <br>{{ $services->category }}
+			<p class="cc"><i>Category:</i> <br>
+					@if($services->category == 'LivingRoom')
+						Living Room
+					@else
+						{{ $services->category }}
+					@endif
+				</p>
 				<p class="cc" style="height: 100px"><i>Description:</i> <br>
 			        {{ strlen($services->description) > 70 ? substr($services->description, 0, 70) . '...' : $services->description }}
 			    </p>
@@ -138,38 +144,42 @@
         }
     });
 
-    $(document).ready(function () {
-        const searchInput = $('#bar input');
-        const serviceCards = $('.card');
-        const categorySelect = $('#categorySelect');
+	$(document).ready(function () {
+    const searchInput = $('#bar input');
+    const serviceCards = $('.card');
+    const categorySelect = $('#categorySelect');
 
-        function filterServices() {
-            const searchTerm = searchInput.val().toLowerCase();
-            const selectedCategory = categorySelect.val().toLowerCase();
+    function filterServices() {
+        const searchTerm = searchInput.val().toLowerCase();
+        const selectedCategory = categorySelect.val().toLowerCase();
 
-            serviceCards.each(function () {
-                const card = $(this);
-                const serviceName = card.find('.taskName span').text().toLowerCase();
-                const serviceDescription = card.find('.cc').text().toLowerCase();
-                const serviceStatus = card.find('.status').text().toLowerCase();
-				
-                const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
-				const matchesCategory = selectedCategory == "A" || serviceStatus.includes(selectedCategory);
+        serviceCards.each(function () {
+            const card = $(this);
+            const serviceName = card.find('.taskName span').text().toLowerCase();
+            const serviceDescription = card.find('.cc').text().toLowerCase();
+            const serviceStatus = card.find('.status').text().toLowerCase(); 
+
+            const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
+            const matchesCategory = selectedCategory === "a" || serviceStatus === selectedCategory.toLowerCase(); // Compare with the lowercase value
+
+            if (matchesSearch && matchesCategory) {
+                card.show();
+            } else {
+                card.hide();
+            }
+        });
+    }
+
+    filterServices();
+
+    searchInput.on('input', filterServices);
+    categorySelect.on('change', filterServices);
+
+    // Trigger initial filtering when the page loads
+    filterServices();
+});
 
 
-                if (matchesSearch && matchesCategory) {
-                    card.show();
-                } else {
-                    card.hide();
-                }
-            });
-        }
-
-        filterServices();
-
-        searchInput.on('input', filterServices);
-        categorySelect.on('change', filterServices);
-    });
 
     $(document).ready(function () {
 

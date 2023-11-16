@@ -24,24 +24,24 @@
         <input type="text" id="searchInput" placeholder="Search for a service">
 
     </li>
-	<div class="filter">
-    <form action="{{ route('search') }}" method="post" id="bookbtn">
-    <label for="categorySelect">Filter by Category:</label>
-    <select id="categorySelect" >
-        <option value="all">All</option>
-        <option value="Kitchen">Kitchen</option>
-        <option value="LivingRoom">Living Room</option>
-        <option value="Bedroom">Bedroom</option>
-        <option value="Bathroom">Bathroom</option>
-        <option value="Plumbing">Plumbing</option>
-        <option value="Electricity">Electricity</option>
-        <option value="Yard">Yard/Lawn</option>
-        <option value="Others">Others</option>
-    </select>
-</form>
-</div>
 
-	</div>
+    <div class="filter">
+            <label for="selectedCategory">Filter by Category:</label>
+            <select id="selectedCategory" name="category">
+                <option value="all">All</a>
+                </option>
+                <option value="Kitchen">Kitchen</option>
+                <option value="LivingRoom">Living Room</option>
+                <option value="Bedroom">Bedroom</option>
+                <option value="Bathroom">Bathroom</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="Electricity">Electricity</option>
+                <option value="Yard">Yard/Lawn</option>
+                <option value="Others">Others</option>
+            </select>
+            
+        </div>
+    </div>
 	
 
 	<main>
@@ -68,7 +68,7 @@
     <p class="cc"><i>G-Cash No.:</i> {{$service->gcashnum}} </p>
 	<p class="cc"><i>Price.:</i> <b>{{ 'PHP ' . $service->price }}</b> </p>
 	
-	@if ($service->status === 'UNAVAILABLE')
+	@if ($service->status === 'U')
                     
                     <button class="btnstatcs" style ="background-color: white; color: black; border: 2px solid gray;"disabled>Currently Unavailable</button>
                 @else
@@ -85,45 +85,66 @@
 	
 		</form>
 		</div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const maxCharacters = 11;
+        document.querySelectorAll('[class^="text-"]').forEach((textElement) => {
+            if (textElement.textContent.length > maxCharacters) {
+                textElement.style.fontSize = '22px';
+            }
+        });
+
+        $(document).ready(function () {
+            const searchInput = $('#searchInput');
+            const serviceCards = $('.card');
+            const categorySelect = $('#selectedCategory');
+
+            function filterServices() {
+    const searchTerm = searchInput.val().toLowerCase();
+    const selectedCategory = categorySelect.val().toLowerCase();
+
+    serviceCards.each(function () {
+        const card = $(this);
+        const serviceName = card.find('.taskName').text().toLowerCase();
+        const serviceDescription = card.find('.cc').text().toLowerCase();
+        const serviceCategory = card.find('.category').text().toLowerCase();
+
+        const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
+        const matchesCategory = selectedCategory === 'all' || serviceCategory.includes(selectedCategory);
+
+        if (matchesSearch && matchesCategory) {
+            card.show();
+        } else {
+            card.hide();
+        }
+    });
+}
+
+            searchInput.on('input', filterServices);
+            categorySelect.on('change', filterServices);
+
+            categorySelect.on('change', function () {
+    const selectedCategory = categorySelect.val();
+
+    if (selectedCategory === 'all') {
+        window.location.href = "{{ route('service') }}";
+    } else {
+        // Generate the URL based on the selected category
+        const url = "{{ route('search') }}?category=" + encodeURIComponent(selectedCategory);
+
+        // Navigate to the generated URL
+        window.location.href = url;
+    }
+});
+
+
+            // Retrieve the selected category value from the query parameter in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedCategory = urlParams.get('category');
+
+            // Set the selected category in the dropdown
+            categorySelect.val(selectedCategory);
+        });
+    </script>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    const maxCharacters = 11;
-    document.querySelectorAll('[class^="text-"]').forEach((textElement) => {
-        if (textElement.textContent.length > maxCharacters) {
-            textElement.style.fontSize = '22px';
-        }
-    });
-
-    $(document).ready(function () {
-        const searchInput = $('#searchInput');
-        const serviceCards = $('.card');
-        const categorySelect = $('#categorySelect'); 
-
-        function filterServices() {
-            const searchTerm = searchInput.val().toLowerCase();
-            const selectedCategory = categorySelect.val().toLowerCase(); 
-
-            serviceCards.each(function () {
-                const card = $(this);
-                const serviceName = card.find('.taskName').text().toLowerCase();
-                const serviceDescription = card.find('.cc').text().toLowerCase();
-                const serviceCategory = card.find('.category').text().toLowerCase();
-
-                const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
-                const matchesCategory = selectedCategory === 'all' || serviceCategory.includes(selectedCategory);
-
-                if (matchesSearch && matchesCategory) {
-                    card.show();
-                } else {
-                    card.hide();
-                }
-            });
-        }
-
-        searchInput.on('input', filterServices);
-        categorySelect.on('change', filterServices); 
-    });
-</script>
-
 </html>

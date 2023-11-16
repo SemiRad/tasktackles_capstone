@@ -107,7 +107,8 @@ Route::get('/viewConversationCustomer/{id}', [UserController::class, 'viewConver
 Route::post('/send-message', [UserController::class, 'sendMessage'])->name('sendMessage');
 
 
-Route::post('/search    ', [UserController::class, 'searchServices'])->name('search');
+Route::get('/search', [UserController::class, 'searchServices'])->name('search');
+Route::get('/search-service', [UserController::class, 'searchServicesC'])->name('search-service')->middleware('isCustomer');
 Route::get("service", [UserController::class, "service"])->name("service");
 
 
