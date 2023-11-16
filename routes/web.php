@@ -110,6 +110,8 @@ Route::post('/send-message', [UserController::class, 'sendMessage'])->name('send
 Route::get('/search', [UserController::class, 'searchServices'])->name('search');
 Route::get('/search-service', [UserController::class, 'searchServicesC'])->name('search-service')->middleware('isCustomer');
 Route::get("service", [UserController::class, "service"])->name("service");
+Route::get("available-services", [UserController::class, "displayAvailable"])->name("available-services");
+Route::get("unavailable-services", [UserController::class, "displayUnavailable"])->name("unavailable-services");
 
 
 //deniedusers

@@ -755,8 +755,29 @@ class UserController extends Controller
             return view('services', compact('services', 'user'));
         }
 
+    public function displayAvailable(){
+            $user = array();
+            if(Session::has('loginID')){
+            $id = Session::get('loginID');
+            $user = User::where('id', '=', $id)->first();  
+         
+                $services = Service::whereIn('status', ["A"])->get();
+    
+        
+            return view('provider.providerServices', compact('services','user'));}}
 
-
+        public function displayUnavailable(){
+                $user = array();
+                if(Session::has('loginID')){
+                $id = Session::get('loginID');
+                $user = User::where('id', '=', $id)->first();  
+             
+                    $services = Service::whereIn('status', ["U"])->get();
+        
+            
+                return view('provider.providerServices', compact('services','user'));}}
+    
+    
 
 //MESSAGING
     public function provmsg()

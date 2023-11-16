@@ -32,10 +32,12 @@
     </li>
 
 	<div class="stat">
-    <select id="categorySelect" name="task-dropdown">
-	<option value="a">Available</option>
-	<option value="u">Unavailable</option>
-    </select>
+	<select id="categorySelect" name="task-dropdown">
+	<option value="">Filter by status</option>
+    <option value="a">Available</option>
+    <option value="u">Unavailable</option>
+</select>
+
 </div>
 
 
@@ -137,72 +139,86 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    const maxCharacters = 11;
-    document.querySelectorAll('[class^="text-"]').forEach((textElement) => {
-        if (textElement.textContent.length > maxCharacters) {
-            textElement.style.fontSize = '20px';
+    $(document).ready(function () {
+        // Function to handle text element font size
+        function adjustTextFontSize() {
+            const maxCharacters = 11;
+            $('[class^="text-"]').each(function () {
+                if ($(this).text().length > maxCharacters) {
+                    $(this).css('fontSize', '20px');
+                }
+            });
         }
-    });
 
-	$(document).ready(function () {
-    const searchInput = $('#bar input');
-    const serviceCards = $('.card');
-    const categorySelect = $('#categorySelect');
+        // Initial call to adjust text font size
+        adjustTextFontSize();
 
-    function filterServices() {
-        const searchTerm = searchInput.val().toLowerCase();
-        const selectedCategory = categorySelect.val().toLowerCase();
+        // Function to filter services based on search input
+        function filterServices() {
+            const searchInput = $('#bar input');
+            const serviceCards = $('.card');
+            const searchTerm = searchInput.val().toLowerCase();
 
-        serviceCards.each(function () {
-            const card = $(this);
-            const serviceName = card.find('.taskName span').text().toLowerCase();
-            const serviceDescription = card.find('.cc').text().toLowerCase();
-            const serviceStatus = card.find('.status').text().toLowerCase(); 
+            serviceCards.each(function () {
+                const card = $(this);
+                const serviceName = card.find('.taskName span').text().toLowerCase();
+                const serviceDescription = card.find('.cc').text().toLowerCase();
+                const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
 
-            const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
-            const matchesCategory = selectedCategory === "a" || serviceStatus === selectedCategory.toLowerCase(); // Compare with the lowercase value
+                if (matchesSearch) {
+                    card.show();
+                } else {
+                    card.hide();
+                }
+            });
+        }
 
-            if (matchesSearch && matchesCategory) {
-                card.show();
+        // Event handler for search input
+        $('#bar input').on('input', function () {
+            adjustTextFontSize(); // Adjust font size when input changes
+            filterServices();
+        });
+
+        // Event handler for category select
+        $('#categorySelect').on('change', function () {
+            const selectedCategory = $(this).val();
+
+            if (selectedCategory === 'a') {
+                const url = "{{ route('available-services') }}?task-dropdown=" + encodeURIComponent(selectedCategory);
+                window.location.href = url;
+            } else if (selectedCategory === 'u') {
+                const url = "{{ route('unavailable-services') }}?task-dropdown=" + encodeURIComponent(selectedCategory);
+                window.location.href = url;
             } else {
-                card.hide();
+                const url = "{{ route('provserv') }}?task-dropdown=" + encodeURIComponent(selectedCategory);
+                window.location.href = url;
             }
         });
-    }
 
-    filterServices();
+        // Set the selected category in the dropdown
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedCategory = urlParams.get('task-dropdown');
+        $('#categorySelect').val(selectedCategory);
 
-    searchInput.on('input', filterServices);
-    categorySelect.on('change', filterServices);
+        $('.openModalLink').on('click', function (e) {
+            e.preventDefault();
+            const targetModalId = $(this).data('target');
+            $('#' + targetModalId).css('display', 'block');
+        });
 
-    // Trigger initial filtering when the page loads
-    filterServices();
-});
+        $('.closeModal').on('click', function () {
+            const targetModalId = $(this).data('target');
+            $('#' + targetModalId).css('display', 'none');
+        });
 
-
-
-    $(document).ready(function () {
-
-    $('.openModalLink').on('click', function (e) {
-        e.preventDefault();
-        const targetModalId = $(this).data('target');
-        const modal = document.getElementById(targetModalId);
-        modal.style.display = "block";
+        $(window).on('click', function (event) {
+            if ($(event.target).hasClass('modal')) {
+                $('.modal').css('display', 'none');
+            }
+        });
     });
-
-    $('.closeModal').on('click', function () {
-        const targetModalId = $(this).data('target');
-        const modal = document.getElementById(targetModalId);
-        modal.style.display = "none";
-    });
-
-    window.addEventListener("click", (event) => {
-        if (event.target.classList.contains("modal")) {
-            event.target.style.display = "none";
-        }
-    });
-});
 </script>
+
 
 
 </html>
