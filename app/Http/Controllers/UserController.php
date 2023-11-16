@@ -217,10 +217,12 @@ class UserController extends Controller
             'email_address' => 'required|email|unique:user,email_address,'.$id,
             'username' => 'required|string|max:255|unique:user,username,'.$id.'|regex:/^\S*$/u|alpha_dash',]);
     
-        $save = user::find($id);
-        if ($request->has('hnum')) {
-            $user->hnum = $request->input('hnum');
-        }
+            $save = user::find($id);
+
+            if ($request->has('hnum')) {
+                $save->hnum = $request->input('hnum');
+            }
+            
         if ($request->hasFile('profile_picture')) {
             $image = $request->file('profile_picture');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -605,10 +607,11 @@ class UserController extends Controller
             'email_address' => 'required|email|unique:user,email_address,'.$id,
             'username' => 'required|string|max:255|unique:user,username,'.$id.'|regex:/^\S*$/u|alpha_dash',
             ]);
-            if ($request->has('hnum')) {
-                $user->hnum = $request->input('hnum');
-            }
             $save = User::find($id);
+            if ($request->has('hnum')) {
+                $save->hnum = $request->input('hnum');
+            }
+          
     
             if ($request->hasFile('profile_picture')) {
                 $image = $request->file('profile_picture');
