@@ -20,6 +20,7 @@
 	list-style: none;
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif;
+	background: url("asset/log2.png");
 }
 
 .navbar{

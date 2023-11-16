@@ -9,6 +9,13 @@
 	color: whitesmoke;
 }
 
+html{
+	background-image: url("/asset/log2.png");
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
 input[type="text"] {
 	width: 50%;
@@ -196,8 +203,9 @@ main .card {
 	flex: 1 1 210px;
 	text-align: left;
 	height: fit-content;
-	border: 1px solid black;
 	margin: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 36px;
 }
 
 main .card .image {
@@ -219,7 +227,8 @@ main .addcard {
 	max-width: 300px;
 	flex: 1 1 210px;
 	text-align: left;
-	border: 1px solid #F97134;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 36px;
 	margin: 20px;
 	padding-top: 100px;
 	height: 585px;

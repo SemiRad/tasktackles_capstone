@@ -61,10 +61,10 @@
                 <div class="row">
                     <select name="gender" id="gender" required>
                         <option value="">Select Gender</option>
-                        <option value="m" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'm') echo 'selected'; ?>>Male</option>
-                        <option value="f" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'f') echo 'selected'; ?>>Female</option>
-                        <option value="nb" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'nb') echo 'selected'; ?>>Non-binary</option>
-                        <option value="none" <?php if(isset($_POST['gender']) && $_POST['gender'] === 'none') echo 'selected'; ?>>Prefer not to say</option>
+                        <option value="m" {{ old('gender') == 'm' ? 'selected' : '' }}>Male</option>
+                        <option value="f" {{ old('gender') == 'f' ? 'selected' : '' }}>Female</option>
+                        <option value="nb" {{ old('gender') == 'nb' ? 'selected' : '' }}>Non-Binary</option>
+                        <option value="others" {{ old('gender') == 'others' ? 'selected' : '' }}>Prefer not to say</option>
                     </select>
                 </div>
 

@@ -118,6 +118,7 @@ body{
     color: white;
     font-size: inherit;
 }
+
 .wrapper form .row input{
 	height: 45px;
 	width: 100%;
@@ -125,6 +126,10 @@ body{
 	border-radius: 8px;
 	border: 0;
 	background-color: white;
+}
+
+.wrapper form .row #description{
+    background-color: white;
 }
 
 
