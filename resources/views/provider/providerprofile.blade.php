@@ -66,8 +66,9 @@
 <main>
 		<input type="hidden" name="user_id" value="{{$user->id}}">
 		<!-- Services -->
-		<div id="services-content" class="content" style="display: flex;">
 		@foreach($services as $services)
+		<div id="services-content" class="content" style="display: flex;">
+		
 		<div class="card @if($services->status == 'AVAILABLE') available @elseif($services->status == 'UNAVAILABLE') unavailable @else deleted @endif">
 
 			<div class="image">

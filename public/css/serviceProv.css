@@ -11,7 +11,7 @@
 
 html{
 	background-image: url("/asset/log2.png");
-	height: 100%;
+	height: fit-content;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
