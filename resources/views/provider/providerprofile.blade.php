@@ -5,6 +5,7 @@
 <head>
 <meta name = "viewport" content="width=device-width, initial-scale=1.0">
 	<link rel = "stylesheet" href="{{ asset('css/stylecustViewProvProfile.css') }}">
+	<img class="lg" src="asset/log2.png" draggable="false">
 </head>
 
     <body>

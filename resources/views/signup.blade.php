@@ -70,7 +70,7 @@
 
 
                 <div class="row">
-                    <input type="date" placeholder="Birthday*" id="birthday" name="birthday" onblur="formatDate(this)" onfocus="(this.type='date')" 
+                    <input type="text" placeholder="Birthday*" id="birthday" name="birthday" onblur="(this.type='text')" onfocus="(this.type='date')" 
                     max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>"value ="{{ old('birthday')}}" required>
                     </div>
                     @error('birthday')

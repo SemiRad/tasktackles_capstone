@@ -5,6 +5,7 @@
 <html>
 <head>
 	<link rel = "stylesheet" href="{{ asset('css/stylecustViewProvProfile.css') }}">
+
 </head>
 
 <section>
@@ -26,8 +27,6 @@
                     <input type="submit" value="Send Message" id="editbtn">
                 </div>
             </form>
-        
-                
             </div>
             </div>
 
@@ -41,18 +40,19 @@
             </ul>
 
 	</div>
-</div>
+    </div>
     
     
 <main>
         <!-- diri ang foreach -->
-        <div id="services-content" class="content" style="display: flex;">
         @foreach($services as $service)
+        <div id="services-content" class="content" style="display: flex;">
+        <div class="card" style="width: 200vh;">
         @php
         $puserID = $service->user_id;
         $user = \App\Models\user::find($puserID);
         @endphp
-        <div class="card">
+        
     <div class="image">
         <img src="{{ asset('images/' . $service->photo) }}" alt="default">
     </div>
@@ -74,12 +74,12 @@
 	<form action="{{ route('book-service', ['id' => $service->id]) }}" method="get" id="bookbtn">
         <button class="btnstatcs">Book Service</button>
     </form>
+
 	@endif
     </div>
     </div>
-    
-    @endforeach
     </div>
+    @endforeach
 
 
         <?php
