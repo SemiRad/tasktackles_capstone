@@ -2,6 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+.lg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
 .alert-container {
     position: fixed;
     top:0;
@@ -90,14 +102,6 @@ body{
     /**display: grid;*/
     height: 100%;
     place-items: center;
-}
-
-html{
-	background-image: url("/asset/log2.png");
-	height: fit-content;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 .wrapper{
@@ -335,6 +339,7 @@ main .card {
 }
 
 main .card .image {
+
     height: 200px; /* Set a fixed height for the image container */
     display: flex; /* Use flexbox to center the image */
     justify-content: center; /* Horizontally center the image */
@@ -346,6 +351,7 @@ main .card .image img {
     max-height: 100%; /* Ensure the image doesn't exceed the container's height */
     object-fit: contain; /* Maintain aspect ratio and fit the image inside the container */
 	margin-top: 20px;
+    border-radius: 36px;
 }
 
 
@@ -429,6 +435,7 @@ main .caption .btnstatcs {
 	font-size: 18px;
 	padding: 8px;
 	text-transform: uppercase;
+    width: 20vh;
 }
 
 main .caption .btnstatcs:hover{
