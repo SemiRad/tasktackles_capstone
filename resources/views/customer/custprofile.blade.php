@@ -24,8 +24,7 @@
                 $users = User::all();
                 $b = Book::all();
                 $services = Service::all();
-                $r = Rate::all();
-                $rating = Rate::where('user_id_recipient', $id)->get();
+                $r = Rate::where('user_id_recipient', $id)->get();
     
                 $totalRate = $r->avg('rating');
             }
@@ -55,7 +54,8 @@
                 <ul>
                 <div id="stat">
                   
-                    <li><a href="#" class="tab-link" data-status="Feedbacks">Feedbacks</a></li>
+                    <li><a href="#" class="tab-link" data-status="Ratings">Ratings</a></li>
+                    <li><a href="#" class="tab-link" data-status="Feedbacks">Outgoing Feedbacks</a></li>
                     
                 </div>
             </ul>
@@ -85,8 +85,62 @@
     </table>
     <br><br>
     </div>
-</div>
+
+    <div id="feedbacks-content" class="content" style="display: none">
+        <table>
+        <tr>
+            <?php
+                $fb = Rate::where('user_id_reviewer', $id)->get();
+            ?>
+            <th>Booked Service</th>
+            <th>Recipient</th>
+            <th>Date & Time</th>
+            <th>Rating</th>
+            <th>Comment</th>
+        </tr>
+        @foreach($fb as $feedback)
+        <tr>
+            <td>{{ $services->where('id', $b->where('id', $feedback->booking_id)->first()->service_id)->first()->service_list_name }}</td>
+            <td>{{ $users->where('id', $feedback->user_id_recipient)->first()->username }}</td>
+            <td>{{ $feedback->created_at }}</td>
+            <td>{{ $feedback->rating }}</td>
+            <td>{{ $feedback->comments }}</td>
+        </tr>
+        @endforeach
+    </table>
+    <BR><BR>
+    </div>
+    </div>
            </main>
     </body>
 </section>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+            // Automatically select "Services" tab when the page opens
+            selectTab('Services'); // Call the function to set "Services" as active
+
+            // Add a click event handler to the top bar links
+            $('.tab-link').click(function () {
+                var status = $(this).data('status');
+
+                // Hide all content sections
+                $('.content').hide();
+
+                // Show the content section based on the selected status
+                $('#' + status.toLowerCase() + '-content').show();
+
+                // Remove the "active" class from all tabs
+                $('.tab-link').removeClass('active');
+
+                // Add the "active" class to the clicked tab
+                $(this).addClass('active');
+            });
+        });
+        
+        function selectTab(tabName) {
+            $('#' + tabName.toLowerCase() + '-content').show();
+            $('a[data-status="' + tabName + '"]').addClass('active');
+        }</script>
