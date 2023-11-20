@@ -5,7 +5,7 @@
 <html>
 <head>
 	<link rel = "stylesheet" href="{{ asset('css/stylecustViewProvProfile.css') }}">
-
+    <img class="lg" src="asset/log2.png" draggable="false">
 </head>
 
 <section>

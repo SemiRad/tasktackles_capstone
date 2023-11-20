@@ -54,8 +54,8 @@
 		$puserID = $service->user_id;
 		$user = \App\Models\user::find($puserID);
 		@endphp
-
-		<div class="card">
+        <div id="services-content" class="content" style="display: flex;">
+		<div class="card" style="width: 300vh;">
     <div class="image">
         <img src="{{ asset('images/' . $service->photo) }}" alt="default">
     </div>
@@ -78,6 +78,7 @@
         <button class="btnstatcs">Book Service</button>
     </form>
 	@endif
+</div>
 </div>
 </div>
 @endforeach
