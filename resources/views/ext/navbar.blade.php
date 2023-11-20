@@ -16,8 +16,8 @@
 		<div class = "navbar">
 		<a href="{{ route('home') }}"><div class="logo"><img src="{{ asset('asset/TT-txt.png') }}"></div></a>
 			<ol class = "menuitems">
-				<li><a href="login"> Log In </a></li>
-				<li><a href="signup"> Sign Up </b></a></li>
+				<li><a href="login"> Login </a></li>
+				<li><a href="signup"> Signup </b></a></li>
 			</ol>
 		<label for="check" class="fa fa-bars"> </label>
 	</div></nav>
