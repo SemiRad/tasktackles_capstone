@@ -490,7 +490,9 @@ class UserController extends Controller
     public function viewcusvacc($id){
         $user = User::find($id);
         $services = Book::where('user_id_customer', $id)->get();
-        return view('customer.provviewcustomerprofile', compact('user', 'services')); }
+        $r = Rate::where('user_id_recipient', $user)->get();
+        $totalRate = $r->avg('rating');
+        return view('customer.provviewcustomerprofile', compact('user', 'services', 'r', 'totalRate')); }
 
     public function cChangepw(){
         $user = array();

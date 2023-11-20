@@ -20,14 +20,6 @@
 	color: whitesmoke;
 }
 
-html{
-	background-image: url("/asset/log2.png");
-	height: fit-content;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
 input[type="text"] {
 	width: 50%;
 	padding: 8px;
@@ -220,6 +212,7 @@ main .card {
 }
 
 main .card .image {
+	border-radius: 36px;
     height: 200px; /* Set a fixed height for the image container */
     display: flex; /* Use flexbox to center the image */
     justify-content: center; /* Horizontally center the image */
