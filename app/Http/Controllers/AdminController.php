@@ -99,8 +99,64 @@ class AdminController extends Controller
             $booking->status = "Declined";
             $booking->save();}
 
-
             return redirect()->back()->with('success', 'Service suspend.');}
+
+//fOR USER SORTING
+   /* public function verifiedUsers(){
+        $user = array();
+        if(Session::has('loginID')){
+        $id = Session::get('loginID');
+        $user = User::where('id', '=', $id)->first();  
+             
+        $verified = User::where('isValid', '=', "1")
+        ->where('account_status', '=', "Active")
+        ->get();
+        
+            
+        return view('admin.adminhome', compact('verified','user'));}}
+    
+    public function unverifiedUsers(){
+        $user = array();
+        if(Session::has('loginID')){
+        $id = Session::get('loginID');
+        $user = User::where('id', '=', $id)->first();  
+             
+        $verified = User::where('isValid', '=', "0")
+        ->where('account_status', '=', "Active")
+        ->get();
+        
+            
+        return view('admin.adminhome', compact('verified','user'));}}
+
+    public function deniedUsers(){
+        $user = array();
+        if(Session::has('loginID')){
+        $id = Session::get('loginID');
+        $user = User::where('id', '=', $id)->first();  
+             
+        $verified = User::where('isValid', '=', "1")
+        ->where('account_status', '=', "Denied")
+        ->get();
+        
+            
+        return view('admin.adminhome', compact('verified','user'));}}
+
+    public function bannedUsers(){
+        $user = array();
+        if(Session::has('loginID')){
+        $id = Session::get('loginID');
+        $user = User::where('id', '=', $id)->first();  
+             
+        $verified = User::where('isValid', '=', "1")
+        ->where('account_status', '=', "Banned")
+        ->get();
+        
+            
+        return view('admin.adminhome', compact('verified','user'));}}
+
+
+*/
+    
 }
     
     
