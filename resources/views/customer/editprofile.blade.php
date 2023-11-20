@@ -98,7 +98,7 @@
 
             <div class="dividers">
             <div class="row">
-                    <label>Province:</label><input type="text" placeholder="Aa" name="province" value="{{$user->provice}}" required>
+                    <label>Province:</label><input type="text" placeholder="Aa" name="province" value="{{$user->province}}" required>
                 </div>
                 <span>
                 @error('province')
