@@ -163,7 +163,12 @@
             </div>
                 <!--end modal-->
                 <td>{{ $services->category }}</td>
-                <td>{{ $services->status }}</td>
+                <td>   @if ($services->status === 'A')
+                    Available
+                @elseif ($services->status === 'U')
+                    Unavailable
+                    @else $services->status
+                @endif</td>
                 <td style = "display: none;">{{ $services->id }}</td>
                 <td>
                 <form action="{{ route('admin-suspend', ['id' => $services->id]) }}" method="get">
