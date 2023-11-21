@@ -102,14 +102,13 @@ class AdminController extends Controller
             return redirect()->back()->with('success', 'Service suspend.');}
 
 //fOR USER SORTING
-   /* public function verifiedUsers(){
+   public function verifiedUsers(){
         $user = array();
         if(Session::has('loginID')){
         $id = Session::get('loginID');
         $user = User::where('id', '=', $id)->first();  
              
-        $verified = User::where('isValid', '=', "1")
-        ->where('account_status', '=', "Active")
+        $verified = User::where('account_status', '=', "Active")
         ->get();
         
             
@@ -121,8 +120,7 @@ class AdminController extends Controller
         $id = Session::get('loginID');
         $user = User::where('id', '=', $id)->first();  
              
-        $verified = User::where('isValid', '=', "0")
-        ->where('account_status', '=', "Active")
+        $verified = User::where('account_status', '=', "Pending")
         ->get();
         
             
@@ -134,8 +132,7 @@ class AdminController extends Controller
         $id = Session::get('loginID');
         $user = User::where('id', '=', $id)->first();  
              
-        $verified = User::where('isValid', '=', "1")
-        ->where('account_status', '=', "Denied")
+        $verified = User::where('account_status', '=', "Denied")
         ->get();
         
             
@@ -147,15 +144,14 @@ class AdminController extends Controller
         $id = Session::get('loginID');
         $user = User::where('id', '=', $id)->first();  
              
-        $verified = User::where('isValid', '=', "1")
-        ->where('account_status', '=', "Banned")
+        $verified = User::where('account_status', '=', "Banned")
         ->get();
         
             
         return view('admin.adminhome', compact('verified','user'));}}
 
 
-*/
+
     
 }
     

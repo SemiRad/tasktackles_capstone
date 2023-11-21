@@ -54,7 +54,7 @@ class UserController extends Controller
             }
         } elseif ($user && $user->isValid == 1 && $user->account_status == "Banned") {
             return back()->with('error', 'Account banned', compact('user'));
-        } elseif ($user && $user->isValid == 0) {
+        } elseif ($user && $user->isValid == 0 && $user->account_status == "Pending") {
             return back()->with('error', 'Account is not verified yet.', compact('user'));
         } elseif ( ($user && $user->isValid == 1 && $user->account_status == "Denied")) {
             return back()->with('error', 'Account is denied, please <a href="' . route('resend') . '">reregister</a> again.', compact('user'));
@@ -118,7 +118,7 @@ class UserController extends Controller
                     $user->service_name = $request->input('service_name');
                 }
             
-                $user->account_status = "Active";
+                $user->account_status = "Pending";
             
                 $saveuser = $user->save();
             

@@ -97,6 +97,10 @@ Route::get('/admin-verify/{id}', [AdminController::class,'verifyUser'])->name('a
 Route::get('/admin-deny/{id}', [AdminController::class,'denyUser'])->name('admin-deny')->middleware('isAdmin');
 Route::get('/admin-ban/{id}', [AdminController::class,'banUser'])->name('admin-ban')->middleware('isAdmin');
 Route::get('/admin-suspend/{id}', [AdminController::class,'suspendService'])->name('admin-suspend')->middleware('isAdmin');
+Route::get("verified-user", [AdminController::class, "verifiedUsers"])->name("verified-user");
+Route::get("pending-user", [AdminController::class, "unverifiedUsers"])->name("pending-user");
+Route::get("denied-user", [AdminController::class, "deniedUsers"])->name("denied-user");
+Route::get("banned-user", [AdminController::class, "bannedUsers"])->name("banned-user");
 /*FOR VIEWS 
 Route::get('/adminuser', function(){
     return view('admin.adminhome');

@@ -45,6 +45,17 @@
     ?>
 
     <div class="t1c1" id="contentContainer">
+      
+    <div class="userfilter" id="userfilter" style="display: flex;">
+    <select id="categorySelect" name="task-dropdown">
+        <option value="">All</option>
+        <option value="Verified">Verified</option>
+        <option value="Pending">Unverified</option>
+        <option value="Denied">Denied</option>
+        <option value="Banned">Banned</option>
+    </select>
+</div>
+
         <table id="usersContent">
             <tr>
                 <th>Username</th>
@@ -84,7 +95,7 @@
                         </div>
                     </div>
                     <!--end modal-->
-                <td>
+                <td class = "status">
                 @if ($users->isValid === 1 && $users->account_status === "Active")
                     Verified
                     <form action="{{ route('admin-ban', ['id' => $users->id]) }}" method="get"class ="hide">
@@ -93,7 +104,7 @@
                     @elseif ($users->isValid === 1 && $users->account_status === "Denied")
                     Denied
                     
-                    @else
+                    @elseif ($users->isValid === 0 && $users->account_status === "Pending")
                     Pending
                     <form action="{{ route('admin-verify', ['id' => $users->id]) }}" method="get"class ="hide">
                         @csrf
@@ -101,6 +112,9 @@
                         <form action="{{ route('admin-deny', ['id' => $users->id]) }}" method="get"class ="hide">
                         @csrf
                         <td><button class="btn btn-danger">Deny</button></td></form>
+                    @else
+                    Banned
+                    
                 @endif</td>
                       
                         
@@ -209,19 +223,58 @@
     </div>
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(".tab-link").click(function () {
-        $(".tab-link").removeClass("active");
-        $(this).addClass("active");
+    $(document).ready(function () {
+        $(".tab-link").click(function () {
+            $(".tab-link").removeClass("active");
+            $(this).addClass("active");
 
-        // Hide all content sections
-        $("#contentContainer > table").hide();
+            $("#contentContainer > table").hide();
 
-        // Show the content section based on the data attribute
-        const tabName = $(this).data("tab") + "Content";
-        $("#" + tabName).show();
+            const tabName = $(this).data("tab") + "Content";
+            $("#" + tabName).show();
+
+            if ($(this).data("tab") === "users") {
+                $("#userfilter").show();
+            } else {
+                $("#userfilter").hide();
+            }
+        });
+
+        $('#categorySelect').on('change', function () {
+    const selectedCategory = $(this).val().toLowerCase();
+
+    $("#usersContent tr").each(function () {
+        const statusCell = $(this).find('td.status');
+        const status = statusCell.text().toLowerCase();
+        const row = $(this);
+
+        console.log("Selected Category:", selectedCategory);
+        console.log("Row Status:", status);
+
+        if (selectedCategory === '' || status.includes(selectedCategory)) {
+            row.show();
+        } else {
+            row.hide();
+        }
+    });
+});
+
+        // Set the selected category in the dropdown
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedCategory = urlParams.get('task-dropdown');
+        $('#categorySelect').val(selectedCategory);
+
+        // Trigger change event to filter users on page load
+        $('#categorySelect').change();
     });
 </script>
+pt>
+
+
+   
+
 </body>
 </html>
