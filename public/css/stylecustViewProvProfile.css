@@ -344,6 +344,7 @@ main .card .image img {
     object-fit: contain; /* Maintain aspect ratio and fit the image inside the container */
 	margin-top: 20px;
     border-radius: 36px;
+    scale: 0.9;
 }
 
 
