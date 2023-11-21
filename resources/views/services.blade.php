@@ -5,6 +5,7 @@
 <html>
 <head>
 	<link rel = "stylesheet" href="{{ asset('css/serviceProv.css') }}">
+    <img class="lg" src="asset/log2.png" draggable="false">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
