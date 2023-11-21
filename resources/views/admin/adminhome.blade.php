@@ -244,23 +244,28 @@
         });
 
         $('#categorySelect').on('change', function () {
-    const selectedCategory = $(this).val().toLowerCase();
+            const selectedCategory = $(this).val().toLowerCase();
 
-    $("#usersContent tr").each(function () {
-        const statusCell = $(this).find('td.status');
-        const status = statusCell.text().toLowerCase();
-        const row = $(this);
+            $("#usersContent tr").each(function (index) {
+                if (index === 0) {
+                    // Skip the header row
+                    return;
+                }
 
-        console.log("Selected Category:", selectedCategory);
-        console.log("Row Status:", status);
+                const statusCell = $(this).find('td.status');
+                const status = statusCell.text().toLowerCase();
+                const row = $(this);
 
-        if (selectedCategory === '' || status.includes(selectedCategory)) {
-            row.show();
-        } else {
-            row.hide();
-        }
-    });
-});
+                console.log("Selected Category:", selectedCategory);
+                console.log("Row Status:", status);
+
+                if (selectedCategory === '' || status.includes(selectedCategory)) {
+                    row.show();
+                } else {
+                    row.hide();
+                }
+            });
+        });
 
         // Set the selected category in the dropdown
         const urlParams = new URLSearchParams(window.location.search);
@@ -271,7 +276,6 @@
         $('#categorySelect').change();
     });
 </script>
-pt>
 
 
    
