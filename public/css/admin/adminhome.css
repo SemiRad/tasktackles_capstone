@@ -66,4 +66,6 @@ table {
 
 .t1c1 td {
 	font-size: 16px;
+	word-wrap: break-word;
+    overflow-wrap: break-word;
 }
