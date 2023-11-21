@@ -89,7 +89,10 @@ class DeniedUserController extends Controller
     
         // Update the 'id_img' column in the 'users' table
         User::where('email_address', $request->email)
-            ->update(['id_img' => $imageName]);
+            ->update(['id_img' => $imageName,
+                    'account_status' => 'Pending',
+                    'isValid' => '0',
+        ]);
     
         // Delete the entry from the 'denies' table
         DB::table('denies')->where(['email' => $request->email])->delete();

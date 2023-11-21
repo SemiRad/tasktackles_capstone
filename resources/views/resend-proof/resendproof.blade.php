@@ -34,7 +34,7 @@
             <div class="title"><img src="{{ asset('asset/TT-txt.png') }}" alt="TaskTackles"></div>
             <form action="{{ route('reregister-account') }}" method="post" enctype="multipart/form-data">
             <div class="register">
-            <p id="text" style= "text-align:center; font-size:x-large; font-weight: bold;">Reset Password<br></p>
+            <p id="text" style= "text-align:center; font-size:x-large; font-weight: bold;">Re-upload ID Image<br></p>
         </div>
             @csrf
             <input type = "text" name ="token" hidden value ="{{$token}}">
@@ -43,7 +43,7 @@
             </div>
         
             <div class="row">
-                    <input type="file" name="id_img" >
+                    <input type="file" name="id_img" style="color: white;">
              </div>
                 <div class="row">
                     <input type="submit" value="Reregister" id="login">

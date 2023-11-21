@@ -34,7 +34,7 @@
             <div class="title"><img src="asset/TT-txt.png" alt="TaskTackles"></div>
             <form action="{{route('get-email')}}" method="post">
             <div class="register">
-                <h1 style="color: #F97134;">REREGISTER</h1>
+                <h1 style="color: #F97134;">REUPLOAD ID IMAGE</h1>
             <p id="text" style= "text-align:left; font-size:small;">Enter your email address and we will send you a link to reregister.<br></p>
         </div>
             @csrf
