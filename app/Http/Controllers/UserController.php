@@ -422,20 +422,23 @@ class UserController extends Controller
         return view('provider.changeSN',  compact('user','services'));}  } 
 
 
-    public function updateServiceName(Request $request, $id){
-        $request->validate([
-                'service_name' => 'required|unique:user',]);
-        $user = User::find($id);
-        $user->service_name =$request->service_name;
-       
-        $saveuser = $user->save();
-            
-                if ($saveuser) {
-                    return redirect('provserv')->with('success', 'Service name changed successfully.');
-                } else {
-                    return back()->with('error', 'There is an error. Please try again.');
-                }
-    }  
+        public function updateServiceName(Request $request, $id) {
+            $request->validate([
+                'service_name' => 'required|unique:user,service_name,' . $id,
+            ]);
+        
+            $user = User::find($id);
+            $user->service_name = $request->service_name;
+        
+            $saveUser = $user->save();
+        
+            if ($saveUser) {
+                return back()->with('success', 'Service name changed successfully.');
+            } else {
+                return back()->with('error', 'There is an error. Please try again.');
+            }
+        }
+        
 
     public function editServiceView($sID) {
         $user = array();
