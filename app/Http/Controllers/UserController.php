@@ -451,8 +451,7 @@ class UserController extends Controller
         
     public function addCrev(Request $request, $id) {
         $request->validate([
-            'rating' => 'required', 
-            'comments' => 'required',]);
+            'rating' => 'required']);
              $booking = Book::findOrFail($id);
 
              $rating = new Rate();
@@ -460,7 +459,7 @@ class UserController extends Controller
                 $rating->user_id_reviewer = $booking->user_id_provider; 
                 $rating->user_id_recipient = $booking->user_id_customer; 
                 $rating->rating = $request->rating;
-                $rating->comments = $request->comments;
+                $rating->comments = $request->filled('comments') ? $request->comments : ' '; 
                 
                     $rating->save();
                  $booking->isRated = 1;
@@ -648,22 +647,26 @@ class UserController extends Controller
         $bookings = book::where ('user_id_customer', '=','$user' )->get();
         return view('customer.custOGFbacks',  compact('user', 'bookings'));}  }
 
-   public function addPrev(Request $request, $id) {
-    $request->validate([
-        'rating' => 'required', 
-        'comments' => 'required',]);
-         $booking = Book::findOrFail($id);
-         $rating = new Rate();
+        public function addPrev(Request $request, $id) {
+            $request->validate([
+                'rating' => 'required',
+            ]);
+        
+            $booking = Book::findOrFail($id);
+            $rating = new Rate();
             $rating->booking_id = $booking->id;
             $rating->user_id_reviewer = $booking->user_id_customer; 
             $rating->user_id_recipient = $booking->user_id_provider; 
             $rating->rating = $request->rating;
-            $rating->comments = $request->comments;
-            
-                $rating->save();
-                $booking->isffbyCust = 1;
-                $booking->save();
-                return redirect()->back()->with('success', 'Rating submitted successfully');  }
+            $rating->comments = $request->filled('comments') ? $request->comments : ' '; 
+        
+            $rating->save();
+            $booking->isffbyCust = 1;
+            $booking->save();
+        
+            return redirect()->back()->with('success', 'Rating submitted successfully');
+        }
+        
     
 //FUNCTIONS
     public function updatePassword(Request $request, $id){

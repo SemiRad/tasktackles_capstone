@@ -27,8 +27,7 @@
 					->get();
 				$r = Rate::where('user_id_recipient', $id)->get();
 	
-				$totalRate = $r->avg('rating');
-	        }
+				$totalRate = number_format($r->avg('rating'), 2);	        }
 	        ?>
             <div class="parent">
             <div class="left"><img src="{{ asset('images/' . $user->profile_picture ) }}"></div>
