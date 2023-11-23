@@ -44,10 +44,16 @@
     }
     ?>
 
+    <div class="search">
+        <li id="bar">
+        <input type="text" id="searchInput" placeholder="Search">
+        </li>
+    </div>
+
     <div class="t1c1" id="contentContainer">
-      
-    <div class="userfilter" id="userfilter" style="display: flex;">
-    <select id="categorySelect" name="task-dropdown">
+    
+    <div class="userfilter" id="userfilter" style="display: flex; justify-content: center; margin: 20px 0;">
+    Sort by: &nbsp;<select id="categorySelect" name="task-dropdown">
         <option value="">All</option>
         <option value="Verified">Verified</option>
         <option value="Pending">Unverified</option>
@@ -280,6 +286,41 @@
         // Trigger change event to filter users on page load
         $('#categorySelect').change();
     });
+
+    $('#searchInput').on('keyup', function () {
+            const searchText = $(this).val().toLowerCase();
+
+            // Iterate through all tables
+            $("table").each(function () {
+                const table = $(this);
+
+                table.find("tr").each(function (index) {
+                    if (index === 0) {
+                        // Skip the header row
+                        return;
+                    }
+
+                    const row = $(this);
+
+                    // Check if any of the columns contain the search text
+                    let found = false;
+                    row.find('td').each(function () {
+                        const cellText = $(this).text().toLowerCase();
+                        if (cellText.includes(searchText)) {
+                            found = true;
+                            return false; // Break out of the loop if found
+                        }
+                    });
+
+                    // Show or hide the row based on search result
+                    if (found || searchText === '') {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                });
+            });
+        });
 </script>
 
 

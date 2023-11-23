@@ -20,6 +20,25 @@
 	padding-top: 30px;
 }
 
+.search {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 20px;
+}
+
+::placeholder {
+	color: whitesmoke;
+}
+
+input[type="text"] {
+	width: 50%;
+	padding: 8px;
+	border: 0;
+	background-color: #A02B68;
+	color: white;
+}
+
 .table1 {
 	background-color: #470047;
 	width: 100%;
