@@ -287,32 +287,29 @@
         $('#categorySelect').change();
     });
 
+//search function hehe
     $('#searchInput').on('keyup', function () {
             const searchText = $(this).val().toLowerCase();
 
-            // Iterate through all tables
             $("table").each(function () {
                 const table = $(this);
 
                 table.find("tr").each(function (index) {
                     if (index === 0) {
-                        // Skip the header row
                         return;
                     }
 
                     const row = $(this);
 
-                    // Check if any of the columns contain the search text
                     let found = false;
                     row.find('td').each(function () {
                         const cellText = $(this).text().toLowerCase();
                         if (cellText.includes(searchText)) {
                             found = true;
-                            return false; // Break out of the loop if found
+                            return false;
                         }
                     });
 
-                    // Show or hide the row based on search result
                     if (found || searchText === '') {
                         row.show();
                     } else {
