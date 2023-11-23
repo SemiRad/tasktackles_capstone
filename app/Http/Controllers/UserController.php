@@ -159,9 +159,11 @@ class UserController extends Controller
         $services = service::where('user_id', $id)
         ->whereIn('status', ["A", "U"])
         ->get();
-    
-
-        return view('provider.customerviewprovprofile', compact('user', 'services'));}
+        $b = Book::where('user_id_customer', $id)->get();
+        $allS = Service::all();
+        $r = Rate::where('user_id_recipient', $id)->get();
+        $totalRate = number_format($r->avg('rating'), 2);
+        return view('provider.customerviewprovprofile', compact('user', 'services', 'r', 'b', 'totalRate', 'allS'));}
 
 
  
@@ -492,9 +494,10 @@ class UserController extends Controller
     public function viewcusvacc($id){
         $user = User::find($id);
         $services = Book::where('user_id_customer', $id)->get();
-        $r = Rate::where('user_id_recipient', $user)->get();
-        $totalRate = $r->avg('rating');
-        return view('customer.provviewcustomerprofile', compact('user', 'services', 'r', 'totalRate')); }
+        $service = Service::all();
+        $r = Rate::where('user_id_recipient', $id)->get();
+        $totalRate = number_format($r->avg('rating'), 2);
+        return view('customer.provviewcustomerprofile', compact('user', 'services', 'r', 'totalRate', 'service')); }
 
     public function cChangepw(){
         $user = array();

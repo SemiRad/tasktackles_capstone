@@ -55,8 +55,8 @@
         </tr>
         @foreach($r as $rate)
         <tr>
-            <td>{{ $services->where('id', $b->where('id', $rate->booking_id)->first()->service_id)->first()->service_list_name }}</td>
-            <td>{{ $users->where('id', $rate->user_id_reviewer)->first()->username }}</td>
+            <td>{{ $service->where('id', $services->where('id', $rate->booking_id)->first()->service_id)->first()->service_list_name }}</td>
+            <td>{{ $user->where('id', $rate->user_id_reviewer)->first()->username }}</td>
             <td>{{ $rate->created_at }}</td>
             <td>{{ $rate->rating }}</td>
             <td>{{ $rate->comments }}</td>

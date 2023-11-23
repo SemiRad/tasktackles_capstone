@@ -18,8 +18,8 @@
             <input type="hidden" name="user_id" value="{{$user->id}}">
                 <p class = "p1"><b>{{$user->firstname }} {{$user->lastname}}</b></p>
                 <p style="color: white;">{{ '@' . $user->username }}</p>
-                <p class = "r1">Rating:</p>
-            </div>
+                <p class = "r1">Rating: <span style="color:#FFB94E; font-size: 18px; font-weight: bold;">{{ $totalRate }}</span></p>
+            </div> 
             
             <div class = "butts">
             <form action="/viewConversationCustomer/{{$user->id}}" method="get">
