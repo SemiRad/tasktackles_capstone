@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\user;
-use App\Models\service;
-use App\Models\book;
-use App\Models\rate;
-use App\Models\message;
+use App\Models\User;
+use App\Models\Service;
+use App\Models\Book;
+use App\Models\Rate;
+use App\Models\Message;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
